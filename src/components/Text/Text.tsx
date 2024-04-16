@@ -16,65 +16,49 @@ export type TextProps = {
   maxLines?: number;
 };
 
-export const Text: React.FC<TextProps> = (props) => {
-  let view_className = props.view ? `${style[props.view]}` : ``;
-  let weight_className = props.weight ? `${style[props.weight]}` : ``;
-  let color_className = props.color ? `${style[props.color]}` : ``;
-  let maxLines_className = props.maxLines ? `${style[props.maxLines]}` : ``;
+export const Text: React.FC<TextProps> = ({ view, weight, color, maxLines, tag, children }) => {
+  let view_className = view ? `${style[view]}` : ``;
+  let weight_className = weight ? `${style[weight]}` : ``;
+  let color_className = color ? `${style[color]}` : ``;
+  let maxLines_className = maxLines ? `${style[maxLines]}` : ``;
 
-  if (props.tag === 'h1') {
+  if (tag === 'h1') {
     return (
-      <h1 className={`${view_className} ${weight_className} ${color_className} ${maxLines_className}`}>
-        {props.children}
-      </h1>
+      <h1 className={`${view_className} ${weight_className} ${color_className} ${maxLines_className}`}>{children}</h1>
     );
-  } else if (props.tag === 'h2') {
+  } else if (tag === 'h2') {
     return (
-      <h2 className={`${view_className} ${weight_className} ${color_className} ${maxLines_className}`}>
-        {props.children}
-      </h2>
+      <h2 className={`${view_className} ${weight_className} ${color_className} ${maxLines_className}`}>{children}</h2>
     );
-  } else if (props.tag === 'h3') {
+  } else if (tag === 'h3') {
     return (
-      <h3 className={`${view_className} ${weight_className} ${color_className} ${maxLines_className}`}>
-        {props.children}
-      </h3>
+      <h3 className={`${view_className} ${weight_className} ${color_className} ${maxLines_className}`}>{children}</h3>
     );
-  } else if (props.tag === 'h4') {
+  } else if (tag === 'h4') {
     return (
-      <h4 className={`${view_className} ${weight_className} ${color_className} ${maxLines_className}`}>
-        {props.children}
-      </h4>
+      <h4 className={`${view_className} ${weight_className} ${color_className} ${maxLines_className}`}>{children}</h4>
     );
-  } else if (props.tag === 'h5') {
+  } else if (tag === 'h5') {
     return (
-      <h5 className={`${view_className} ${weight_className} ${color_className} ${maxLines_className}`}>
-        {props.children}
-      </h5>
+      <h5 className={`${view_className} ${weight_className} ${color_className} ${maxLines_className}`}>{children}</h5>
     );
-  } else if (props.tag === 'h6') {
+  } else if (tag === 'h6') {
     return (
-      <h6 className={`${view_className} ${weight_className} ${color_className} ${maxLines_className}`}>
-        {props.children}
-      </h6>
+      <h6 className={`${view_className} ${weight_className} ${color_className} ${maxLines_className}`}>{children}</h6>
     );
-  } else if (props.tag === 'div') {
+  } else if (tag === 'div') {
     return (
-      <div className={`${view_className} ${weight_className} ${color_className} ${maxLines_className}`}>
-        {props.children}
-      </div>
+      <div className={`${view_className} ${weight_className} ${color_className} ${maxLines_className}`}>{children}</div>
     );
-  } else if (props.tag === 'span') {
+  } else if (tag === 'span') {
     return (
       <span className={`${view_className} ${weight_className} ${color_className} ${maxLines_className}`}>
-        {props.children}
+        {children}
       </span>
     );
   } else {
     return (
-      <p className={`${view_className} ${weight_className} ${color_className} ${maxLines_className}`}>
-        {props.children}
-      </p>
+      <p className={`${view_className} ${weight_className} ${color_className} ${maxLines_className}`}>{children}</p>
     );
   }
 };

@@ -4,8 +4,8 @@ import image from './image 2.png';
 
 export const RecipesMainPicture: React.FC = () => {
   return (
-    <section className={style.section}>
+    <div className={style.wrapper}>
       <img src={image} />
-    </section>
+    </div>
   );
 };

@@ -3,17 +3,23 @@ import style from './style.module.css';
 import { Header } from 'components/Header/Header';
 import { RecipesMainPicture } from 'components/RecipesMainPicture/RecipesMainPicture';
 import { Text } from 'components/Text/Text';
+import { Input } from 'components/Input/Input';
 
 export const App: React.FC = () => {
   return (
     <>
       <Header></Header>
       <main className={style.main}>
-        <RecipesMainPicture />
         <section className={style.textSection}>
-          <Text color="primary" weight="normal" view="p-20">
-            Find the perfect food and drink ideas for every occasion, from weeknight dinners to holiday feasts.
-          </Text>
+          <RecipesMainPicture />
+          <div className={style.mainText}>
+            <Text color="primary" weight="normal" view="p-20">
+              Find the perfect food and drink ideas for every occasion, from weeknight dinners to holiday feasts.
+            </Text>
+          </div>
+          <div className={style.input}>
+            <Input placeholder="Enter dishes" size={1} />
+          </div>
         </section>
       </main>
     </>

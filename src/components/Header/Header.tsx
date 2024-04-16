@@ -54,10 +54,10 @@ export const Header: React.FC = () => {
         </ul>
         <div className={style.personal}>
           <a href="#">
-            <ManIcon color="accent" />
+            <HeartIcon color="accent" />
           </a>
           <a href="#">
-            <HeartIcon color="accent" />
+            <ManIcon color="accent" />
           </a>
         </div>
       </div>
