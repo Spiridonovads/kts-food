@@ -7,6 +7,7 @@ import CheckIcon from 'components/Icon/CheckIcon/CheckIcon';
 import Input from 'components/Input/Input';
 import Card from 'components/Card/Card';
 import MultiDropdown from 'components/MultiDropDown/MultiDropDown';
+import CheckBox from 'components/CheckBox/CheckBox';
 
 function App() {
   let options = [
@@ -34,6 +35,7 @@ function App() {
         onChange={() => console.log('Hi')}
         getTitle={() => ''}
       ></MultiDropdown>
+      <CheckBox onChange={(bool) => !bool}></CheckBox>
     </>
   );
 }
