@@ -6,7 +6,8 @@ a {
 }
 
 .wrapper {
-  max-width: 1240px;
+  max-width: 1255px;
+  padding: 0 15px;
   height: 64px;
   margin: auto;
   display: grid;

@@ -1,10 +1,11 @@
+import React from 'react';
 import style from './style.module.css';
 import logo from '../../../public/logo.svg';
-import Text from 'components/Text/Text';
-import ManIcon from 'components/Icon/ManIcon/MainIcon';
-import HeartIcon from 'components/Icon/HeartIcon/HeartIcon';
+import { Text } from 'components/Text/Text';
+import { ManIcon } from 'components/Icon/ManIcon/MainIcon';
+import { HeartIcon } from 'components/Icon/HeartIcon/HeartIcon';
 
-function Header() {
+export const Header: React.FC = () => {
   return (
     <header>
       <div className={style.wrapper}>
@@ -62,6 +63,4 @@ function Header() {
       </div>
     </header>
   );
-}
-
-export default Header;
+};

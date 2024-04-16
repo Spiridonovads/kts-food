@@ -1,7 +1,7 @@
 import React from 'react';
 import { IconProps } from '../Icon';
 
-const HeartIcon: React.FC<IconProps> = ({ ...props }) => {
+export const HeartIcon: React.FC<IconProps> = ({ ...props }) => {
   let fill =
     props.color === 'accent'
       ? '#B5460F'
@@ -24,5 +24,3 @@ const HeartIcon: React.FC<IconProps> = ({ ...props }) => {
     </svg>
   );
 };
-
-export default HeartIcon;

@@ -16,7 +16,7 @@ export type TextProps = {
   maxLines?: number;
 };
 
-const Text: React.FC<TextProps> = (props) => {
+export const Text: React.FC<TextProps> = (props) => {
   let view_className = props.view ? `${style[props.view]}` : ``;
   let weight_className = props.weight ? `${style[props.weight]}` : ``;
   let color_className = props.color ? `${style[props.color]}` : ``;
@@ -78,5 +78,3 @@ const Text: React.FC<TextProps> = (props) => {
     );
   }
 };
-
-export default Text;
