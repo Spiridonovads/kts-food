@@ -1,0 +1,38 @@
+@import "../../styles/index.scss";
+
+.wrapper {
+  width: 400px;
+  height: 52px;
+  position: relative;
+}
+
+.input {
+  background-color: white;
+  padding: $space-s $space-xs;
+  outline: 1px rgba(255, 255, 255, 1);
+  border: none;
+  width: 400px;
+  height: 52px;
+  font-size: 16px;
+  position: relative;
+}
+
+.input::placeholder {
+  color: rgba(175, 173, 181, 1);
+  line-height: 20px;
+  font-weight: 400;
+}
+
+:focus::-webkit-input-placeholder {
+  color: black;
+}
+
+.input:focus {
+  border: 1px solid $brand;
+}
+
+.icon {
+  position: absolute;
+  top: 13px;
+  right: 11px;
+}
