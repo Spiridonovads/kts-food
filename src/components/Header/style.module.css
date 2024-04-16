@@ -1,0 +1,40 @@
+header {
+  background-color: rgba(255, 255, 255, 1);
+}
+a {
+  color: black;
+}
+
+.wrapper {
+  max-width: 1240px;
+  height: 64px;
+  margin: auto;
+  display: grid;
+  grid-template-columns: repeat(11, 1fr);
+  grid-column-gap: 20px;
+}
+
+.logo {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  grid-column-start: 1;
+  white-space: nowrap;
+}
+
+.list {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  grid-column-start: 3;
+  white-space: nowrap;
+  padding-left: 13px;
+}
+
+.personal {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  grid-column-end: 12;
+}

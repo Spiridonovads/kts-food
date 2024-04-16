@@ -1,5 +1,5 @@
 import React from 'react';
-import style from './style.module.css';
+import style from './style.module.scss';
 
 export type TextProps = {
   /** Стиль отображения */
