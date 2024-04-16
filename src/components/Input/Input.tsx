@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import style from './style.module.scss';
-import Icon from 'components/Icon/ArrowDownIcon/ArrowDownIcon';
+import { ArrowDownIcon } from 'components/Icon/ArrowDownIcon/ArrowDownIcon';
 
 export type InputProps = Omit<React.InputHTMLAttributes<HTMLInputElement>, 'onChange' | 'value'> & {
   /** Значение поля */
@@ -27,7 +27,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
         ></input>
         {afterSlot && (
           <div className={style.icon}>
-            <Icon color="secondary" />
+            <ArrowDownIcon color="secondary" />
           </div>
         )}
       </div>

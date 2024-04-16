@@ -8,3 +8,10 @@ main {
 .mainText {
   margin-bottom: 47px;
 }
+
+.input {
+  max-width: 1237px;
+  margin: auto;
+  display: flex;
+  gap: 19px;
+}

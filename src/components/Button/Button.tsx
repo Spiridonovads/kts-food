@@ -9,7 +9,7 @@ export type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {
   children: React.ReactNode;
 };
 
-const Button: React.FC<ButtonProps> = ({ loading, children, disabled }) => {
+export const Button: React.FC<ButtonProps> = ({ loading, children, disabled }) => {
   return loading && disabled ? (
     <button className={`${style.button} ${style.loading} ${style.disabled}`} disabled={true}>
       <Loader size="s" color="#FFFFFF" />
@@ -28,5 +28,3 @@ const Button: React.FC<ButtonProps> = ({ loading, children, disabled }) => {
     <button className={`${style.button} ${style.default} ${style.animation}`}>{children}</button>
   );
 };
-
-export default Button;

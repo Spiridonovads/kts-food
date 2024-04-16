@@ -4,6 +4,8 @@ import { Header } from 'components/Header/Header';
 import { RecipesMainPicture } from 'components/RecipesMainPicture/RecipesMainPicture';
 import { Text } from 'components/Text/Text';
 import { Input } from 'components/Input/Input';
+import { Button } from 'components/Button/Button';
+import { LoupeIcon } from 'components/Icon/LoupeIcon/LoupeIcon';
 
 export const App: React.FC = () => {
   return (
@@ -19,6 +21,7 @@ export const App: React.FC = () => {
           </div>
           <div className={style.input}>
             <Input placeholder="Enter dishes" size={1} />
+            <Button>{<LoupeIcon />}</Button>
           </div>
         </section>
       </main>
