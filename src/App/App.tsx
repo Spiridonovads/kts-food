@@ -1,7 +1,8 @@
+import Loader from 'components/Loader/Loader';
 import React from 'react';
 
 function App() {
-  return <h1>hi</h1>;
+  return <Loader size="l"></Loader>;
 }
 
 export default App;
