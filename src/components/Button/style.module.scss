@@ -1,0 +1,51 @@
+@import "../../styles/index.scss";
+
+.button {
+  background-color: $brand;
+  padding: $space-s $space-l $space-s $space-l;
+  border: none;
+  color: $font-color;
+  font-size: 18px;
+  line-height: 18px;
+  font-weight: 400;
+  min-height: 52px;
+}
+
+.icon {
+  animation: myAnimation 1s infinite;
+  animation-timing-function: linear;
+}
+
+@keyframes myAnimation {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.disabled {
+  background-color: $brand-disabled;
+}
+
+.loading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: $space-xxs;
+}
+
+.default {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.animation:hover {
+  background-color: $brand-hover;
+}
+
+.animation:active {
+  background-color: $brand-active;
+}
