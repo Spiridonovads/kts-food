@@ -18,8 +18,12 @@ export const Card: React.FC<CardProps> = ({ title, subtitle, image, onClick, ...
       <img className={style.image} src={image} alt="img" />
       <div className={style.content}>
         {props.captionSlot && <Text tag="span">{props.captionSlot}</Text>}
-        <Text tag="h1">{title}</Text>
-        <Text tag="p">{subtitle}</Text>
+        <Text tag="h1" weight="medium">
+          {title}
+        </Text>
+        <Text tag="p" color="secondary" maxLines={'two'}>
+          {subtitle}
+        </Text>
         <div className={style.footer}>
           {props.contentSlot && <Text tag="span">{props.contentSlot}</Text>}
           {props.actionSlot}

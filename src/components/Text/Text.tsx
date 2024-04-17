@@ -7,7 +7,7 @@ export type TextProps = {
   weight?: 'normal' | 'medium' | 'bold';
   children: React.ReactNode;
   color?: 'primary' | 'secondary' | 'accent';
-  maxLines?: number;
+  maxLines?: string;
   className?: string;
 };
 

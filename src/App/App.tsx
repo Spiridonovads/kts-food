@@ -10,11 +10,14 @@ import { MultiDropdown } from 'components/MultiDropDown/MultiDropDown';
 import { Card } from 'components/Card/Card';
 import { getData } from 'utils/api';
 import { Loader } from 'components/Loader/Loader';
+import { BrowserRouter } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
+import image from '../../public/404.png';
 
 export type Data = {
-  id: number;
+  /* id: number;
   image: string;
-  imageType: string;
+  imageType: string;*/
   title: string;
 };
 export const App: React.FC = () => {
@@ -23,7 +26,7 @@ export const App: React.FC = () => {
     const fetchData = async () => {
       try {
         const result = await getData();
-        setData(result.results);
+        setData(result);
       } catch (error) {
         console.error('Ошибка при получении данных:', error);
       }
@@ -32,68 +35,77 @@ export const App: React.FC = () => {
     fetchData();
   }, []);
 
-  const options: any = [
-    { key: 'msk', value: 'Москва' },
-    { key: 'spb', value: 'Санкт-Петербург' },
-    { key: 'ekb', value: 'Екатеринбург' },
-    { key: 'ekb', value: 'Екатеринбург' },
-    { key: 'ekb', value: 'Екатеринбург' },
-    { key: 'ekb', value: 'Екатеринбург' },
-    { key: 'ekb', value: 'Екатеринбург' },
-    { key: 'ekb', value: 'Екатеринбург' },
-    { key: 'ekb', value: 'Екатеринбург' },
-  ];
+  const options = data.reduce((acc: any, el: any) => {
+    let obj: any = {
+      key: `${el.id}`, // под ключом "name" хранится значение "John"
+      value: `${el.title}`,
+    };
+    acc.push(obj);
+    return acc;
+  }, []);
   return (
     <>
-      <Header></Header>
-      <main className={style.main}>
-        <section>
-          <RecipesMainPicture />
-          <div className={style.mainText}>
-            <Text color="primary" weight="normal" view="p-20">
-              Find the perfect food and{' '}
-              <Text className="underline" tag="span">
-                drink ideas
-              </Text>{' '}
-              for every occasion, from{' '}
-              <Text className="underline" tag="span">
-                weeknight dinners
-              </Text>{' '}
-              to{' '}
-              <Text className="underline" tag="span">
-                holiday feasts
-              </Text>
-              .
-            </Text>
-          </div>
-          <div className={style.input}>
-            <Input placeholder="Enter dishes" size={1} />
-            <Button>{<LoupeIcon />}</Button>
-          </div>
-          <div className={style.multiDropdown}>
-            <MultiDropdown options={options} />
-          </div>
-          {data ? (
-            <div className={style.cards}>
-              {data.map((el: Data) => {
-                return (
-                  <Card
-                    key={el.id}
-                    image={el.image}
-                    title={el.title}
-                    subtitle="milk + sugar + flour + vegetable oil + bakingpowder + egg"
-                  ></Card>
-                );
-              })}
-            </div>
-          ) : (
-            <>
-              <Text>Рецепты загружаются...</Text>
-              <Loader size="l" />
-            </>
-          )}
-        </section>
-      </main>
+      <Header />
+      <BrowserRouter>
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <main className={style.main}>
+                <section>
+                  <RecipesMainPicture />
+                  <div className={style.mainText}>
+                    <Text color="primary" weight="normal" view="p-20">
+                      Find the perfect food and{' '}
+                      <Text className="underline" tag="span">
+                        drink ideas
+                      </Text>{' '}
+                      for every occasion, from{' '}
+                      <Text className="underline" tag="span">
+                        weeknight dinners
+                      </Text>{' '}
+                      to{' '}
+                      <Text className="underline" tag="span">
+                        holiday feasts
+                      </Text>
+                      .
+                    </Text>
+                  </div>
+                  <div className={style.input}>
+                    <Input placeholder="Enter dishes" size={1} />
+                    <Button>{<LoupeIcon />}</Button>
+                  </div>
+                  <div className={style.multiDropdown}>
+                    <MultiDropdown options={options} />
+                  </div>
+                  {data ? (
+                    <div className={style.cards}>
+                      {data.map((el: any) => {
+                        return (
+                          <Card key={el.id} image={el.category.image} title={el.title} subtitle={el.description}></Card>
+                        );
+                      })}
+                    </div>
+                  ) : (
+                    <>
+                      <Text>Рецепты загружаются...</Text>
+                      <Loader size="l" />
+                    </>
+                  )}
+                </section>
+              </main>
+            }
+          />
+          <Route
+            path="*"
+            element={
+              <main className={style.main}>
+                <img src={image} alt="page not found" className={style.notFound}></img>
+              </main>
+            }
+          />
+        </Routes>
+      </BrowserRouter>
     </>
   );
 };

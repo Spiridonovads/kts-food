@@ -30,3 +30,9 @@ main {
   grid-template-columns: repeat(3, 1fr);
   gap: 48px;
 }
+
+.notFound {
+  width: auto;
+  height: 92vh;
+  margin: auto;
+}

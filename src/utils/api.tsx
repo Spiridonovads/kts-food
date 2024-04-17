@@ -1,5 +1,6 @@
 const API_KEY = '409106038fc34644a0141bf9bf97a4fb';
-const BASE_URL = `https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&addRecipeNutrition=true`;
+//const BASE_URL = `https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&addRecipeNutrition=true`;
+const BASE_URL = `https://api.escuelajs.co/api/v1/products`;
 
 export const getData = () => {
   return fetch(`${BASE_URL}`, {
