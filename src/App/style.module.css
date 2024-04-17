@@ -6,7 +6,7 @@ main {
 }
 
 .mainText {
-  margin-bottom: 47px;
+  margin-bottom: 48px;
 }
 
 .input {
@@ -22,4 +22,11 @@ main {
   margin: auto;
   display: flex;
   justify-content: flex-end;
+  margin-bottom: 48px;
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 48px;
 }
