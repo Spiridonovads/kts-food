@@ -11,8 +11,6 @@ export type PaginatorProps = {
 
 export const Paginator: React.FC<PaginatorProps> = ({ totalItems, itemsOnPage, onChange }) => {
   const [currentPage, setCurrentPage] = useState(1);
-  const [rightActive, setRightActive] = useState(true);
-  const [leftActive, setLeftActive] = useState(false);
   const totalPages = Math.ceil(totalItems / itemsOnPage);
 
   const handlePageChange = (pageNumber: number) => {
