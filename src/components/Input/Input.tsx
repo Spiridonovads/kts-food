@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import style from './style.module.scss';
-import { ArrowDownIcon } from 'components/Icon/ArrowDownIcon/ArrowDownIcon';
+import { ArrowDownIcon } from 'components/Icon/ArrowIcons/ArrowDownIcon';
 
 export type InputProps = Omit<React.InputHTMLAttributes<HTMLInputElement>, 'onChange' | 'value'> & {
   placeholder: string;

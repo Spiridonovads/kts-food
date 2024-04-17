@@ -8,7 +8,7 @@ import { HeartIcon } from 'components/Icon/HeartIcon/HeartIcon';
 export const Header: React.FC = () => {
   return (
     <header>
-      <div className={style.wrapper}>
+      <nav className={style.wrapper}>
         <a href="#" className={style.logo}>
           <img src={logo} alt="logo"></img>
           <Text view="p-20" weight="bold" color="primary">
@@ -60,7 +60,7 @@ export const Header: React.FC = () => {
             <ManIcon color="accent" />
           </a>
         </div>
-      </div>
+      </nav>
     </header>
   );
 };
