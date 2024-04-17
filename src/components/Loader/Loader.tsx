@@ -6,7 +6,7 @@ export type LoaderProps = {
   color?: string;
 };
 
-const Loader: React.FC<LoaderProps> = (props) => {
+export const Loader: React.FC<LoaderProps> = (props) => {
   return (
     <>
       {props.size === 'l' && (
@@ -57,5 +57,3 @@ const Loader: React.FC<LoaderProps> = (props) => {
     </>
   );
 };
-
-export default Loader;
