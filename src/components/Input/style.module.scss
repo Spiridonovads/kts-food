@@ -1,19 +1,26 @@
 @import "../../styles/index.scss";
 
 .wrapper {
-  position: relative;
+  display: flex;
+  justify-content: space-between;
+  width: 300px;
+  height: 52px;
+  border-radius: $border-radius;
+  background-color: white;
 }
 
 .input {
-  background-color: white;
-  padding: $space-s $space-xs;
-  outline: 1px rgba(255, 255, 255, 1);
   border: none;
-  border-radius: $border-radius;
-  width: 400px;
+  width: 250px;
   height: 52px;
   font-size: 16px;
   position: relative;
+  text-overflow: ellipsis;
+  padding: $space-s $space-xs;
+}
+
+.icon {
+  padding: $space-s $space-xs;
 }
 
 .input::placeholder {
@@ -26,17 +33,21 @@
   color: black;
 }
 
-.input:focus {
+.inputFocus:focus {
   border: 1px solid $brand;
 }
 
-.icon {
-  position: absolute;
-  top: 13px;
-  right: 11px;
+.wrapperFocus {
+  border: 1px solid $brand;
 }
 
-.size {
+.inputSize {
+  width: 1154px;
+  height: 52px;
+  border-radius: $border-radius;
+}
+
+.wrapperSize {
   width: 1154px;
   height: 52px;
 }

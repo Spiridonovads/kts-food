@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import Input from 'components/Input/Input';
+import { Input } from 'components/Input/Input';
 import style from './style.module.scss';
 
 export type Option = {
@@ -11,25 +11,20 @@ export type Option = {
 
 /** Пропсы, которые принимает компонент Dropdown */
 export type MultiDropdownProps = {
-  className?: string;
   /** Массив возможных вариантов для выбора */
   options: Option[];
-  /** Текущие выбранные значения поля, может быть пустым */
-  value: Option[];
-  /** Callback, вызываемый при выборе варианта */
-  onChange: (value: Option[]) => void;
   /** Заблокирован ли дропдаун */
   disabled?: boolean;
   /** Возвращает строку которая будет выводится в инпуте. В случае если опции не выбраны, строка должна отображаться как placeholder. */
-  getTitle: (value: Option[]) => string;
 };
 
-const MultiDropdown: React.FC<MultiDropdownProps> = ({ options, value, onChange, getTitle, disabled }) => {
+export const MultiDropdown: React.FC<MultiDropdownProps> = ({ options, disabled }) => {
   const [filteredOptions, setFilteredOptions] = useState<Option[]>(options);
   const [inputValue, setInputValue] = useState<string>('');
   const [showDropdown, setShowDropdown] = useState<boolean>(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
   const [activeOptions, setActiveOptions] = useState<Option[]>([]);
+  const [value, setValue] = useState<Option[]>([]);
 
   useEffect(() => {
     document.addEventListener('mousedown', handleClickOutside);
@@ -47,28 +42,12 @@ const MultiDropdown: React.FC<MultiDropdownProps> = ({ options, value, onChange,
     setFilteredOptions(filtered);
   };
 
-  const handleInputChange = (value: string) => {
-    setInputValue(value);
+  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setInputValue(event.target.value);
   };
 
   const handleInputFocus = () => {
     setShowDropdown(true);
-  };
-
-  const handleOptionClick = (option: Option) => {
-    const isSelected = value.some((v) => v.key === option.key);
-
-    if (!isSelected) {
-      const newValue = [...value, option];
-      const newActiveOptions = [...activeOptions, option];
-      onChange(newValue);
-      setActiveOptions(newActiveOptions);
-    } else {
-      const newValue = value.filter((v) => v.key !== option.key);
-      const newActiveOptions = activeOptions.filter((v) => v.key !== option.key);
-      onChange(newValue);
-      setActiveOptions(newActiveOptions);
-    }
   };
 
   const handleClickOutside = (event: MouseEvent) => {
@@ -77,27 +56,42 @@ const MultiDropdown: React.FC<MultiDropdownProps> = ({ options, value, onChange,
     }
   };
 
+  const handleOptionClick = (option: Option) => {
+    const isSelected = value.some((v) => v.key === option.key);
+    if (!isSelected) {
+      const newValue = [...value, option];
+      const newActiveOptions = [...activeOptions, option];
+      setValue(newValue);
+      setActiveOptions(newActiveOptions);
+      setInputValue('');
+    } else {
+      const newValue = value.filter((v) => v.key !== option.key);
+      const newActiveOptions = activeOptions.filter((v) => v.key !== option.key);
+      setValue(newValue);
+      setActiveOptions(newActiveOptions);
+      setInputValue('');
+    }
+  };
+
+  const getTitle = (value: Option[]) => {
+    let string = '';
+    value.forEach((el) => {
+      string += el.value + ', ';
+    });
+    return string;
+  };
+
   return (
     <div ref={dropdownRef}>
-      {value.length > 0 && !showDropdown ? (
-        <Input
-          value={getTitle(value)}
-          onChange={handleInputChange}
-          onFocus={handleInputFocus}
-          disabled={disabled}
-          afterSlot={true}
-        />
-      ) : (
-        <Input
-          value={inputValue}
-          placeholder={getTitle(value)}
-          onChange={handleInputChange}
-          onFocus={handleInputFocus}
-          disabled={disabled}
-          afterSlot={true}
-        />
-      )}
-
+      <Input
+        onChange={handleInputChange}
+        onFocus={handleInputFocus}
+        disabled={disabled}
+        afterSlot={true}
+        value={showDropdown && value.length > 0 ? getTitle(value) : inputValue}
+        placeholder={value.length > 0 ? getTitle(value) : 'Categories'}
+        border={showDropdown}
+      />
       {showDropdown && !disabled && (
         <div className={style.dropdown}>
           {filteredOptions.map((option) => {
@@ -117,5 +111,3 @@ const MultiDropdown: React.FC<MultiDropdownProps> = ({ options, value, onChange,
     </div>
   );
 };
-
-export default MultiDropdown;

@@ -26,27 +26,27 @@
   }
 }
 
-.disabled {
+.disabledButton {
   background-color: $brand-disabled;
 }
 
-.loading {
+.loadingButton {
   display: flex;
   justify-content: space-between;
   align-items: center;
   gap: $space-xxs;
 }
 
-.default {
+.defaultButton {
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-.animation:hover {
+.animationButton:hover {
   background-color: $brand-hover;
 }
 
-.animation:active {
+.animationButton:active {
   background-color: $brand-active;
 }

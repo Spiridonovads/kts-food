@@ -10,8 +10,16 @@ main {
 }
 
 .input {
-  max-width: 1237px;
+  width: 1237px;
   margin: auto;
   display: flex;
   gap: 19px;
+  margin-bottom: 20px;
+}
+
+.multiDropdown {
+  width: 1237px;
+  margin: auto;
+  display: flex;
+  justify-content: flex-end;
 }
