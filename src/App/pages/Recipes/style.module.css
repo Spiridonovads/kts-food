@@ -1,0 +1,38 @@
+main {
+  max-width: 1455px;
+  padding: 0 15px;
+  margin: auto;
+  text-align: center;
+}
+
+.mainText {
+  margin-bottom: 48px;
+}
+
+.input {
+  width: 1237px;
+  margin: auto;
+  display: flex;
+  gap: 19px;
+  margin-bottom: 20px;
+}
+
+.multiDropdown {
+  width: 1237px;
+  margin: auto;
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 48px;
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 48px;
+}
+
+.notFound {
+  width: auto;
+  height: 92vh;
+  margin: auto;
+}
