@@ -1,0 +1,62 @@
+@import "../../../styles/index.scss";
+
+main {
+  max-width: 1455px;
+  padding: 0 15px;
+  margin: auto;
+  text-align: center;
+}
+
+.title {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  margin-bottom: 38px;
+  margin-top: 45px;
+}
+
+.shortInfo {
+  display: flex;
+  gap: 166px;
+  margin-bottom: 38px;
+}
+
+.shortInfo img {
+  border-radius: $border-radius;
+}
+
+.shortInfoText {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 100px;
+}
+
+.shortInfoTextBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.textInfo {
+  background-color: rgba(181, 70, 15, 0.33);
+  border-radius: $border-radius;
+  padding: 36px;
+  margin-bottom: 38px;
+}
+
+.necessary {
+  display: flex;
+  justify-content: space-between;
+  text-align: start;
+  height: 180px;
+}
+
+.ingredients {
+  width: 50%;
+  border-right: 1px solid $brand;
+}
+
+.equip {
+  width: 50%;
+  padding-left: 50px;
+}
