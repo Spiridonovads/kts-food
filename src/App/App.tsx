@@ -21,6 +21,20 @@ export type Data = {
   imageType: string;*/
   title: string;
 };
+
+export type Ingredient = {
+  id: number;
+  name: string;
+  amount: number;
+  unit: string;
+  nutrients: [];
+};
+export type Nutrient = {
+  name: string;
+  amount: number;
+  unit: string;
+  percentOfDailyNeeds: number;
+};
 export const App: React.FC = () => {
   const [data, setData] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
@@ -35,7 +49,7 @@ export const App: React.FC = () => {
     const fetchData = async () => {
       try {
         const result = await getData();
-        setData(result);
+        setData(result.results);
       } catch (error) {
         console.error('Ошибка при получении данных:', error);
       }
@@ -44,7 +58,8 @@ export const App: React.FC = () => {
     fetchData();
   }, []);
 
-  const options = data.reduce((acc: any, el: any) => {
+  console.log(data);
+  const options = data?.reduce((acc: any, el: any) => {
     let obj: any = {
       key: `${el.id}`,
       value: `${el.title}`,
@@ -88,22 +103,32 @@ export const App: React.FC = () => {
                     <div className={style.multiDropdown}>
                       <MultiDropdown options={options} />
                     </div>
-                    {data ? (
+                    {data && (
                       <div className={style.cards}>
                         {data.map((el: any, i) => {
                           if (i >= (currentPage - 1) * itemsOnPage && i < currentPage * itemsOnPage) {
                             return (
                               <Card
                                 key={el.id}
-                                image={el.category.image}
+                                captionSlot={el.readyInMinutes}
+                                image={el.image}
                                 title={el.title}
-                                subtitle={el.description}
+                                subtitle={el.nutrition.ingredients.map((ingredient: Ingredient, j: number) => {
+                                  if (j !== el.nutrition.ingredients.length - 1) {
+                                    return `${ingredient.name}+`;
+                                  } else {
+                                    return ingredient.name;
+                                  }
+                                })}
+                                contentSlot={el.nutrition.nutrients[0].amount}
+                                actionSlot={<Button>Save</Button>}
                               ></Card>
                             );
                           }
                         })}
                       </div>
-                    ) : (
+                    )}
+                    {!data && (
                       <>
                         <Text>Рецепты загружаются...</Text>
                         <Loader size="l" />

@@ -14,19 +14,32 @@
   width: 100%;
   height: auto;
   background-color: #d9d9d9;
-  border-radius: $border-radius;
-  filter: contrast(150%);
+  border-radius: $border-radius $border-radius 0 0;
+  filter: contrast(115%);
 }
 
 .content {
   padding: $space-xl $space-xs $space-xl $space-xs;
+}
+
+.timer {
+  display: flex;
+  align-items: start;
+  gap: 6px;
+}
+
+.text {
   display: flex;
   flex-direction: column;
   gap: 10px;
+  height: 98px;
+  text-align: start;
 }
 
 .footer {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  height: 52px;
+  margin-top: 20px;
 }
