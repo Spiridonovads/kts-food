@@ -10,19 +10,8 @@ import { Card } from 'components/Card/Card';
 import { getData } from 'utils/api';
 import { Loader } from 'components/Loader/Loader';
 import { Paginator } from 'components/Paginator/Paginator';
-
-export type Data = {
-  id: number;
-  image: string;
-  title: string;
-  readyInMinutes: string;
-  nutrition: any;
-};
-
-export type Value = {
-  key: string;
-  value: string;
-};
+import { Data } from 'configs/types';
+import { Value } from 'configs/types';
 
 export const Recipes: React.FC = () => {
   const [data, setData] = useState([]);
@@ -46,7 +35,7 @@ export const Recipes: React.FC = () => {
     fetchData();
   }, []);
 
-  const options = data?.reduce((acc: Value[], el: Data) => {
+  const options = data.reduce((acc: Value[], el: Data) => {
     let obj: Value = {
       key: `${el.id}`,
       value: `${el.title}`,
@@ -90,23 +79,7 @@ export const Recipes: React.FC = () => {
               <div className={style.cards}>
                 {data.map((el: Data, i) => {
                   if (i >= (currentPage - 1) * itemsOnPage && i < currentPage * itemsOnPage) {
-                    return (
-                      <Card
-                        key={el.id}
-                        captionSlot={el.readyInMinutes}
-                        image={el.image}
-                        title={el.title}
-                        subtitle={el.nutrition.ingredients.map((ingredient: { name: string }, j: number) => {
-                          if (j !== el.nutrition.ingredients.length - 1) {
-                            return `${ingredient.name}+`;
-                          } else {
-                            return ingredient.name;
-                          }
-                        })}
-                        contentSlot={el.nutrition.nutrients[0].amount}
-                        actionSlot={<Button>Save</Button>}
-                      ></Card>
-                    );
+                    return <Card el={el} key={el.id}></Card>;
                   }
                 })}
               </div>
