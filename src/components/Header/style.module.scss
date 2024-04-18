@@ -1,3 +1,5 @@
+@import "../../styles/index.scss";
+
 header {
   background-color: rgba(255, 255, 255, 1);
 }
@@ -38,4 +40,9 @@ a {
   align-items: center;
   gap: 16px;
   grid-column-end: 12;
+}
+
+.active {
+  font-size: 40;
+  color: $brand;
 }

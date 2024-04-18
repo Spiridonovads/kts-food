@@ -1,11 +1,13 @@
 import React from 'react';
-import style from './style.module.css';
+import style from './style.module.scss';
 import logo from '../../../public/logo.svg';
 import { Text } from 'components/Text/Text';
 import { ManIcon } from 'components/Icon/ManIcon/MainIcon';
 import { HeartIcon } from 'components/Icon/HeartIcon/HeartIcon';
+import { useLocation, Link } from 'react-router-dom';
 
 export const Header: React.FC = () => {
+  const location = useLocation();
   return (
     <header>
       <nav className={style.wrapper}>
@@ -16,17 +18,21 @@ export const Header: React.FC = () => {
           </Text>
         </a>
         <ul className={style.list}>
-          <li className={style.li}>
-            <a href="#">
-              <Text view="p-16" weight="normal" color="primary">
+          <li>
+            <Link to={{ pathname: `/recipes` }}>
+              <Text
+                view="p-16"
+                weight={location.pathname === '/recipes' ? 'medium' : 'normal'}
+                color={location.pathname === '/recipes' ? 'accent' : 'primary'}
+              >
                 Recipes
               </Text>
-            </a>
+            </Link>
           </li>
           <li>
             <a href="#">
               <Text view="p-16" weight="normal" color="primary">
-                Ingradients
+                Ingredients
               </Text>
             </a>
           </li>

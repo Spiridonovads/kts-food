@@ -7,20 +7,18 @@ import { Recipe } from './pages/Recipe/Recipe';
 
 export const App: React.FC = () => {
   return (
-    <>
+    <BrowserRouter>
       <Header />
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Recipes />} />
-          <Route path="/recipes" element={<Recipes />} />
-          <Route path="/recipe" element={<Recipe />} />
-          {/*<Route
+      <Routes>
+        <Route path="/" element={<Recipes />} />
+        <Route path="/recipes" element={<Recipes />} />
+        <Route path="/recipe" element={<Recipe />} />
+        {/*<Route
             path="*"
             element={
             }
           />*/}
-        </Routes>
-      </BrowserRouter>
-    </>
+      </Routes>
+    </BrowserRouter>
   );
 };
