@@ -1,18 +1,25 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import style from './style.module.scss';
 import { Text } from 'components/Text/Text';
 import { ClockIcon } from 'components/Icon/ClockIcon/ClockIcon';
 import { Link } from 'react-router-dom';
 import { Button } from 'components/Button/Button';
 import { Data } from 'configs/types';
+import { RecipeContext } from 'configs/context';
 
 export type CardProps = {
   el: Data;
 };
 
 export const Card: React.FC<CardProps> = ({ el }) => {
+  const recipeContext = useContext(RecipeContext);
+
+  const handleClick = () => {
+    recipeContext.setRecipe(`${el.id}`);
+  };
+
   return (
-    <Link to={{ pathname: `/recipe` }}>
+    <Link to={{ pathname: `/recipe` }} onClick={handleClick}>
       <div className={`${style.wrapper}`}>
         <img className={style.image} src={el.image} alt="img" />
         <div className={style.content}>

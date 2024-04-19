@@ -3,19 +3,13 @@ import { Input } from 'components/Input/Input';
 import style from './style.module.scss';
 
 export type Option = {
-  /** Ключ варианта, используется для отправки на бек/использования в коде */
   key: string;
-  /** Значение варианта, отображается пользователю */
   value: string;
 };
 
-/** Пропсы, которые принимает компонент Dropdown */
 export type MultiDropdownProps = {
-  /** Массив возможных вариантов для выбора */
   options: Option[];
-  /** Заблокирован ли дропдаун */
   disabled?: boolean;
-  /** Возвращает строку которая будет выводится в инпуте. В случае если опции не выбраны, строка должна отображаться как placeholder. */
 };
 
 export const MultiDropdown: React.FC<MultiDropdownProps> = ({ options, disabled }) => {

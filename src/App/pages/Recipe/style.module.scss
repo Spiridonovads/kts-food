@@ -54,6 +54,12 @@ main {
 .ingredients {
   width: 50%;
   border-right: 1px solid $brand;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.ingredientsTitle {
+  margin-bottom: 24px;
 }
 
 .equip {
