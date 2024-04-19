@@ -1,10 +1,19 @@
-import React, { useState } from 'react';
+import React, { useState, createContext, Dispatch, SetStateAction } from 'react';
 import { Header } from 'components/Header/Header';
 import { BrowserRouter } from 'react-router-dom';
 import { Routes, Route } from 'react-router-dom';
 import { Recipes } from './pages/Recipes/Recipes';
 import { Recipe } from './pages/Recipe/Recipe';
-import { RecipeContext } from 'configs/context';
+
+interface RecipeContextType {
+  recipe: string;
+  setRecipe: Dispatch<SetStateAction<string>>;
+}
+
+export const RecipeContext = createContext<RecipeContextType>({
+  recipe: '',
+  setRecipe: () => {},
+});
 
 export const App: React.FC = () => {
   const Provider = RecipeContext.Provider;

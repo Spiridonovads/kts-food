@@ -12,6 +12,7 @@ export type Data = {
   servings: number;
   summary: ReactNode;
   extendedIngredients: [];
+  analyzedInstructions: any;
 };
 
 export type Value = {

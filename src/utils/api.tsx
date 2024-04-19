@@ -1,4 +1,4 @@
-const API_KEY = '409106038fc34644a0141bf9bf97a4fb';
+const API_KEY = '60ca5e6b15e94d1fbdda7d3fc83c3354';
 const BASE_URL = `https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&addRecipeNutrition=true`;
 
 export const getData = () => {

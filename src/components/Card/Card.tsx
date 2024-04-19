@@ -5,7 +5,7 @@ import { ClockIcon } from 'components/Icon/ClockIcon/ClockIcon';
 import { Link } from 'react-router-dom';
 import { Button } from 'components/Button/Button';
 import { Data } from 'configs/types';
-import { RecipeContext } from 'configs/context';
+import { RecipeContext } from '../../App/App';
 
 export type CardProps = {
   el: Data;

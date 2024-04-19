@@ -48,14 +48,27 @@ main {
   display: flex;
   justify-content: space-between;
   text-align: start;
-  height: 180px;
+  margin-bottom: 60px;
 }
 
 .ingredients {
   width: 50%;
   border-right: 1px solid $brand;
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
+}
+
+.ingredientsList {
+  min-height: 184px;
+  max-height: 276px;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 60px;
+}
+
+.ingredientsLi {
+  display: flex;
+  gap: 16px;
 }
 
 .ingredientsTitle {
@@ -65,4 +78,23 @@ main {
 .equip {
   width: 50%;
   padding-left: 50px;
+}
+
+.directions {
+  display: flex;
+  flex-direction: column;
+  text-align: start;
+  gap: 16px;
+  margin-bottom: 54px;
+}
+
+.directionsTitle {
+  text-align: left;
+  margin-bottom: 24px;
+}
+
+.directionsLi {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 }

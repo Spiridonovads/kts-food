@@ -3,10 +3,12 @@ import style from './style.module.scss';
 import { Text } from 'components/Text/Text';
 import { ArrowLeftSideIcon } from 'components/Icon/ArrowIcons/ArrowLeftSideIcon';
 import { Link } from 'react-router-dom';
-import { RecipeContext } from 'configs/context';
+import { RecipeContext } from '../../App';
 import { getDataIngredient } from 'utils/api';
 import { Loader } from 'components/Loader/Loader';
 import { Data } from 'configs/types';
+import { LidIcon } from 'components/Icon/NecessaryIcons/LidIcon';
+import { SpoonIcon } from 'components/Icon/NecessaryIcons/SpoonIcon';
 
 export const Recipe: React.FC = () => {
   const [data, setData] = useState<Data>();
@@ -23,10 +25,19 @@ export const Recipe: React.FC = () => {
     };
     fetchData();
   }, []);
+  console.log(data);
+  const equipment = data?.analyzedInstructions[0].steps.reduce((acc: any, el: { equipment: any }) => {
+    if (el.equipment.length > 0 && acc) {
+      if (!acc.includes(el.equipment[0].name)) {
+        acc = [...acc, el.equipment[0].name];
+      }
+      return acc;
+    }
+  }, []);
 
   return (
     <main>
-      {data ? (
+      {data && Object.keys(data).length > 0 ? (
         <section>
           <div className={style.title}>
             <Link to={{ pathname: '/recipes' }}>
@@ -43,19 +54,19 @@ export const Recipe: React.FC = () => {
               <div className={style.shortInfoTextBlock}>
                 <Text>Preparation</Text>
                 <Text color="accent" weight="medium">
-                  {`${data.preparationMinutes} minutes`}
+                  {`${Math.abs(data.preparationMinutes)} minutes`}
                 </Text>
               </div>
               <div className={style.shortInfoTextBlock}>
                 <Text>Cooking</Text>
                 <Text color="accent" weight="medium">
-                  {`${data.cookingMinutes} minutes`}
+                  {`${data.readyInMinutes} minutes`}
                 </Text>
               </div>
               <div className={style.shortInfoTextBlock}>
                 <Text>Total</Text>
                 <Text color="accent" weight="medium">
-                  {`${data.cookingMinutes + data.preparationMinutes} minutes`}
+                  {`${data.readyInMinutes + Math.abs(data.preparationMinutes)} minutes`}
                 </Text>
               </div>
               <div className={style.shortInfoTextBlock}>
@@ -72,29 +83,62 @@ export const Recipe: React.FC = () => {
               </div>
             </div>
           </div>
-
           <div className={style.textInfo}>{data.summary}</div>
           <div className={style.necessary}>
             <div className={style.ingredients}>
               <div className={style.ingredientsTitle}>
-                <Text weight="medium" view="p-20" className="title">
+                <Text weight="medium" view="p-20">
                   Ingredients
                 </Text>
               </div>
-              {data.extendedIngredients.map((el: { name: string }) => {
-                return <Text>{el.name}</Text>;
-              })}
+              <div className={style.ingredientsList}>
+                {data.extendedIngredients.map((el: { name: string }, i: number) => {
+                  return (
+                    <div key={i} className={style.ingredientsLi}>
+                      <LidIcon key={`${i}1`} color="accent" />
+                      <Text key={`${i}2`}>{el.name}</Text>
+                    </div>
+                  );
+                })}
+              </div>
             </div>
             <div className={style.equip}>
-              <Text weight="medium" view="p-20" className="title">
-                Equipment
+              <div className={style.ingredientsTitle}>
+                <Text weight="medium" view="p-20">
+                  Equipment
+                </Text>
+              </div>
+              <div className={style.ingredientsList}>
+                {equipment.map((el: string, i: number) => {
+                  return (
+                    <div key={`${i}3`} className={style.ingredientsLi}>
+                      <SpoonIcon key={`${i}4`} color="accent" />
+                      <Text key={`${i}5`}>{el}</Text>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          </div>
+          <div className={style.directions}>
+            <div className={style.directionsTitle}>
+              <Text weight="medium" view="p-20">
+                Directions
               </Text>
             </div>
+            {data.analyzedInstructions[0].steps.map((el: { id: number; step: string }, i: number) => {
+              return (
+                <div key={el.id} className={style.directionsLi}>
+                  <Text weight="medium">{`Step ${i + 1}`}</Text>
+                  <Text>{el.step}</Text>
+                </div>
+              );
+            })}
           </div>
         </section>
       ) : (
         <>
-          <Text>Рецепты загружаются...</Text>
+          <Text>Рецепт загружается...</Text>
           <Loader size="l" />
         </>
       )}
