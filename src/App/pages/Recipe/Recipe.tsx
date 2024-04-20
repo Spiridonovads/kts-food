@@ -10,6 +10,7 @@ import { Data } from 'configs/types';
 import { LidIcon } from 'components/Icon/NecessaryIcons/LidIcon';
 import { SpoonIcon } from 'components/Icon/NecessaryIcons/SpoonIcon';
 import { RecipeText } from 'components/RecipeText/RecipeText';
+import { RecipeShortText } from 'components/RecipeShortText/RecipeShortText';
 
 let equipment = new Set();
 
@@ -51,34 +52,22 @@ export const Recipe: React.FC = () => {
             <img src={data.image} alt="photo" width={448} height={298} />
             <div className={style.shortInfoText}>
               <div className={style.shortInfoTextBlock}>
-                <Text>Preparation</Text>
-                <Text color="accent" weight="medium">
-                  {`${Math.abs(data.preparationMinutes)} minutes`}
-                </Text>
+                <RecipeShortText title="Preparation" text={`${Math.abs(data.preparationMinutes)} minutes`} />
               </div>
               <div className={style.shortInfoTextBlock}>
-                <Text>Cooking</Text>
-                <Text color="accent" weight="medium">
-                  {`${data.readyInMinutes} minutes`}
-                </Text>
+                <RecipeShortText title="Cooking" text={`${data.readyInMinutes} minutes`} />
               </div>
               <div className={style.shortInfoTextBlock}>
-                <Text>Total</Text>
-                <Text color="accent" weight="medium">
-                  {`${data.readyInMinutes + Math.abs(data.preparationMinutes)} minutes`}
-                </Text>
+                <RecipeShortText
+                  title="Total"
+                  text={`${data.readyInMinutes + Math.abs(data.preparationMinutes)} minutes`}
+                />
               </div>
               <div className={style.shortInfoTextBlock}>
-                <Text>Ratings</Text>
-                <Text color="accent" weight="medium">
-                  {`${data.aggregateLikes} likes`}
-                </Text>
+                <RecipeShortText title="Ratings" text={`${data.aggregateLikes} likes`} />
               </div>
               <div className={style.shortInfoTextBlock}>
-                <Text>Servings</Text>
-                <Text color="accent" weight="medium">
-                  {`${data.servings} servings`}
-                </Text>
+                <RecipeShortText title="Servings" text={`${data.servings} servings`} />
               </div>
             </div>
           </div>
