@@ -1,5 +1,3 @@
-import { ReactNode } from 'react';
-
 export type Data = {
   id: number;
   image: string;
@@ -10,7 +8,7 @@ export type Data = {
   cookingMinutes: number;
   aggregateLikes: number;
   servings: number;
-  summary: ReactNode;
+  summary: string;
   extendedIngredients: [];
   analyzedInstructions: any;
 };

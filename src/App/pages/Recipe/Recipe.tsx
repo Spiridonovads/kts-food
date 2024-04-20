@@ -9,6 +9,9 @@ import { Loader } from 'components/Loader/Loader';
 import { Data } from 'configs/types';
 import { LidIcon } from 'components/Icon/NecessaryIcons/LidIcon';
 import { SpoonIcon } from 'components/Icon/NecessaryIcons/SpoonIcon';
+import { RecipeText } from 'components/RecipeText/RecipeText';
+
+let equipment = new Set();
 
 export const Recipe: React.FC = () => {
   const [data, setData] = useState<Data>();
@@ -19,20 +22,17 @@ export const Recipe: React.FC = () => {
       try {
         const result = await getDataIngredient(Number(recipeContext.recipe));
         setData(result);
+
+        result.analyzedInstructions[0].steps.forEach((el: { equipment: any }) => {
+          if (el.equipment[0]) {
+            equipment.add(el.equipment[0].name);
+          }
+        });
       } catch (error) {
         console.error('Ошибка при получении данных:', error);
       }
     };
     fetchData();
-  }, []);
-  console.log(data);
-  const equipment = data?.analyzedInstructions[0].steps.reduce((acc: any, el: { equipment: any }) => {
-    if (el.equipment.length > 0 && acc) {
-      if (!acc.includes(el.equipment[0].name)) {
-        acc = [...acc, el.equipment[0].name];
-      }
-      return acc;
-    }
   }, []);
 
   return (
@@ -47,7 +47,6 @@ export const Recipe: React.FC = () => {
               {data.title}
             </Text>
           </div>
-
           <div className={style.shortInfo}>
             <img src={data.image} alt="photo" width={448} height={298} />
             <div className={style.shortInfoText}>
@@ -83,7 +82,7 @@ export const Recipe: React.FC = () => {
               </div>
             </div>
           </div>
-          <div className={style.textInfo}>{data.summary}</div>
+          а{data && Object.keys(data).length > 0 && <RecipeText htmlString={data.summary} />}
           <div className={style.necessary}>
             <div className={style.ingredients}>
               <div className={style.ingredientsTitle}>
@@ -109,14 +108,16 @@ export const Recipe: React.FC = () => {
                 </Text>
               </div>
               <div className={style.ingredientsList}>
-                {equipment.map((el: string, i: number) => {
-                  return (
-                    <div key={`${i}3`} className={style.ingredientsLi}>
-                      <SpoonIcon key={`${i}4`} color="accent" />
-                      <Text key={`${i}5`}>{el}</Text>
-                    </div>
-                  );
-                })}
+                {equipment &&
+                  equipment.size >= 1 &&
+                  Array.from(equipment).map((el: any, i: number) => {
+                    return (
+                      <div key={`${i}3`} className={style.ingredientsLi}>
+                        <SpoonIcon key={`${i}4`} color="accent" />
+                        <Text key={`${i}5`}>{el}</Text>
+                      </div>
+                    );
+                  })}
               </div>
             </div>
           </div>
@@ -128,9 +129,9 @@ export const Recipe: React.FC = () => {
             </div>
             {data.analyzedInstructions[0].steps.map((el: { id: number; step: string }, i: number) => {
               return (
-                <div key={el.id} className={style.directionsLi}>
-                  <Text weight="medium">{`Step ${i + 1}`}</Text>
-                  <Text>{el.step}</Text>
+                <div key={`${i}6`} className={style.directionsLi}>
+                  <Text key={`${i}7`} weight="medium">{`Step ${i + 1}`}</Text>
+                  <Text key={`${i}8`}>{el.step}</Text>
                 </div>
               );
             })}
@@ -145,3 +146,5 @@ export const Recipe: React.FC = () => {
     </main>
   );
 };
+
+/**  */
