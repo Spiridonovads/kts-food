@@ -41,12 +41,10 @@ main {
   display: flex;
   justify-content: space-between;
   text-align: start;
-  margin-bottom: 60px;
 }
 
 .ingredients {
   width: 50%;
-  border-right: 1px solid $brand;
 }
 
 .ingredientsList {
@@ -56,7 +54,6 @@ main {
   flex-direction: column;
   flex-wrap: wrap;
   gap: 10px;
-  margin-bottom: 60px;
 }
 
 .ingredientsLi {
@@ -66,6 +63,28 @@ main {
 
 .ingredientsTitle {
   margin-bottom: 24px;
+}
+
+.decor {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: inherit;
+}
+
+.circle {
+  width: 7px;
+  height: 7px;
+  background-color: $brand;
+  border-radius: 100%;
+  margin-top: 4px;
+  margin-bottom: 4px;
+}
+
+.stick {
+  width: 1px;
+  height: 100%;
+  background-color: $brand;
 }
 
 .equip {
@@ -79,6 +98,7 @@ main {
   text-align: start;
   gap: 16px;
   margin-bottom: 54px;
+  margin-top: 48px;
 }
 
 .directionsTitle {
