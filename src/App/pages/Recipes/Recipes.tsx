@@ -47,8 +47,10 @@ export const Recipes: React.FC = () => {
   return (
     <>
       <main className={style.main}>
-        <section>
+        <section className={style.mainPic}>
           <RecipesMainPicture />
+        </section>
+        <section className={style.mainContent}>
           <div className={style.mainText}>
             <Text color="primary" weight="normal" view="p-20">
               Find the perfect food and{' '}

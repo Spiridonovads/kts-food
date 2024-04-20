@@ -1,12 +1,10 @@
 @import "../../../styles/index.scss";
-
-main {
-  max-width: 1455px;
+.wrapper {
+  max-width: 1255px;
   padding: 0 15px;
   margin: auto;
   text-align: center;
 }
-
 .title {
   display: flex;
   gap: 16px;

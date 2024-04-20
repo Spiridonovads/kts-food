@@ -1,5 +1,9 @@
-main {
-  max-width: 1455px;
+.mainPic {
+  width: 100%;
+}
+
+.mainContent {
+  max-width: 1255px;
   padding: 0 15px;
   margin: auto;
   text-align: center;

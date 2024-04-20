@@ -39,7 +39,7 @@ export const Recipe: React.FC = () => {
   return (
     <main>
       {data && Object.keys(data).length > 0 ? (
-        <section>
+        <section className={style.wrapper}>
           <div className={style.title}>
             <Link to={{ pathname: '/recipes' }}>
               <ArrowLeftSideIcon color="accent" />
