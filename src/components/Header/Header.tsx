@@ -22,8 +22,8 @@ export const Header: React.FC = () => {
             <Link to={{ pathname: `/recipes` }}>
               <Text
                 view="p-16"
-                weight={location.pathname === '/recipes' ? 'medium' : 'normal'}
-                color={location.pathname === '/recipes' ? 'accent' : 'primary'}
+                weight={location.pathname === '/recipes' || '/' ? 'medium' : 'normal'}
+                color={location.pathname === '/recipes' || '/' ? 'accent' : 'primary'}
               >
                 Recipes
               </Text>

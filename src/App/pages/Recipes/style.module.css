@@ -1,10 +1,10 @@
 .mainPic {
-  width: 100%;
+  width: auto;
+  margin: auto;
 }
 
 .mainContent {
-  max-width: 1255px;
-  padding: 0 15px;
+  max-width: 1237px;
   margin: auto;
   text-align: center;
 }
@@ -17,7 +17,7 @@
   width: 1237px;
   margin: auto;
   display: flex;
-  gap: 19px;
+  justify-content: space-between;
   margin-bottom: 20px;
 }
 
@@ -30,7 +30,171 @@
 }
 
 .cards {
+  width: 1237px;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 48px;
+  gap: 78px;
+}
+
+@media (max-width: 1350px) {
+  .input {
+    width: 1037px;
+  }
+
+  .multiDropdown {
+    width: 1037px;
+  }
+
+  .mainContent {
+    max-width: 1037px;
+  }
+  .cards {
+    width: 1037px;
+    gap: 48px;
+  }
+}
+
+@media (max-width: 1150px) {
+  .input {
+    width: 937px;
+  }
+
+  .multiDropdown {
+    width: 937px;
+  }
+
+  .mainContent {
+    max-width: 937px;
+  }
+  .cards {
+    width: 937px;
+    gap: 36px;
+  }
+}
+
+@media (max-width: 980px) {
+  .input {
+    width: 837px;
+  }
+
+  .multiDropdown {
+    width: 837px;
+  }
+
+  .mainContent {
+    max-width: 837px;
+  }
+  .cards {
+    width: 837px;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 140px;
+  }
+}
+
+@media (max-width: 880px) {
+  .input {
+    width: 737px;
+  }
+
+  .multiDropdown {
+    width: 737px;
+  }
+
+  .mainContent {
+    max-width: 737px;
+  }
+
+  .cards {
+    width: 737px;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 120px;
+  }
+}
+
+@media (max-width: 780px) {
+  .input {
+    width: 637px;
+  }
+
+  .multiDropdown {
+    width: 637px;
+  }
+
+  .mainContent {
+    max-width: 637px;
+  }
+
+  .cards {
+    width: 637px;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 65px;
+  }
+}
+
+@media (max-width: 680px) {
+  .input {
+    width: 537px;
+  }
+
+  .multiDropdown {
+    width: 537px;
+  }
+
+  .mainContent {
+    max-width: 537px;
+  }
+
+  .cards {
+    width: 537px;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 65px;
+  }
+}
+
+@media (max-width: 580px) {
+  .input {
+    width: 437px;
+  }
+
+  .multiDropdown {
+    width: 437px;
+  }
+
+  .mainContent {
+    max-width: 437px;
+  }
+
+  .cards {
+    width: 437px;
+  }
+}
+
+@media (max-width: 480px) {
+  .input {
+    width: 337px;
+    margin-top: 20px;
+  }
+
+  .multiDropdown {
+    width: 337px;
+    justify-content: center;
+    margin-bottom: 20px;
+  }
+
+  .mainContent {
+    max-width: 337px;
+  }
+
+  .cards {
+    width: 337px;
+    gap: 20px;
+  }
+
+  .mainPic {
+    display: none;
+  }
+
+  .mainText {
+    display: none;
+  }
 }

@@ -140,4 +140,5 @@ header {
 }
 a {
   color: black;
+  cursor: pointer;
 }
