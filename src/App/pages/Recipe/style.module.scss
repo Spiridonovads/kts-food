@@ -1,6 +1,6 @@
 @import "../../../styles/index.scss";
 .wrapper {
-  max-width: 1255px;
+  max-width: 1237px;
   padding: 0 15px;
   margin: auto;
   text-align: center;
@@ -108,4 +108,14 @@
   display: flex;
   flex-direction: column;
   gap: 8px;
+}
+
+@media (max-width: 1150px) {
+  .wrapper {
+    width: 937px;
+  }
+  .shortInfoText {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 100px;
+  }
 }

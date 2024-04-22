@@ -1,20 +1,20 @@
 import React, { useContext, useEffect, useState } from 'react';
 import style from './style.module.scss';
-import { Text } from 'components/Text/Text';
-import { ArrowLeftSideIcon } from 'components/Icon/ArrowIcons/ArrowLeftSideIcon';
+import Text from 'components/Text/Text';
+import ArrowLeftSideIcon from 'components/Icon/ArrowIcons/ArrowLeftSideIcon';
 import { Link } from 'react-router-dom';
 import { RecipeContext } from '../../App';
 import { getDataIngredient } from 'utils/api';
-import { Loader } from 'components/Loader/Loader';
+import Loader from 'components/Loader/Loader';
 import { Data } from 'configs/types';
-import { LidIcon } from 'components/Icon/NecessaryIcons/LidIcon';
-import { SpoonIcon } from 'components/Icon/NecessaryIcons/SpoonIcon';
-import { RecipeText } from 'components/RecipeText/RecipeText';
-import { RecipeShortText } from 'components/RecipeShortText/RecipeShortText';
+import LidIcon from 'components/Icon/NecessaryIcons/LidIcon';
+import SpoonIcon from 'components/Icon/NecessaryIcons/SpoonIcon';
+import RecipeText from 'components/RecipeText/RecipeText';
+import RecipeShortText from 'components/RecipeShortText/RecipeShortText';
 
 let equipment = new Set();
 
-export const Recipe: React.FC = () => {
+const Recipe: React.FC = () => {
   const [data, setData] = useState<Data>();
   const recipeContext = useContext(RecipeContext);
 
@@ -140,4 +140,4 @@ export const Recipe: React.FC = () => {
   );
 };
 
-/**  */
+export default Recipe;

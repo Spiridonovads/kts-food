@@ -1,7 +1,7 @@
 import React from 'react';
 import { IconProps } from '../Icon';
 
-export const LoupeIcon: React.FC<IconProps> = ({ color }) => {
+const LoupeIcon: React.FC<IconProps> = ({ color }) => {
   let fill =
     color === 'accent' ? '#518581' : color === 'primary' ? '#000000' : color === 'secondary' ? '#AFADB5' : 'black';
   return (
@@ -20,3 +20,5 @@ export const LoupeIcon: React.FC<IconProps> = ({ color }) => {
     </svg>
   );
 };
+
+export default LoupeIcon;

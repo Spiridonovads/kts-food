@@ -5,6 +5,8 @@ interface RecipeTextProps {
   htmlString: string;
 }
 
-export const RecipeText: React.FC<RecipeTextProps> = ({ htmlString }) => {
+const RecipeText: React.FC<RecipeTextProps> = ({ htmlString }) => {
   return <div className={style.textInfo} dangerouslySetInnerHTML={{ __html: htmlString }} />;
 };
+
+export default RecipeText;

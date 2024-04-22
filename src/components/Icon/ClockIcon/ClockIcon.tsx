@@ -1,7 +1,7 @@
 import React from 'react';
 import { IconProps } from '../Icon';
 
-export const ClockIcon: React.FC<IconProps> = ({ color }) => {
+const ClockIcon: React.FC<IconProps> = ({ color }) => {
   let fill =
     color === 'accent' ? '#B5460F' : color === 'primary' ? '#000000' : color === 'secondary' ? '#AFADB5' : 'black';
   return (
@@ -16,3 +16,4 @@ export const ClockIcon: React.FC<IconProps> = ({ color }) => {
     </svg>
   );
 };
+export default ClockIcon;

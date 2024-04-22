@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Input } from 'components/Input/Input';
+import Input from 'components/Input/Input';
 import style from './style.module.scss';
 
 export type Option = {
@@ -12,7 +12,7 @@ export type MultiDropdownProps = {
   disabled?: boolean;
 };
 
-export const MultiDropdown: React.FC<MultiDropdownProps> = ({ options, disabled }) => {
+const MultiDropdown: React.FC<MultiDropdownProps> = ({ options, disabled }) => {
   const [filteredOptions, setFilteredOptions] = useState<Option[]>(options);
   const [inputValue, setInputValue] = useState<string>('');
   const [showDropdown, setShowDropdown] = useState<boolean>(false);
@@ -105,3 +105,5 @@ export const MultiDropdown: React.FC<MultiDropdownProps> = ({ options, disabled 
     </div>
   );
 };
+
+export default MultiDropdown;

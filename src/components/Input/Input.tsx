@@ -11,7 +11,7 @@ export type InputProps = Omit<React.InputHTMLAttributes<HTMLInputElement>, 'onCh
   size?: number;
 };
 
-export const Input = React.forwardRef<HTMLInputElement, InputProps>(
+const Input = React.forwardRef<HTMLInputElement, InputProps>(
   ({ disabled, placeholder, afterSlot, size, value, border, onChange, ...props }, ref) => {
     const [state, setState] = useState<string>('');
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -40,3 +40,5 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
     );
   },
 );
+
+export default Input;

@@ -1,9 +1,9 @@
 import React, { useState, createContext, Dispatch, SetStateAction } from 'react';
-import { Header } from 'components/Header/Header';
+import Header from 'components/Header/Header';
 import { BrowserRouter } from 'react-router-dom';
 import { Routes, Route } from 'react-router-dom';
-import { Recipes } from './pages/Recipes/Recipes';
-import { Recipe } from './pages/Recipe/Recipe';
+import Recipes from './pages/Recipes/Recipes';
+import Recipe from './pages/Recipe/Recipe';
 
 interface RecipeContextType {
   recipe: string;
@@ -15,7 +15,7 @@ export const RecipeContext = createContext<RecipeContextType>({
   setRecipe: () => {},
 });
 
-export const App: React.FC = () => {
+const App: React.FC = () => {
   const Provider = RecipeContext.Provider;
   const [recipe, setRecipe] = useState<string>('');
 
@@ -37,3 +37,5 @@ export const App: React.FC = () => {
     </Provider>
   );
 };
+
+export default App;

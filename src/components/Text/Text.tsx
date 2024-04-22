@@ -11,7 +11,7 @@ export type TextProps = {
   className?: string;
 };
 
-export const Text: React.FC<TextProps> = ({ view, weight, color, maxLines, tag, children, className }) => {
+const Text: React.FC<TextProps> = ({ view, weight, color, maxLines, tag, children, className }) => {
   let viewClassName = view ? `${style[view]}` : '';
   let weightClassName = weight ? `${style[weight]}` : '';
   let colorClassName = color ? `${style[color]}` : '';
@@ -90,3 +90,5 @@ export const Text: React.FC<TextProps> = ({ view, weight, color, maxLines, tag, 
     );
   }
 };
+
+export default Text;

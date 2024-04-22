@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import style from './style.module.scss';
-import { ArrowLeftSideIcon } from 'components/Icon/ArrowIcons/ArrowLeftSideIcon';
-import { ArrowRightSideIcon } from 'components/Icon/ArrowIcons/ArrowRightSideIcon';
+import ArrowLeftSideIcon from 'components/Icon/ArrowIcons/ArrowLeftSideIcon';
+import ArrowRightSideIcon from 'components/Icon/ArrowIcons/ArrowRightSideIcon';
 
 export type PaginatorProps = {
   totalItems: number;
@@ -9,7 +9,7 @@ export type PaginatorProps = {
   onChange: (pageNumber: number) => void;
 };
 
-export const Paginator: React.FC<PaginatorProps> = ({ totalItems, itemsOnPage, onChange }) => {
+const Paginator: React.FC<PaginatorProps> = ({ totalItems, itemsOnPage, onChange }) => {
   const [currentPage, setCurrentPage] = useState(1);
   const totalPages = Math.ceil(totalItems / itemsOnPage);
 
@@ -54,3 +54,5 @@ export const Paginator: React.FC<PaginatorProps> = ({ totalItems, itemsOnPage, o
     </nav>
   );
 };
+
+export default Paginator;

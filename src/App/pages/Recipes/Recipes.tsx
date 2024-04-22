@@ -1,19 +1,19 @@
 import React, { useEffect, useState } from 'react';
 import style from './style.module.css';
-import { RecipesMainPicture } from 'components/RecipesMainPicture/RecipesMainPicture';
-import { Text } from 'components/Text/Text';
-import { Input } from 'components/Input/Input';
-import { Button } from 'components/Button/Button';
-import { LoupeIcon } from 'components/Icon/LoupeIcon/LoupeIcon';
-import { MultiDropdown } from 'components/MultiDropDown/MultiDropDown';
-import { Card } from 'components/Card/Card';
+import RecipesMainPicture from 'components/RecipesMainPicture/RecipesMainPicture';
+import Text from 'components/Text/Text';
+import Input from 'components/Input/Input';
+import Button from 'components/Button/Button';
+import LoupeIcon from 'components/Icon/LoupeIcon/LoupeIcon';
+import MultiDropdown from 'components/MultiDropDown/MultiDropDown';
+import Card from 'components/Card/Card';
 import { getData } from 'utils/api';
-import { Loader } from 'components/Loader/Loader';
-import { Paginator } from 'components/Paginator/Paginator';
+import Loader from 'components/Loader/Loader';
+import Paginator from 'components/Paginator/Paginator';
 import { Data } from 'configs/types';
 import { Value } from 'configs/types';
 
-export const Recipes: React.FC = () => {
+const Recipes: React.FC = () => {
   const [data, setData] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const itemsOnPage = 9;
@@ -100,3 +100,5 @@ export const Recipes: React.FC = () => {
     </>
   );
 };
+
+export default Recipes;
