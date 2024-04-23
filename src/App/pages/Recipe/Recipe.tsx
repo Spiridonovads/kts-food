@@ -102,12 +102,12 @@ const Recipe: React.FC = () => {
                   Equipment
                 </Text>
               </div>
-              <div className={style.ingredientsList}>
+              <div className={style.equipList}>
                 {equipment &&
                   equipment.size >= 1 &&
                   equipArr.map((el: string, i: number) => {
                     return (
-                      <div key={`${i}3`} className={style.ingredientsLi}>
+                      <div key={`${i}3`} className={style.equipLi}>
                         <SpoonIcon key={`${i}4`} color="accent" />
                         <Text key={`${i}5`}>{el}</Text>
                       </div>
