@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import * as React from 'react';
+import { useState } from 'react';
+import ArrowDownIcon from 'components/Icon/ArrowIcons/ArrowDownIcon';
 import style from './style.module.scss';
-import { ArrowDownIcon } from 'components/Icon/ArrowIcons/ArrowDownIcon';
 
 export type InputProps = Omit<React.InputHTMLAttributes<HTMLInputElement>, 'onChange' | 'value'> & {
   placeholder: string;
@@ -40,5 +41,5 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
     );
   },
 );
-
+Input.displayName = 'Input';
 export default Input;

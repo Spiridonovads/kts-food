@@ -1,11 +1,12 @@
-import React, { useContext } from 'react';
-import style from './style.module.scss';
-import Text from 'components/Text/Text';
-import ClockIcon from 'components/Icon/ClockIcon/ClockIcon';
+import * as React from 'react';
+import { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import Button from 'components/Button/Button';
+import ClockIcon from 'components/Icon/ClockIcon/ClockIcon';
+import Text from 'components/Text/Text';
 import { Data } from 'configs/types';
 import { RecipeContext } from '../../App/App';
+import style from './style.module.scss';
 
 export type CardProps = {
   el: Data;
@@ -48,7 +49,7 @@ const Card: React.FC<CardProps> = ({ el }) => {
             <Text tag="span" view="p-18" weight="bold" color="accent">
               {`${el.nutrition.nutrients[0].amount} kcal`}
             </Text>
-            <Button>Save</Button>
+            <Button disabled={false}>Save</Button>
           </div>
         </div>
       </div>

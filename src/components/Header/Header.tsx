@@ -1,10 +1,10 @@
-import React from 'react';
-import style from './style.module.scss';
-import logo from '../../../public/logo.svg';
-import Text from 'components/Text/Text';
-import ManIcon from 'components/Icon/ManIcon/MainIcon';
-import HeartIcon from 'components/Icon/HeartIcon/HeartIcon';
+import * as React from 'react';
 import { useLocation, Link } from 'react-router-dom';
+import HeartIcon from 'components/Icon/HeartIcon/HeartIcon';
+import ManIcon from 'components/Icon/ManIcon/MainIcon';
+import Text from 'components/Text/Text';
+import logo from '../../../public/logo.svg';
+import style from './style.module.scss';
 
 const Header: React.FC = () => {
   const location = useLocation();
@@ -22,8 +22,8 @@ const Header: React.FC = () => {
             <Link to={{ pathname: `/recipes` }}>
               <Text
                 view="p-16"
-                weight={location.pathname === '/recipes' || '/' ? 'medium' : 'normal'}
-                color={location.pathname === '/recipes' || '/' ? 'accent' : 'primary'}
+                weight={location.pathname === '/recipes' || location.pathname === '/' ? 'medium' : 'normal'}
+                color={location.pathname === '/recipes' || location.pathname === '/' ? 'accent' : 'primary'}
               >
                 Recipes
               </Text>

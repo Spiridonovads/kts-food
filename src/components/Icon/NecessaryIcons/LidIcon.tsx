@@ -1,8 +1,8 @@
-import React from 'react';
+import * as React from 'react';
 import { IconProps } from '../Icon';
 
 const LidIcon: React.FC<IconProps> = ({ color }) => {
-  let fill =
+  const fill =
     color === 'accent' ? '#B5460F' : color === 'primary' ? '#000000' : color === 'secondary' ? '#AFADB5' : 'black';
   return (
     <svg width="24" height="16" viewBox="0 0 24 16" fill="none" xmlns="http://www.w3.org/2000/svg">

@@ -1,18 +1,19 @@
-import React, { useContext, useEffect, useState } from 'react';
-import style from './style.module.scss';
-import Text from 'components/Text/Text';
-import ArrowLeftSideIcon from 'components/Icon/ArrowIcons/ArrowLeftSideIcon';
+import * as React from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { RecipeContext } from '../../App';
-import { getDataIngredient } from 'utils/api';
-import Loader from 'components/Loader/Loader';
-import { Data } from 'configs/types';
+import ArrowLeftSideIcon from 'components/Icon/ArrowIcons/ArrowLeftSideIcon';
 import LidIcon from 'components/Icon/NecessaryIcons/LidIcon';
 import SpoonIcon from 'components/Icon/NecessaryIcons/SpoonIcon';
-import RecipeText from 'components/RecipeText/RecipeText';
+import Loader from 'components/Loader/Loader';
 import RecipeShortText from 'components/RecipeShortText/RecipeShortText';
+import RecipeText from 'components/RecipeText/RecipeText';
+import Text from 'components/Text/Text';
+import { Data } from 'configs/types';
+import { getDataIngredient } from 'utils/api';
+import { RecipeContext } from '../../App';
+import style from './style.module.scss';
 
-let equipment = new Set();
+const equipment: Set<unknown> = new Set();
 
 const Recipe: React.FC = () => {
   const [data, setData] = useState<Data>();
@@ -24,7 +25,7 @@ const Recipe: React.FC = () => {
         const result = await getDataIngredient(Number(recipeContext.recipe));
         setData(result);
 
-        result.analyzedInstructions[0].steps.forEach((el: { equipment: any }) => {
+        result.analyzedInstructions[0].steps.forEach((el: { equipment: [{ name: string }] }) => {
           if (el.equipment[0]) {
             equipment.add(el.equipment[0].name);
           }
@@ -36,6 +37,7 @@ const Recipe: React.FC = () => {
     fetchData();
   }, []);
 
+  const equipArr: string[] = Array.from(equipment) as string[];
   return (
     <main>
       {data && Object.keys(data).length > 0 ? (
@@ -103,7 +105,7 @@ const Recipe: React.FC = () => {
               <div className={style.ingredientsList}>
                 {equipment &&
                   equipment.size >= 1 &&
-                  Array.from(equipment).map((el: any, i: number) => {
+                  equipArr.map((el: string, i: number) => {
                     return (
                       <div key={`${i}3`} className={style.ingredientsLi}>
                         <SpoonIcon key={`${i}4`} color="accent" />

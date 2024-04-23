@@ -1,10 +1,11 @@
-import React from 'react';
-import style from './style.module.scss';
+import * as React from 'react';
 import Loader from 'components/Loader/Loader';
+import style from './style.module.scss';
 
 export type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {
   loading?: boolean;
   children: React.ReactNode;
+  disabled: boolean;
 };
 
 const Button: React.FC<ButtonProps> = ({ loading, children, disabled }) => {

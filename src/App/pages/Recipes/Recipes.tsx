@@ -1,17 +1,18 @@
-import React, { useEffect, useState } from 'react';
-import style from './style.module.css';
+import * as React from 'react';
+import { useEffect, useState } from 'react';
+import Button from 'components/Button/Button';
+import Card from 'components/Card/Card';
+import LoupeIcon from 'components/Icon/LoupeIcon/LoupeIcon';
+import Input from 'components/Input/Input';
+import Loader from 'components/Loader/Loader';
+import MultiDropdown from 'components/MultiDropDown/MultiDropDown';
+import Paginator from 'components/Paginator/Paginator';
 import RecipesMainPicture from 'components/RecipesMainPicture/RecipesMainPicture';
 import Text from 'components/Text/Text';
-import Input from 'components/Input/Input';
-import Button from 'components/Button/Button';
-import LoupeIcon from 'components/Icon/LoupeIcon/LoupeIcon';
-import MultiDropdown from 'components/MultiDropDown/MultiDropDown';
-import Card from 'components/Card/Card';
+import { Data, Value } from 'configs/types';
 import { getData } from 'utils/api';
-import Loader from 'components/Loader/Loader';
-import Paginator from 'components/Paginator/Paginator';
-import { Data } from 'configs/types';
-import { Value } from 'configs/types';
+
+import style from './style.module.css';
 
 const Recipes: React.FC = () => {
   const [data, setData] = useState([]);
@@ -36,7 +37,7 @@ const Recipes: React.FC = () => {
   }, []);
 
   const options = data.reduce((acc: Value[], el: Data) => {
-    let obj: Value = {
+    const obj: Value = {
       key: `${el.id}`,
       value: `${el.title}`,
     };
@@ -72,7 +73,7 @@ const Recipes: React.FC = () => {
             <>
               <div className={style.input}>
                 <Input placeholder="Enter dishes" size={1} />
-                <Button>{<LoupeIcon />}</Button>
+                <Button disabled={false}>{<LoupeIcon />}</Button>
               </div>
               <div className={style.multiDropdown}>
                 <MultiDropdown options={options} />

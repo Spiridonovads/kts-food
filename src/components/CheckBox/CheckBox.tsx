@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import style from './style.module.scss';
 
 export type CheckBoxProps = Omit<React.InputHTMLAttributes<HTMLInputElement>, 'onChange'> & {

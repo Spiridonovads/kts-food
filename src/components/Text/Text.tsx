@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import style from './style.module.scss';
 
 export type TextProps = {
@@ -12,11 +12,11 @@ export type TextProps = {
 };
 
 const Text: React.FC<TextProps> = ({ view, weight, color, maxLines, tag, children, className }) => {
-  let viewClassName = view ? `${style[view]}` : '';
-  let weightClassName = weight ? `${style[weight]}` : '';
-  let colorClassName = color ? `${style[color]}` : '';
-  let maxLinesClassName = maxLines ? `${style[maxLines]}` : '';
-  let classNameClassName = className ? `${style[className]}` : '';
+  const viewClassName = view ? `${style[view]}` : '';
+  const weightClassName = weight ? `${style[weight]}` : '';
+  const colorClassName = color ? `${style[color]}` : '';
+  const maxLinesClassName = maxLines ? `${style[maxLines]}` : '';
+  const classNameClassName = className ? `${style[className]}` : '';
 
   if (tag === 'h1') {
     return (

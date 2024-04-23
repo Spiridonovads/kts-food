@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
-import style from './style.module.scss';
+import * as React from 'react';
+import { useState } from 'react';
 import ArrowLeftSideIcon from 'components/Icon/ArrowIcons/ArrowLeftSideIcon';
 import ArrowRightSideIcon from 'components/Icon/ArrowIcons/ArrowRightSideIcon';
+import style from './style.module.scss';
 
 export type PaginatorProps = {
   totalItems: number;
