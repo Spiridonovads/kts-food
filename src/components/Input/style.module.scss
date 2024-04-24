@@ -1,0 +1,133 @@
+@import "../../styles/index.scss";
+
+.wrapper {
+  display: flex;
+  justify-content: space-between;
+  width: 300px;
+  height: 52px;
+  border-radius: $border-radius;
+  background-color: white;
+}
+
+.input {
+  border: none;
+  width: 250px;
+  height: 52px;
+  font-size: 16px;
+  position: relative;
+  text-overflow: ellipsis;
+  padding: $space-s $space-xs;
+}
+
+.icon {
+  padding: $space-s $space-xs;
+}
+
+.input::placeholder {
+  color: rgba(175, 173, 181, 1);
+  line-height: 20px;
+  font-weight: 400;
+}
+
+:focus::-webkit-input-placeholder {
+  color: black;
+}
+
+.inputFocus:focus {
+  border: 1px solid $brand;
+}
+
+.wrapperFocus {
+  border: 1px solid $brand;
+}
+
+.inputSize {
+  width: 1154px;
+  height: 52px;
+  border-radius: $border-radius;
+}
+
+.wrapperSize {
+  width: 1154px;
+  height: 52px;
+}
+
+@media (max-width: 1350px) {
+  .wrapperSize {
+    width: 954px;
+  }
+  .inputSize {
+    width: 954px;
+  }
+}
+
+@media (max-width: 1150px) {
+  .wrapperSize {
+    width: 854px;
+  }
+  .inputSize {
+    width: 854px;
+  }
+}
+
+@media (max-width: 980px) {
+  .wrapperSize {
+    width: 754px;
+  }
+  .inputSize {
+    width: 754px;
+  }
+}
+
+@media (max-width: 880px) {
+  .wrapperSize {
+    width: 654px;
+  }
+  .inputSize {
+    width: 654px;
+  }
+}
+
+@media (max-width: 780px) {
+  .wrapperSize {
+    width: 554px;
+  }
+  .inputSize {
+    width: 554px;
+  }
+}
+
+@media (max-width: 680px) {
+  .wrapperSize {
+    width: 454px;
+  }
+  .inputSize {
+    width: 454px;
+  }
+}
+
+@media (max-width: 580px) {
+  .wrapperSize {
+    width: 354px;
+  }
+  .inputSize {
+    width: 354px;
+  }
+}
+
+@media (max-width: 480px) {
+  .wrapper {
+    width: 337px;
+  }
+
+  .input {
+    width: 337px;
+  }
+
+  .wrapperSize {
+    width: 254px;
+  }
+  .inputSize {
+    width: 254px;
+  }
+}

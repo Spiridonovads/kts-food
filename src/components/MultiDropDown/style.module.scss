@@ -1,0 +1,30 @@
+@import "../../styles/index.scss";
+
+.dropdown {
+  width: 300px;
+  height: 500px;
+  overflow-y: scroll;
+  border-radius: $border-radius;
+  background-color: white;
+  box-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.25);
+  margin-top: 8px;
+  position: absolute;
+  z-index: 10;
+}
+
+.option {
+  height: 48px;
+  padding: $space-s $space-xs;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 20px;
+}
+
+.option:hover {
+  color: $text-secondary;
+  cursor: pointer;
+}
+
+.optionActive {
+  color: $brand;
+}

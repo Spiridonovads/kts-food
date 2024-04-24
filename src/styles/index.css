@@ -121,9 +121,24 @@ legend {
 }
 
 body {
-  font-family: 'Iceland', sans-serif;
+  font-family: 'Roboto', sans-serif;
   font-weight: 400;
   font-style: normal;
   font-size: 16px;
   line-height: 20px;
+  background-color: rgba(255, 192, 118, 0.23);
+}
+
+main {
+  padding: 0 15px;
+  margin: auto;
+  text-align: center;
+}
+
+header {
+  background-color: rgba(255, 255, 255, 1);
+}
+a {
+  color: black;
+  cursor: pointer;
 }
