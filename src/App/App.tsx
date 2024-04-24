@@ -1,6 +1,7 @@
 import * as React from 'react';
-import { useState, createContext, Dispatch, SetStateAction } from 'react';
+import { createContext, Dispatch, SetStateAction } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { AppStoreProvider } from '../configs/store/AppStoreProvider';
 
 import Header from 'components/Header/Header';
 import Recipe from './pages/Recipe/Recipe';
@@ -16,11 +17,8 @@ export const RecipeContext = createContext<RecipeContextType>({
 });
 
 const App: React.FC = () => {
-  const Provider = RecipeContext.Provider;
-  const [recipe, setRecipe] = useState<string>('');
-
   return (
-    <Provider value={{ recipe, setRecipe }}>
+    <AppStoreProvider>
       <BrowserRouter>
         <Header />
         <Routes>
@@ -34,7 +32,7 @@ const App: React.FC = () => {
           />*/}
         </Routes>
       </BrowserRouter>
-    </Provider>
+    </AppStoreProvider>
   );
 };
 

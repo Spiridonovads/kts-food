@@ -11,10 +11,14 @@ import RecipesMainPicture from 'components/RecipesMainPicture/RecipesMainPicture
 import Text from 'components/Text/Text';
 import { Data, Value } from 'configs/types';
 import { getData } from 'utils/api';
+import { observer } from 'mobx-react-lite';
+import { useAppStore } from '../../../configs/store/AppStoreProvider';
 
 import style from './style.module.css';
 
-const Recipes: React.FC = () => {
+const Recipes: React.FC = observer(() => {
+  const appStore = useAppStore();
+
   const [data, setData] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const itemsOnPage = 9;
@@ -100,6 +104,6 @@ const Recipes: React.FC = () => {
       </footer>
     </>
   );
-};
+});
 
 export default Recipes;

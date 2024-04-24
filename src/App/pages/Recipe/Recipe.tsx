@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useContext, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import ArrowLeftSideIcon from 'components/Icon/ArrowIcons/ArrowLeftSideIcon';
 import LidIcon from 'components/Icon/NecessaryIcons/LidIcon';
@@ -10,19 +10,21 @@ import RecipeText from 'components/RecipeText/RecipeText';
 import Text from 'components/Text/Text';
 import { Data } from 'configs/types';
 import { getDataIngredient } from 'utils/api';
-import { RecipeContext } from '../../App';
+import { observer } from 'mobx-react-lite';
+import { useAppStore } from '../../../configs/store/AppStoreProvider';
+
 import style from './style.module.scss';
 
 const equipment: Set<unknown> = new Set();
 
-const Recipe: React.FC = () => {
+const Recipe: React.FC = observer(() => {
+  const appStore = useAppStore();
   const [data, setData] = useState<Data>();
-  const recipeContext = useContext(RecipeContext);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const result = await getDataIngredient(Number(recipeContext.recipe));
+        const result = await getDataIngredient(Number(appStore.recipe));
         setData(result);
 
         result.analyzedInstructions[0].steps.forEach((el: { equipment: [{ name: string }] }) => {
@@ -140,6 +142,6 @@ const Recipe: React.FC = () => {
       )}
     </main>
   );
-};
+});
 
 export default Recipe;

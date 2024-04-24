@@ -5,7 +5,7 @@ import Button from 'components/Button/Button';
 import ClockIcon from 'components/Icon/ClockIcon/ClockIcon';
 import Text from 'components/Text/Text';
 import { Data } from 'configs/types';
-import { RecipeContext } from '../../App/App';
+import { useAppStore } from '../../configs/store/AppStoreProvider';
 import style from './style.module.scss';
 
 export type CardProps = {
@@ -13,10 +13,10 @@ export type CardProps = {
 };
 
 const Card: React.FC<CardProps> = ({ el }) => {
-  const recipeContext = useContext(RecipeContext);
+  const appStore = useAppStore();
 
   const handleClick = () => {
-    recipeContext.setRecipe(`${el.id}`);
+    appStore.setRecipe(`${el.id}`);
   };
 
   return (
