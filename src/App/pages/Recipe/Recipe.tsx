@@ -19,6 +19,7 @@ const equipment: Set<unknown> = new Set();
 
 const Recipe: React.FC = observer(() => {
   const appStore = useAppStore();
+
   const [data, setData] = useState<Data>();
 
   useEffect(() => {
