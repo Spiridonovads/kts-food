@@ -1,6 +1,6 @@
+import classNames from 'classnames';
 import * as React from 'react';
 import style from './style.module.scss';
-import classNames from 'classnames';
 
 export type CheckBoxProps = Omit<React.InputHTMLAttributes<HTMLInputElement>, 'onChange'> & {
   onChange: (checked: boolean) => void;

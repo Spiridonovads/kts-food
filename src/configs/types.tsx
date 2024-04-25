@@ -6,7 +6,10 @@ export type Data = {
   preparationMinutes: number;
   cookingMinutes: number;
   aggregateLikes: number;
-  nutrition: any;
+  nutrition: {
+    ingredients: [{ name: string }];
+    nutrients: [{ amount: number }];
+  };
   servings: number;
   summary: string;
   extendedIngredients: [{ name: string }];

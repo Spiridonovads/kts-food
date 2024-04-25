@@ -1,6 +1,6 @@
+import classNames from 'classnames';
 import * as React from 'react';
 import style from './style.module.scss';
-import classNames from 'classnames';
 
 export type TextProps = {
   view?: 'title' | 'button' | 'p-20' | 'p-18' | 'p-16' | 'p-14' | 'p-44';

@@ -1,5 +1,6 @@
-import { createContext, useContext, ReactNode } from 'react';
 import { observer, useLocalObservable } from 'mobx-react-lite';
+import * as React from 'react';
+import { createContext, useContext, ReactNode } from 'react';
 import { createAppStore } from './AppStore';
 
 export type AppStore = {

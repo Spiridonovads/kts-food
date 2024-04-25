@@ -1,12 +1,12 @@
+import { observer } from 'mobx-react-lite';
 import * as React from 'react';
 import { useEffect, useState, FormEvent } from 'react';
+import Loader from 'components/Loader/Loader';
 import Paginator from 'components/Paginator/Paginator';
+import RecipesContent from 'components/RecipesContent/RecipesContent';
+import Text from 'components/Text/Text';
 import { Data, Value } from 'configs/types';
 import { getData } from 'utils/api';
-import { observer } from 'mobx-react-lite';
-import Loader from 'components/Loader/Loader';
-import Text from 'components/Text/Text';
-import RecipesContent from 'components/RecipesContent/RecipesContent';
 
 const Recipes: React.FC = observer(() => {
   const [data, setData] = useState([]);

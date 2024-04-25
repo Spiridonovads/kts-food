@@ -1,13 +1,13 @@
+import { observer } from 'mobx-react-lite';
 import * as React from 'react';
 import { useEffect, useState } from 'react';
+import { useLocation } from 'react-router-dom';
 import Loader from 'components/Loader/Loader';
+import RecipeContent from 'components/RecipeContent/RecipeContent';
 import Text from 'components/Text/Text';
 import { Data } from 'configs/types';
 import { getDataIngredient } from 'utils/api';
-import { observer } from 'mobx-react-lite';
 import { useAppStore } from '../../../configs/store/AppStoreProvider';
-import RecipeContent from 'components/RecipeContent/RecipeContent';
-import { useLocation } from 'react-router-dom';
 
 const equipment: Set<unknown> = new Set();
 

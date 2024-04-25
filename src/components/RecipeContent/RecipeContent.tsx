@@ -1,3 +1,4 @@
+import * as React from 'react';
 import { Link } from 'react-router-dom';
 import ArrowLeftSideIcon from 'components/Icon/ArrowIcons/ArrowLeftSideIcon';
 import LidIcon from 'components/Icon/NecessaryIcons/LidIcon';
@@ -5,8 +6,8 @@ import SpoonIcon from 'components/Icon/NecessaryIcons/SpoonIcon';
 import RecipeShortText from 'components/RecipeShortText/RecipeShortText';
 import RecipeText from 'components/RecipeText/RecipeText';
 import Text from 'components/Text/Text';
-import style from './style.module.scss';
 import { Data } from 'configs/types';
+import style from './style.module.scss';
 
 export type RecipeContentProps = {
   data: Data;

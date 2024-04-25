@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { AppStoreProvider } from '../configs/store/AppStoreProvider';
 import Header from 'components/Header/Header';
+import { AppStoreProvider } from '../configs/store/AppStoreProvider';
 import Recipe from './pages/Recipe/Recipe';
 import Recipes from './pages/Recipes/Recipes';
 
