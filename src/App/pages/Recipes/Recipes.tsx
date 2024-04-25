@@ -66,7 +66,6 @@ const Recipes: React.FC = observer(() => {
     return acc;
   }, []);
 
-  console.log(data);
   return (
     <>
       <main className={style.main}>

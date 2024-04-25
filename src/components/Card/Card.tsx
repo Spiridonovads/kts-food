@@ -4,7 +4,7 @@ import Button from 'components/Button/Button';
 import ClockIcon from 'components/Icon/ClockIcon/ClockIcon';
 import Text from 'components/Text/Text';
 import { Data } from 'configs/types';
-import { useAppStore } from '../../configs/store/AppStoreProvider';
+
 import style from './style.module.scss';
 
 export type CardProps = {
@@ -12,16 +12,15 @@ export type CardProps = {
 };
 
 const Card: React.FC<CardProps> = ({ el }) => {
-  const appStore = useAppStore();
-
-  const handleClick = () => {
-    appStore.setRecipe(`${el.id}`);
+  const onClick = () => {
+    console.log('hi');
   };
 
   return (
-    <Link to={{ pathname: `/recipe` }} onClick={handleClick}>
+    <Link to={{ pathname: `/recipe/${el.id}` }}>
       <div className={`${style.wrapper}`}>
         <img className={style.image} src={el.image} alt="img" />
+
         <div className={style.content}>
           <div className={style.text}>
             <div className={style.timer}>
@@ -44,11 +43,16 @@ const Card: React.FC<CardProps> = ({ el }) => {
               })}
             </Text>
           </div>
+
           <div className={style.footer}>
             <Text tag="span" view="p-18" weight="bold" color="accent">
               {`${el.nutrition.nutrients[0].amount} kcal`}
             </Text>
-            <Button disabled={false}>Save</Button>
+            <Link to={{ pathname: `` }}>
+              <Button onClick={onClick} disabled={false}>
+                Save
+              </Button>
+            </Link>
           </div>
         </div>
       </div>

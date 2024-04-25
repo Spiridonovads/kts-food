@@ -7,15 +7,24 @@ import { getDataIngredient } from 'utils/api';
 import { observer } from 'mobx-react-lite';
 import { useAppStore } from '../../../configs/store/AppStoreProvider';
 import RecipeContent from 'components/RecipeContent/RecipeContent';
+import { useLocation } from 'react-router-dom';
 
 const equipment: Set<unknown> = new Set();
 
 const Recipe: React.FC = observer(() => {
+  const location = useLocation();
+
   const appStore = useAppStore();
 
   const [data, setData] = useState<Data>();
 
   useEffect(() => {
+    appStore.setRecipe(
+      `${location.pathname
+        .split('')
+        .filter((el) => !isNaN(Number(el)))
+        .join('')}`,
+    );
     const fetchData = async () => {
       try {
         const result = await getDataIngredient(Number(appStore.recipe));
