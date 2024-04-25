@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import Button from 'components/Button/Button';
 import ClockIcon from 'components/Icon/ClockIcon/ClockIcon';

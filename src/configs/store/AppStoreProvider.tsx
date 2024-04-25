@@ -3,8 +3,10 @@ import { observer, useLocalObservable } from 'mobx-react-lite';
 import { createAppStore } from './AppStore';
 
 export type AppStore = {
-  recipe: any;
-  setRecipe: (el: {}) => void;
+  recipe: string;
+  input: string;
+  setRecipe: (el: string) => void;
+  setInput: (input: string) => void;
 };
 
 export type AppStoreProviderProps = {

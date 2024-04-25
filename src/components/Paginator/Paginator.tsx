@@ -18,14 +18,6 @@ const Paginator: React.FC<PaginatorProps> = ({ totalItems, itemsOnPage, onChange
     setCurrentPage(pageNumber);
     onChange(pageNumber);
   };
-  const handlePageChangeForward = () => {
-    setCurrentPage(currentPage + 1);
-    onChange(currentPage + 1);
-  };
-  const handlePageChangeBack = () => {
-    setCurrentPage(currentPage - 1);
-    onChange(currentPage - 1);
-  };
 
   const renderPageNumbers = () => {
     const pageNumbers = [];
@@ -44,11 +36,11 @@ const Paginator: React.FC<PaginatorProps> = ({ totalItems, itemsOnPage, onChange
   return (
     <nav className={style.nav}>
       <div className={style.paginator}>
-        <button onClick={handlePageChangeBack} disabled={currentPage === 1}>
+        <button onClick={() => handlePageChange(currentPage - 1)} disabled={currentPage === 1}>
           <ArrowLeftSideIcon color={currentPage > 1 ? 'primary' : 'secondary'} />
         </button>
         <ul className={style.paginator}>{renderPageNumbers()}</ul>
-        <button onClick={handlePageChangeForward} disabled={currentPage === totalPages}>
+        <button onClick={() => handlePageChange(currentPage + 1)} disabled={currentPage === totalPages}>
           <ArrowRightSideIcon color={currentPage < totalPages ? 'primary' : 'secondary'} />
         </button>
       </div>

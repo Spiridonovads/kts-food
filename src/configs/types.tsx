@@ -3,14 +3,17 @@ export type Data = {
   image: string;
   title: string;
   readyInMinutes: string;
-  nutrition: any;
   preparationMinutes: number;
   cookingMinutes: number;
   aggregateLikes: number;
   servings: number;
   summary: string;
-  extendedIngredients: [];
-  analyzedInstructions: any;
+  extendedIngredients: [{ name: string }];
+  analyzedInstructions: [
+    {
+      steps: [{ id: number; step: string }];
+    },
+  ];
 };
 
 export type Value = {

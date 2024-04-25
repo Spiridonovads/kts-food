@@ -33,7 +33,7 @@
   display: flex;
   flex-direction: column;
   gap: 10px;
-  height: 98px;
+  min-height: 100px;
   text-align: start;
 }
 
@@ -41,7 +41,6 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  height: 52px;
   margin-top: 20px;
 }
 

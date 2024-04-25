@@ -6,25 +6,23 @@ export type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {
   loading?: boolean;
   children: React.ReactNode;
   disabled: boolean;
+  onClick: () => void;
 };
 
-const Button: React.FC<ButtonProps> = ({ loading, children, disabled }) => {
-  return loading && disabled ? (
-    <button className={`${style.button} ${style.loadingButton} ${style.disabledButton}`} disabled={true}>
-      <Loader size="s" color="#FFFFFF" />
-      {children}
-    </button>
-  ) : disabled ? (
-    <button className={`${style.button} ${style.defaultButton} ${style.disabledButton} `} disabled={true}>
-      {children}
-    </button>
-  ) : loading ? (
-    <button className={`${style.button} ${style.loadingButton}`} disabled={true}>
-      <Loader size="s" color="#FFFFFF" />
+const Button: React.FC<ButtonProps> = ({ loading, children, disabled, onClick }) => {
+  return disabled ? (
+    <button
+      onClick={onClick}
+      className={`${style.button} ${loading && style.loadingButton} ${style.defaultButton} ${style.disabledButton}`}
+      disabled={true}
+    >
+      {loading && <Loader size="s" color="#FFFFFF" />}
       {children}
     </button>
   ) : (
-    <button className={`${style.button} ${style.defaultButton} ${style.animationButton}`}>{children}</button>
+    <button onClick={onClick} className={`${style.button} ${style.defaultButton} ${style.animationButton}`}>
+      {children}
+    </button>
   );
 };
 

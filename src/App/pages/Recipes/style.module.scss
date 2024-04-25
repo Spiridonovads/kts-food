@@ -1,12 +1,11 @@
+@import "../../../styles//index.scss";
 .mainPic {
   width: auto;
   margin: auto;
 }
 
 .mainContent {
-  max-width: 1237px;
-  margin: auto;
-  text-align: center;
+  @include width;
 }
 
 .mainText {
@@ -14,23 +13,21 @@
 }
 
 .input {
-  width: 1237px;
-  margin: auto;
+  @include width;
   display: flex;
   justify-content: space-between;
   margin-bottom: 20px;
 }
 
 .multiDropdown {
-  width: 1237px;
-  margin: auto;
+  @include width;
   display: flex;
   justify-content: flex-end;
   margin-bottom: 48px;
 }
 
 .cards {
-  width: 1237px;
+  @include width;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 78px;
@@ -46,7 +43,7 @@
   }
 
   .mainContent {
-    max-width: 1037px;
+    width: 1037px;
   }
   .cards {
     width: 1037px;
@@ -64,7 +61,7 @@
   }
 
   .mainContent {
-    max-width: 937px;
+    width: 937px;
   }
   .cards {
     width: 937px;
@@ -82,7 +79,7 @@
   }
 
   .mainContent {
-    max-width: 837px;
+    width: 837px;
   }
   .cards {
     width: 837px;
@@ -101,7 +98,7 @@
   }
 
   .mainContent {
-    max-width: 737px;
+    width: 737px;
   }
 
   .cards {
@@ -121,7 +118,7 @@
   }
 
   .mainContent {
-    max-width: 637px;
+    width: 637px;
   }
 
   .cards {
@@ -141,7 +138,7 @@
   }
 
   .mainContent {
-    max-width: 537px;
+    width: 537px;
   }
 
   .cards {
@@ -161,7 +158,7 @@
   }
 
   .mainContent {
-    max-width: 437px;
+    width: 437px;
   }
 
   .cards {
@@ -182,7 +179,7 @@
   }
 
   .mainContent {
-    max-width: 337px;
+    width: 337px;
   }
 
   .cards {

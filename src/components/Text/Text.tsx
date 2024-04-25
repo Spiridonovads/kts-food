@@ -26,7 +26,8 @@ const Text: React.FC<TextProps> = ({ view, weight, color, maxLines, tag, childre
         {children}
       </h1>
     );
-  } else if (tag === 'h2') {
+  }
+  if (tag === 'h2') {
     return (
       <h2
         className={`${classNameClassName} ${viewClassName} ${weightClassName} ${colorClassName} ${maxLinesClassName}`}
@@ -34,7 +35,8 @@ const Text: React.FC<TextProps> = ({ view, weight, color, maxLines, tag, childre
         {children}
       </h2>
     );
-  } else if (tag === 'h3') {
+  }
+  if (tag === 'h3') {
     return (
       <h3
         className={`${classNameClassName} ${viewClassName} ${weightClassName} ${colorClassName} ${maxLinesClassName}`}
@@ -42,7 +44,8 @@ const Text: React.FC<TextProps> = ({ view, weight, color, maxLines, tag, childre
         {children}
       </h3>
     );
-  } else if (tag === 'h4') {
+  }
+  if (tag === 'h4') {
     return (
       <h4
         className={`${classNameClassName} ${viewClassName} ${weightClassName} ${colorClassName} ${maxLinesClassName}`}
@@ -50,7 +53,8 @@ const Text: React.FC<TextProps> = ({ view, weight, color, maxLines, tag, childre
         {children}
       </h4>
     );
-  } else if (tag === 'h5') {
+  }
+  if (tag === 'h5') {
     return (
       <h5
         className={`${classNameClassName} ${viewClassName} ${weightClassName} ${colorClassName} ${maxLinesClassName}`}
@@ -58,7 +62,8 @@ const Text: React.FC<TextProps> = ({ view, weight, color, maxLines, tag, childre
         {children}
       </h5>
     );
-  } else if (tag === 'h6') {
+  }
+  if (tag === 'h6') {
     return (
       <h6
         className={`${classNameClassName} ${viewClassName} ${weightClassName} ${colorClassName} ${maxLinesClassName}`}
@@ -66,7 +71,8 @@ const Text: React.FC<TextProps> = ({ view, weight, color, maxLines, tag, childre
         {children}
       </h6>
     );
-  } else if (tag === 'div') {
+  }
+  if (tag === 'div') {
     return (
       <div
         className={`${classNameClassName} ${viewClassName} ${weightClassName} ${colorClassName} ${maxLinesClassName}`}
@@ -74,7 +80,8 @@ const Text: React.FC<TextProps> = ({ view, weight, color, maxLines, tag, childre
         {children}
       </div>
     );
-  } else if (tag === 'span') {
+  }
+  if (tag === 'span') {
     return (
       <span
         className={`${classNameClassName} ${viewClassName} ${weightClassName} ${colorClassName} ${maxLinesClassName}`}
@@ -82,7 +89,8 @@ const Text: React.FC<TextProps> = ({ view, weight, color, maxLines, tag, childre
         {children}
       </span>
     );
-  } else {
+  }
+  if (!tag || tag === 'p') {
     return (
       <p className={`${classNameClassName} ${viewClassName} ${weightClassName} ${colorClassName} ${maxLinesClassName}`}>
         {children}

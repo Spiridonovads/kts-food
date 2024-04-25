@@ -53,19 +53,13 @@ const MultiDropdown: React.FC<MultiDropdownProps> = ({ options, disabled }) => {
 
   const handleOptionClick = (option: Option) => {
     const isSelected = value.some((v) => v.key === option.key);
-    if (!isSelected) {
-      const newValue = [...value, option];
-      const newActiveOptions = [...activeOptions, option];
-      setValue(newValue);
-      setActiveOptions(newActiveOptions);
-      setInputValue('');
-    } else {
-      const newValue = value.filter((v) => v.key !== option.key);
-      const newActiveOptions = activeOptions.filter((v) => v.key !== option.key);
-      setValue(newValue);
-      setActiveOptions(newActiveOptions);
-      setInputValue('');
-    }
+    const newValue = isSelected ? value.filter((v) => v.key !== option.key) : [...value, option];
+    const newActiveOptions = isSelected
+      ? activeOptions.filter((v) => v.key !== option.key)
+      : [...activeOptions, option];
+    setValue(newValue);
+    setActiveOptions(newActiveOptions);
+    setInputValue('');
   };
 
   const getTitle = (value: Option[]) => {

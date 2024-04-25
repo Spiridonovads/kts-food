@@ -1,8 +1,12 @@
 export const createAppStore = (props: any) => {
   return {
     recipe: props.recipe,
-    setRecipe: function (el: any) {
+    input: props.input ? props.input : 'hello',
+    setRecipe: function (el: string) {
       this.recipe = el;
+    },
+    setInput: function (input: string) {
+      this.input = input;
     },
   };
 };

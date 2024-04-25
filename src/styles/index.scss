@@ -10,3 +10,10 @@ $space-xs: 12px;
 $text-secondary: #afadb5;
 $space-xl: 24px;
 $border-radius: 10px;
+
+@mixin width {
+  width: 1270px;
+  padding: 0 15px;
+  margin: auto;
+  text-align: center;
+}

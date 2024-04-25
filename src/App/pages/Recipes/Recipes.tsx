@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, FormEvent } from 'react';
 import Button from 'components/Button/Button';
 import Card from 'components/Card/Card';
 import LoupeIcon from 'components/Icon/LoupeIcon/LoupeIcon';
@@ -12,20 +12,37 @@ import Text from 'components/Text/Text';
 import { Data, Value } from 'configs/types';
 import { getData } from 'utils/api';
 import { observer } from 'mobx-react-lite';
-import { useAppStore } from '../../../configs/store/AppStoreProvider';
 
-import style from './style.module.css';
+import style from './style.module.scss';
 
 const Recipes: React.FC = observer(() => {
-  const appStore = useAppStore();
-
   const [data, setData] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const itemsOnPage = 9;
   const totalItems = data.length;
 
+  const [inputState, setInputState] = useState<string>('');
+  const [filteredInputData, setFilteredInputData] = useState([]);
+
+  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setInputState(event.target.value);
+  };
+
   const handlePageChange = (pageNumber: number) => {
     setCurrentPage(pageNumber);
+  };
+
+  const filterInputData = (input: string) => {
+    const filtered = data.filter((data: { title: string }) => data.title.toLowerCase().includes(input.toLowerCase()));
+    setFilteredInputData(filtered);
+  };
+
+  const handleInputClick = () => {
+    filterInputData(inputState);
+  };
+
+  const handleFormSubmit = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
   };
 
   useEffect(() => {
@@ -49,6 +66,7 @@ const Recipes: React.FC = observer(() => {
     return acc;
   }, []);
 
+  console.log(data);
   return (
     <>
       <main className={style.main}>
@@ -75,21 +93,33 @@ const Recipes: React.FC = observer(() => {
           </div>
           {data && data.length > 0 ? (
             <>
-              <div className={style.input}>
-                <Input placeholder="Enter dishes" size={1} />
-                <Button disabled={false}>{<LoupeIcon />}</Button>
-              </div>
+              <form onSubmit={handleFormSubmit} className={style.input}>
+                <Input placeholder="Enter dishes" size={1} onChange={handleInputChange} value={inputState} />
+                <Button onClick={handleInputClick} disabled={false}>
+                  {<LoupeIcon />}
+                </Button>
+              </form>
+
               <div className={style.multiDropdown}>
                 <MultiDropdown options={options} />
               </div>
-
-              <div className={style.cards}>
-                {data.map((el: Data, i) => {
-                  if (i >= (currentPage - 1) * itemsOnPage && i < currentPage * itemsOnPage) {
-                    return <Card el={el} key={el.id}></Card>;
-                  }
-                })}
-              </div>
+              {filteredInputData && filteredInputData.length > 0 ? (
+                <div className={style.cards}>
+                  {filteredInputData.map((el: Data, i) => {
+                    if (i >= (currentPage - 1) * itemsOnPage && i < currentPage * itemsOnPage) {
+                      return <Card el={el} key={el.id}></Card>;
+                    }
+                  })}
+                </div>
+              ) : (
+                <div className={style.cards}>
+                  {data.map((el: Data, i) => {
+                    if (i >= (currentPage - 1) * itemsOnPage && i < currentPage * itemsOnPage) {
+                      return <Card el={el} key={el.id}></Card>;
+                    }
+                  })}
+                </div>
+              )}
             </>
           ) : (
             <>

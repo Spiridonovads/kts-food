@@ -1,9 +1,7 @@
-@import "../../../styles/index.scss";
+@import "../../styles/index.scss";
+
 .wrapper {
-  max-width: 1237px;
-  padding: 0 15px;
-  margin: auto;
-  text-align: center;
+  @include width;
 }
 .title {
   display: flex;
@@ -46,8 +44,6 @@
 }
 
 .ingredientsList {
-  min-height: 184px;
-  max-height: 276px;
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
