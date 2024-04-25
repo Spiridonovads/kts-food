@@ -4,7 +4,6 @@ import Button from 'components/Button/Button';
 import ClockIcon from 'components/Icon/ClockIcon/ClockIcon';
 import Text from 'components/Text/Text';
 import { Data } from 'configs/types';
-
 import style from './style.module.scss';
 
 export type CardProps = {

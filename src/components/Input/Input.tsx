@@ -19,14 +19,11 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
       setState(event.target.value);
     };
     return (
-      <div
-        ref={ref}
-        className={`${style.wrapper} ${size ? style.wrapperSize : ''} ${border ? style.wrapperFocus : ''}`}
-      >
+      <div ref={ref} className={`${style.wrapper} ${size && style.wrapperSize} ${border && style.wrapperFocus}`}>
         <input
           {...props}
           type="text"
-          className={`${style.input} ${size ? style.inputSize : ''} ${border ? '' : style.inputFocus}`}
+          className={`${style.input} ${size && style.inputSize} ${!border && style.inputFocus}`}
           disabled={!!disabled}
           onChange={onChange ? onChange : handleChange}
           value={value ? value : state}
