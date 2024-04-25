@@ -16,3 +16,9 @@ $border-radius: 10px;
   margin: auto;
   text-align: center;
 }
+
+@mixin skeletonAnimation {
+  animation: skeletonAnimation 1.5s infinite;
+  animation-timing-function: cubic-bezier();
+  border-radius: $border-radius;
+}

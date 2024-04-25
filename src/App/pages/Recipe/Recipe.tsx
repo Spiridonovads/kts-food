@@ -2,12 +2,11 @@ import { observer } from 'mobx-react-lite';
 import * as React from 'react';
 import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
-import Loader from 'components/Loader/Loader';
 import RecipeContent from 'components/RecipeContent/RecipeContent';
-import Text from 'components/Text/Text';
 import { Data } from 'configs/types';
 import { getDataIngredient } from 'utils/api';
 import { useAppStore } from '../../../configs/store/AppStoreProvider';
+import RecipeSkeleton from 'components/RecipeSkeleton/RecipeSkeleton';
 
 const equipment: Set<unknown> = new Set();
 
@@ -45,14 +44,7 @@ const Recipe: React.FC = observer(() => {
   const equipArr: string[] = Array.from(equipment) as string[];
   return (
     <main>
-      {data && Object.keys(data).length > 0 ? (
-        <RecipeContent data={data} equipment={equipArr} />
-      ) : (
-        <>
-          <Text>Рецепт загружается...</Text>
-          <Loader size="l" />
-        </>
-      )}
+      <RecipeSkeleton />
     </main>
   );
 });
