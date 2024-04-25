@@ -2,7 +2,6 @@ import * as React from 'react';
 import style from './style.module.scss';
 
 const RecipeSkeleton: React.FC = () => {
-  const arr = new Array(9);
   return (
     <section className={style.wrapper}>
       <div className={style.title}></div>

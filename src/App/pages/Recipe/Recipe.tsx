@@ -44,7 +44,7 @@ const Recipe: React.FC = observer(() => {
   const equipArr: string[] = Array.from(equipment) as string[];
   return (
     <main>
-      <RecipeSkeleton />
+      {data && Object.keys(data).length > 0 ? <RecipeContent data={data} equipment={equipArr} /> : <RecipeSkeleton />}
     </main>
   );
 });

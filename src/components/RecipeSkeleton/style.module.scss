@@ -128,18 +128,6 @@
   height: 65px;
 }
 
-@keyframes skeletonAnimation {
-  from {
-    background-color: rgba(181, 70, 15, 0.7);
-  }
-  50% {
-    background-color: rgba(181, 70, 15, 0.8);
-  }
-  to {
-    background-color: rgba(181, 70, 15, 0.7);
-  }
-}
-
 @media (max-width: 1150px) {
   .wrapper {
     width: 937px;

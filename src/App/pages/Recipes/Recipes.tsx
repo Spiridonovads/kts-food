@@ -7,6 +7,7 @@ import RecipesContent from 'components/RecipesContent/RecipesContent';
 import Text from 'components/Text/Text';
 import { Data, Value } from 'configs/types';
 import { getData } from 'utils/api';
+import RecipesSkeleton from 'components/RecipesSkeleton/RecipesSkeleton';
 
 const Recipes: React.FC = observer(() => {
   const [data, setData] = useState([]);
@@ -68,10 +69,7 @@ const Recipes: React.FC = observer(() => {
             itemsOnPage={itemsOnPage}
           />
         ) : (
-          <>
-            <Text>Рецепты загружаются...</Text>
-            <Loader size="l" />
-          </>
+          <RecipesSkeleton />
         )}
       </main>
       <footer>
