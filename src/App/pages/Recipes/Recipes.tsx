@@ -1,19 +1,12 @@
 import * as React from 'react';
 import { useEffect, useState, FormEvent } from 'react';
-import Button from 'components/Button/Button';
-import Card from 'components/Card/Card';
-import LoupeIcon from 'components/Icon/LoupeIcon/LoupeIcon';
-import Input from 'components/Input/Input';
-import Loader from 'components/Loader/Loader';
-import MultiDropdown from 'components/MultiDropDown/MultiDropDown';
 import Paginator from 'components/Paginator/Paginator';
-import RecipesMainPicture from 'components/RecipesMainPicture/RecipesMainPicture';
-import Text from 'components/Text/Text';
 import { Data, Value } from 'configs/types';
 import { getData } from 'utils/api';
 import { observer } from 'mobx-react-lite';
-
-import style from './style.module.scss';
+import Loader from 'components/Loader/Loader';
+import Text from 'components/Text/Text';
+import RecipesContent from 'components/RecipesContent/RecipesContent';
 
 const Recipes: React.FC = observer(() => {
   const [data, setData] = useState([]);
@@ -22,7 +15,6 @@ const Recipes: React.FC = observer(() => {
   const totalItems = data.length;
 
   const [inputState, setInputState] = useState<string>('');
-  const [filteredInputData, setFilteredInputData] = useState([]);
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setInputState(event.target.value);
@@ -32,13 +24,8 @@ const Recipes: React.FC = observer(() => {
     setCurrentPage(pageNumber);
   };
 
-  const filterInputData = (input: string) => {
-    const filtered = data.filter((data: { title: string }) => data.title.toLowerCase().includes(input.toLowerCase()));
-    setFilteredInputData(filtered);
-  };
-
   const handleInputClick = () => {
-    filterInputData(inputState);
+    //button
   };
 
   const handleFormSubmit = (e: FormEvent<HTMLFormElement>) => {
@@ -68,65 +55,24 @@ const Recipes: React.FC = observer(() => {
 
   return (
     <>
-      <main className={style.main}>
-        <section className={style.mainPic}>
-          <RecipesMainPicture />
-        </section>
-        <section className={style.mainContent}>
-          <div className={style.mainText}>
-            <Text color="primary" weight="normal" view="p-20">
-              Find the perfect food and{' '}
-              <Text className="underline" tag="span">
-                drink ideas
-              </Text>{' '}
-              for every occasion, from{' '}
-              <Text className="underline" tag="span">
-                weeknight dinners
-              </Text>{' '}
-              to{' '}
-              <Text className="underline" tag="span">
-                holiday feasts
-              </Text>
-              .
-            </Text>
-          </div>
-          {data && data.length > 0 ? (
-            <>
-              <form onSubmit={handleFormSubmit} className={style.input}>
-                <Input placeholder="Enter dishes" size={1} onChange={handleInputChange} value={inputState} />
-                <Button onClick={handleInputClick} disabled={false}>
-                  {<LoupeIcon />}
-                </Button>
-              </form>
-
-              <div className={style.multiDropdown}>
-                <MultiDropdown options={options} />
-              </div>
-              {filteredInputData && filteredInputData.length > 0 ? (
-                <div className={style.cards}>
-                  {filteredInputData.map((el: Data, i) => {
-                    if (i >= (currentPage - 1) * itemsOnPage && i < currentPage * itemsOnPage) {
-                      return <Card el={el} key={el.id}></Card>;
-                    }
-                  })}
-                </div>
-              ) : (
-                <div className={style.cards}>
-                  {data.map((el: Data, i) => {
-                    if (i >= (currentPage - 1) * itemsOnPage && i < currentPage * itemsOnPage) {
-                      return <Card el={el} key={el.id}></Card>;
-                    }
-                  })}
-                </div>
-              )}
-            </>
-          ) : (
-            <>
-              <Text>Рецепты загружаются...</Text>
-              <Loader size="l" />
-            </>
-          )}
-        </section>
+      <main>
+        {data ? (
+          <RecipesContent
+            data={data}
+            handleFormSubmit={() => handleFormSubmit}
+            handleInputChange={() => handleInputChange}
+            inputState={inputState}
+            handleInputClick={() => handleInputClick}
+            options={options}
+            currentPage={currentPage}
+            itemsOnPage={itemsOnPage}
+          />
+        ) : (
+          <>
+            <Text>Рецепты загружаются...</Text>
+            <Loader size="l" />
+          </>
+        )}
       </main>
       <footer>
         <Paginator totalItems={totalItems} itemsOnPage={itemsOnPage} onChange={handlePageChange} />
