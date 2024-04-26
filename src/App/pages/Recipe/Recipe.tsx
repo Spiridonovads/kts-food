@@ -3,10 +3,10 @@ import * as React from 'react';
 import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import RecipeContent from 'components/RecipeContent/RecipeContent';
+import RecipeSkeleton from 'components/RecipeSkeleton/RecipeSkeleton';
 import { Data } from 'configs/types';
 import { getDataIngredient } from 'utils/api';
 import { useAppStore } from '../../../configs/store/AppStoreProvider';
-import RecipeSkeleton from 'components/RecipeSkeleton/RecipeSkeleton';
 
 const equipment: Set<unknown> = new Set();
 
