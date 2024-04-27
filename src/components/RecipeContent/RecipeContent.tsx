@@ -10,7 +10,7 @@ import { Data } from 'configs/types';
 import style from './style.module.scss';
 
 export type RecipeContentProps = {
-  data: Data;
+  data: Data[];
   equipment: string[];
 };
 
@@ -22,33 +22,33 @@ const RecipeContent: React.FC<RecipeContentProps> = ({ data, equipment }) => {
           <ArrowLeftSideIcon color="accent" />
         </Link>
         <Text view="p-44" weight="bold">
-          {data.title}
+          {data[0].title}
         </Text>
       </div>
       <div className={style.shortInfo}>
-        <img src={data.image} alt="photo" width={448} height={298} />
+        <img src={data[0].image} alt="photo" width={448} height={298} />
         <div className={style.shortInfoText}>
           <div className={style.shortInfoTextBlock}>
-            <RecipeShortText title="Preparation" text={`${Math.abs(data.preparationMinutes)} minutes`} />
+            <RecipeShortText title="Preparation" text={`${Math.abs(data[0].preparationMinutes)} minutes`} />
           </div>
           <div className={style.shortInfoTextBlock}>
-            <RecipeShortText title="Cooking" text={`${data.readyInMinutes} minutes`} />
+            <RecipeShortText title="Cooking" text={`${data[0].readyInMinutes} minutes`} />
           </div>
           <div className={style.shortInfoTextBlock}>
             <RecipeShortText
               title="Total"
-              text={`${data.readyInMinutes + Math.abs(data.preparationMinutes)} minutes`}
+              text={`${data[0].readyInMinutes + Math.abs(data[0].preparationMinutes)} minutes`}
             />
           </div>
           <div className={style.shortInfoTextBlock}>
-            <RecipeShortText title="Ratings" text={`${data.aggregateLikes} likes`} />
+            <RecipeShortText title="Ratings" text={`${data[0].aggregateLikes} likes`} />
           </div>
           <div className={style.shortInfoTextBlock}>
-            <RecipeShortText title="Servings" text={`${data.servings} servings`} />
+            <RecipeShortText title="Servings" text={`${data[0].servings} servings`} />
           </div>
         </div>
       </div>
-      {data && Object.keys(data).length > 0 && <RecipeText htmlString={data.summary} />}
+      {data && Object.keys(data).length > 0 && <RecipeText htmlString={data[0].summary} />}
       <div className={style.necessary}>
         <div className={style.ingredients}>
           <div className={style.ingredientsTitle}>
@@ -57,7 +57,7 @@ const RecipeContent: React.FC<RecipeContentProps> = ({ data, equipment }) => {
             </Text>
           </div>
           <div className={style.ingredientsList}>
-            {data.extendedIngredients.map((el, i: number) => {
+            {data[0].extendedIngredients.map((el, i: number) => {
               return (
                 <div key={i} className={style.ingredientsLi}>
                   <LidIcon key={`${i}1`} color="accent" />
@@ -96,7 +96,7 @@ const RecipeContent: React.FC<RecipeContentProps> = ({ data, equipment }) => {
             Directions
           </Text>
         </div>
-        {data.analyzedInstructions[0].steps.map((el, i: number) => {
+        {data[0].analyzedInstructions[0].steps.map((el: { step: string }, i: number) => {
           return (
             <div key={`${i}6`} className={style.directionsLi}>
               <Text key={`${i}7`} weight="medium">{`Step ${i + 1}`}</Text>

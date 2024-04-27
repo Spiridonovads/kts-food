@@ -1,18 +1,22 @@
-import { observer } from 'mobx-react-lite';
 import * as React from 'react';
-import { useEffect, useState, FormEvent } from 'react';
+import { useState, useEffect, FormEvent } from 'react';
 import Paginator from 'components/Paginator/Paginator';
 import RecipesContent from 'components/RecipesContent/RecipesContent';
 import RecipesSkeleton from 'components/RecipesSkeleton/RecipesSkeleton';
 import { Data, Value } from 'configs/types';
-import { getData } from 'utils/api';
+import { observer } from 'mobx-react-lite';
+import { useAppStore } from '../../../configs/store/AppStoreProvider';
 
 const Recipes: React.FC = observer(() => {
-  const [data, setData] = useState([]);
+  const appStore = useAppStore();
+
+  useEffect(() => {
+    appStore.fetchData();
+  }, [appStore]);
+
   const [currentPage, setCurrentPage] = useState(1);
   const itemsOnPage = 9;
-  const totalItems = data.length;
-
+  const totalItems = appStore.data.length;
   const [inputState, setInputState] = useState<string>('');
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -31,33 +35,25 @@ const Recipes: React.FC = observer(() => {
     e.preventDefault();
   };
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const result = await getData();
-        setData(result.results);
-      } catch (error) {
-        console.error('Ошибка при получении данных:', error);
-      }
-    };
-    fetchData();
-  }, []);
-
-  const options = data.reduce((acc: Value[], el: Data) => {
-    const obj: Value = {
-      key: `${el.id}`,
-      value: `${el.title}`,
-    };
-    acc.push(obj);
-    return acc;
-  }, []);
+  const options = React.useMemo(
+    () =>
+      appStore.data.reduce((acc: Value[], el: Data) => {
+        const obj: Value = {
+          key: `${el.id}`,
+          value: `${el.title}`,
+        };
+        acc.push(obj);
+        return acc;
+      }, []),
+    [appStore.data],
+  );
 
   return (
     <>
       <main>
-        {data ? (
+        {appStore.data && appStore.data.length > 0 ? (
           <RecipesContent
-            data={data}
+            data={appStore.data}
             handleFormSubmit={() => handleFormSubmit}
             handleInputChange={() => handleInputChange}
             inputState={inputState}

@@ -1,7 +1,8 @@
 @import "../../styles//index.scss";
 
 .mainPic {
-  @include width;
+  width: 1440px;
+  margin: auto;
   height: 572px;
   @include skeletonAnimation;
 }

@@ -15,7 +15,7 @@ export type Data = {
   extendedIngredients: [{ name: string }];
   analyzedInstructions: [
     {
-      steps: [{ id: number; step: string }];
+      steps: [];
     },
   ];
 };

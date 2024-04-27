@@ -7,7 +7,7 @@ export type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {
   loading?: boolean;
   children: React.ReactNode;
   disabled: boolean;
-  onClick: () => void;
+  onClick: (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
 };
 
 const Button: React.FC<ButtonProps> = ({ loading, children, disabled, onClick }) => {

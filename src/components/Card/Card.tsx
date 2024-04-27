@@ -4,6 +4,7 @@ import Button from 'components/Button/Button';
 import ClockIcon from 'components/Icon/ClockIcon/ClockIcon';
 import Text from 'components/Text/Text';
 import { Data } from 'configs/types';
+
 import style from './style.module.scss';
 
 export type CardProps = {
@@ -11,8 +12,8 @@ export type CardProps = {
 };
 
 const Card: React.FC<CardProps> = ({ el }) => {
-  const onClick = () => {
-    console.log('hi');
+  const onClick = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+    e.preventDefault();
   };
 
   return (
@@ -47,11 +48,10 @@ const Card: React.FC<CardProps> = ({ el }) => {
             <Text tag="span" view="p-18" weight="bold" color="accent">
               {`${el.nutrition.nutrients[0].amount} kcal`}
             </Text>
-            <Link to={{ pathname: `` }}>
-              <Button onClick={onClick} disabled={false}>
-                Save
-              </Button>
-            </Link>
+
+            <Button onClick={onClick} disabled={false}>
+              Save
+            </Button>
           </div>
         </div>
       </div>
