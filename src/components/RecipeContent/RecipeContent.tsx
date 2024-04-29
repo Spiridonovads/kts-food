@@ -8,13 +8,25 @@ import RecipeText from 'components/RecipeText/RecipeText';
 import Text from 'components/Text/Text';
 import { Data } from 'configs/types';
 import style from './style.module.scss';
+import { observer } from 'mobx-react-lite';
 
 export type RecipeContentProps = {
   data: Data[];
   equipment: string[];
 };
 
-const RecipeContent: React.FC<RecipeContentProps> = ({ data, equipment }) => {
+const RecipeContent: React.FC<RecipeContentProps> = observer(({ data, equipment }) => {
+  const renderSteps = React.useCallback(() => {
+    return data[0].analyzedInstructions[0].steps.map((step: { step: string }, i: number) => {
+      return (
+        <div key={`${i}6`} className={style.directionsLi}>
+          <Text key={`${i}7`} weight="medium">{`Step ${i + 1}`}</Text>
+          <Text key={`${i}8`}>{step.step}</Text>
+        </div>
+      );
+    });
+  }, [data]);
+
   return (
     <section className={style.wrapper}>
       <div className={style.title}>
@@ -48,7 +60,7 @@ const RecipeContent: React.FC<RecipeContentProps> = ({ data, equipment }) => {
           </div>
         </div>
       </div>
-      {data && Object.keys(data).length > 0 && <RecipeText htmlString={data[0].summary} />}
+      <RecipeText htmlString={data[0].summary} />
       <div className={style.necessary}>
         <div className={style.ingredients}>
           <div className={style.ingredientsTitle}>
@@ -78,15 +90,14 @@ const RecipeContent: React.FC<RecipeContentProps> = ({ data, equipment }) => {
             </Text>
           </div>
           <div className={style.equipList}>
-            {equipment &&
-              equipment.map((el: string, i: number) => {
-                return (
-                  <div key={`${i}3`} className={style.equipLi}>
-                    <SpoonIcon key={`${i}4`} color="accent" />
-                    <Text key={`${i}5`}>{el}</Text>
-                  </div>
-                );
-              })}
+            {equipment.map((el: string, i: number) => {
+              return (
+                <div key={`${i}3`} className={style.equipLi}>
+                  <SpoonIcon key={`${i}4`} color="accent" />
+                  <Text key={`${i}5`}>{el}</Text>
+                </div>
+              );
+            })}
           </div>
         </div>
       </div>
@@ -96,17 +107,10 @@ const RecipeContent: React.FC<RecipeContentProps> = ({ data, equipment }) => {
             Directions
           </Text>
         </div>
-        {data[0].analyzedInstructions[0].steps.map((el: { step: string }, i: number) => {
-          return (
-            <div key={`${i}6`} className={style.directionsLi}>
-              <Text key={`${i}7`} weight="medium">{`Step ${i + 1}`}</Text>
-              <Text key={`${i}8`}>{el.step}</Text>
-            </div>
-          );
-        })}
+        {renderSteps()}
       </div>
     </section>
   );
-};
+});
 
 export default RecipeContent;

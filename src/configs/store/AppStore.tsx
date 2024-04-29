@@ -5,11 +5,13 @@ import { getData, getDataIngredient } from 'utils/api';
 class createAppStore {
   data: Data[] = [];
   recipe: Data[] = [];
+  equip: string[] = [];
 
   constructor() {
     makeObservable(this, {
       data: observable.ref,
       recipe: observable,
+      equip: observable,
     });
   }
   async fetchData() {
@@ -27,6 +29,15 @@ class createAppStore {
     runInAction(() => {
       if (response) {
         this.recipe.push(response);
+        const equipmentSet = new Set<string>();
+        response.analyzedInstructions.forEach((instruction: { steps: [{ equipment: [{ name: string }] }] }) => {
+          instruction.steps.forEach((step) => {
+            step.equipment.forEach((equip) => {
+              equipmentSet.add(equip.name);
+            });
+          });
+        });
+        this.equip = Array.from(equipmentSet);
         return;
       }
     });

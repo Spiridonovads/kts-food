@@ -5,7 +5,7 @@ import RecipesContent from 'components/RecipesContent/RecipesContent';
 import RecipesSkeleton from 'components/RecipesSkeleton/RecipesSkeleton';
 import { Data, Value } from 'configs/types';
 import { observer } from 'mobx-react-lite';
-import { useAppStore } from '../../../configs/store/AppStoreProvider';
+import { useAppStore } from '../../../configs/store/StoreProvider';
 
 const Recipes: React.FC = observer(() => {
   const appStore = useAppStore();
