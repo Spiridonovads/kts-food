@@ -4,11 +4,12 @@ import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import RecipeContent from 'components/RecipeContent/RecipeContent';
 import RecipeSkeleton from 'components/RecipeSkeleton/RecipeSkeleton';
-import { useAppStore } from '../../../configs/store/StoreProvider';
+import { useLocalObservable } from 'mobx-react-lite';
+import createRecipeAppStore from 'configs/store/RecipeStore/RecipeStore';
 
 const Recipe: React.FC = observer(() => {
   const location = useLocation();
-  const appStore = useAppStore();
+  const appStore = useLocalObservable(() => new createRecipeAppStore());
 
   useEffect(() => {
     const fetchData = async () => {

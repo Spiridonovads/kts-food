@@ -5,10 +5,11 @@ import RecipesContent from 'components/RecipesContent/RecipesContent';
 import RecipesSkeleton from 'components/RecipesSkeleton/RecipesSkeleton';
 import { Data, Value } from 'configs/types';
 import { observer } from 'mobx-react-lite';
-import { useAppStore } from '../../../configs/store/StoreProvider';
+import { useLocalObservable } from 'mobx-react-lite';
+import createRecipesAppStore from 'configs/store/RecipesStore/RecipesStore';
 
 const Recipes: React.FC = observer(() => {
-  const appStore = useAppStore();
+  const appStore = useLocalObservable(() => new createRecipesAppStore());
 
   useEffect(() => {
     appStore.fetchData();

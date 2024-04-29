@@ -8,7 +8,7 @@
     "baseUrl": "src",
     "paths": {
       "components": ["components/*"],
-      "config": ["config/*"],
+      "configs": ["configs/*"],
       "styles": ["styles/*"],
       "utils": ["utils/*"]
     },
