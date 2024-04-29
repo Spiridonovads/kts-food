@@ -16,17 +16,6 @@ export type RecipeContentProps = {
 };
 
 const RecipeContent: React.FC<RecipeContentProps> = observer(({ data, equipment }) => {
-  const renderSteps = React.useCallback(() => {
-    return data[0].analyzedInstructions[0].steps.map((step: { step: string }, i: number) => {
-      return (
-        <div key={`${i}6`} className={style.directionsLi}>
-          <Text key={`${i}7`} weight="medium">{`Step ${i + 1}`}</Text>
-          <Text key={`${i}8`}>{step.step}</Text>
-        </div>
-      );
-    });
-  }, [data]);
-
   return (
     <section className={style.wrapper}>
       <div className={style.title}>
@@ -107,7 +96,14 @@ const RecipeContent: React.FC<RecipeContentProps> = observer(({ data, equipment 
             Directions
           </Text>
         </div>
-        {renderSteps()}
+        {data[0].analyzedInstructions[0].steps.map((step: { step: string }, i: number) => {
+          return (
+            <div key={`${i}6`} className={style.directionsLi}>
+              <Text key={`${i}7`} weight="medium">{`Step ${i + 1}`}</Text>
+              <Text key={`${i}8`}>{step.step}</Text>
+            </div>
+          );
+        })}
       </div>
     </section>
   );
