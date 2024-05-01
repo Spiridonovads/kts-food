@@ -1,53 +1,58 @@
 import * as React from 'react';
 import { useState, useEffect, FormEvent } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
 import Paginator from 'components/Paginator/Paginator';
 import RecipesContent from 'components/RecipesContent/RecipesContent';
 import RecipesSkeleton from 'components/RecipesSkeleton/RecipesSkeleton';
-import { Data, Value } from 'configs/types';
 import { observer } from 'mobx-react-lite';
 import { useLocalObservable } from 'mobx-react-lite';
 import createRecipesAppStore from 'configs/store/RecipesStore/RecipesStore';
+import { options } from 'utils/constants';
 
 const Recipes: React.FC = observer(() => {
   const appStore = useLocalObservable(() => new createRecipesAppStore());
+  const location = useLocation();
+  const navigate = useNavigate();
 
-  useEffect(() => {
-    appStore.fetchData();
-  }, [appStore]);
-
-  const [currentPage, setCurrentPage] = useState(1);
+  const [currentPage, setCurrentPage] = useState(Number(location.search.split('=')[1]));
   const itemsOnPage = 9;
   const totalItems = appStore.data.length;
   const [inputState, setInputState] = useState<string>('');
-
-  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setInputState(event.target.value);
-  };
+  const searchParams = new URLSearchParams(location.search);
 
   const handlePageChange = (pageNumber: number) => {
     setCurrentPage(pageNumber);
   };
 
+  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setInputState(event.target.value);
+    searchParams.set('query', event.target.value);
+    navigate({ search: searchParams.toString() });
+  };
+
   const handleInputClick = () => {
-    //button
+    appStore.fetchQuery(inputState);
   };
 
   const handleFormSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    appStore.fetchQuery(inputState);
   };
 
-  const options = React.useMemo(
-    () =>
-      appStore.data.reduce((acc: Value[], el: Data) => {
-        const obj: Value = {
-          key: `${el.id}`,
-          value: `${el.title}`,
-        };
-        acc.push(obj);
-        return acc;
-      }, []),
-    [appStore.data],
-  );
+  useEffect(() => {
+    if (location.search.includes('type=')) {
+      appStore.fetchSelectedOptions(options.filter((el) => location.search.includes(el)));
+    } else if (location.search.includes('query=')) {
+      appStore.fetchQuery(location.search.split('=')[2]);
+    } else {
+      appStore.fetchData();
+    }
+  }, [appStore, location]);
+
+  useEffect(() => {
+    searchParams.set('', `${currentPage}`);
+    navigate({ search: searchParams.toString() });
+  }, [currentPage]);
 
   return (
     <>
@@ -56,10 +61,9 @@ const Recipes: React.FC = observer(() => {
           <RecipesContent
             data={appStore.data}
             handleFormSubmit={() => handleFormSubmit}
-            handleInputChange={() => handleInputChange}
+            handleInputChange={handleInputChange}
             inputState={inputState}
-            handleInputClick={() => handleInputClick}
-            options={options}
+            handleInputClick={handleInputClick}
             currentPage={currentPage}
             itemsOnPage={itemsOnPage}
           />
@@ -73,5 +77,4 @@ const Recipes: React.FC = observer(() => {
     </>
   );
 });
-
 export default Recipes;

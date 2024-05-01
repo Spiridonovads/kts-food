@@ -1,14 +1,14 @@
 import * as React from 'react';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import Header from 'components/Header/Header';
 import Recipe from './pages/Recipe/Recipe';
 import Recipes from './pages/Recipes/Recipes';
-//import { useAppStoreInit } from 'configs/store/AppStoreInit';
+//import { useQueryParamsStoreInit } from 'configs/store/hocs/useQueryParamsStore';
 
 const App: React.FC = () => {
-  // useAppStoreInit();
+  //useQueryParamsStoreInit();
   return (
-    <BrowserRouter>
+    <>
       <Header />
       <Routes>
         <Route path="/" element={<Recipes />} />
@@ -20,7 +20,7 @@ const App: React.FC = () => {
             }
           />*/}
       </Routes>
-    </BrowserRouter>
+    </>
   );
 };
 

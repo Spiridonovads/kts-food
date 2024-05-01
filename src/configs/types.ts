@@ -18,9 +18,5 @@ export type Data = {
       steps: [];
     },
   ];
-};
-
-export type Value = {
-  key: string;
-  value: string;
+  dishTypes: string;
 };

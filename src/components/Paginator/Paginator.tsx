@@ -7,7 +7,7 @@ import style from './style.module.scss';
 export type PaginatorProps = {
   totalItems: number;
   itemsOnPage: number;
-  onChange: (pageNumber: number) => void;
+  onChange: (number: number) => void;
 };
 
 const Paginator: React.FC<PaginatorProps> = ({ totalItems, itemsOnPage, onChange }) => {

@@ -1,6 +1,5 @@
-import createRecipeAppStore from 'configs/store/RecipeStore/RecipeStore';
-//import createRecipesAppStore from "configs/store/RecipesStore/RecipesStore";
+/*import QueryParamsStore from './QueryParamsStore/QueryParamsStore';
 
 export default class RootStore {
-  readonly query = new createRecipeAppStore();
-}
+  readonly query = new QueryParamsStore();
+}*/
