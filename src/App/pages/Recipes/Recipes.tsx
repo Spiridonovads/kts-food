@@ -14,11 +14,16 @@ const Recipes: React.FC = observer(() => {
   const location = useLocation();
   const navigate = useNavigate();
 
-  const [currentPage, setCurrentPage] = useState(Number(location.search.split('=')[1]));
+  const [currentPage, setCurrentPage] = useState(location.search ? Number(location.search.split('=')[1]) : 1);
   const itemsOnPage = 9;
   const totalItems = appStore.data.length;
   const [inputState, setInputState] = useState<string>('');
   const searchParams = new URLSearchParams(location.search);
+
+  useEffect(() => {
+    searchParams.set('', `${currentPage}`);
+    navigate({ search: searchParams.toString() });
+  }, [currentPage]);
 
   const handlePageChange = (pageNumber: number) => {
     setCurrentPage(pageNumber);
@@ -48,11 +53,6 @@ const Recipes: React.FC = observer(() => {
       appStore.fetchData();
     }
   }, [appStore, location]);
-
-  useEffect(() => {
-    searchParams.set('', `${currentPage}`);
-    navigate({ search: searchParams.toString() });
-  }, [currentPage]);
 
   return (
     <>

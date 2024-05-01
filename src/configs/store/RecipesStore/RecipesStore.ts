@@ -6,17 +6,11 @@ import { reaction, IReactionDisposer } from 'mobx';*/
 
 class createRecipesAppStore {
   data: Data[] = [];
-  pageNumber: number = 1;
 
   constructor() {
     makeObservable(this, {
       data: observable,
-      pageNumber: observable,
     });
-  }
-
-  setPageNumber(number: number) {
-    this.pageNumber = number;
   }
 
   async fetchData() {
