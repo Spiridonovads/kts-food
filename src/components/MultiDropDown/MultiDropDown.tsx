@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { useState, useEffect, useRef } from 'react';
-import Input from 'components/Input/Input';
 import { useLocation, useNavigate } from 'react-router-dom';
+import Input from 'components/Input/Input';
 import style from './style.module.scss';
 
 export type MultiDropdownProps = {
@@ -27,14 +27,14 @@ const MultiDropdown: React.FC<MultiDropdownProps> = ({ options, disabled }) => {
     };
   }, []);
 
-  useEffect(() => {
-    filterOptions();
-  }, [inputValue, options]);
-
-  const filterOptions = () => {
+  const filterOptions = React.useCallback(() => {
     const filtered = options.filter((option: string) => option.toLowerCase().includes(inputValue.toLowerCase()));
     setFilteredOptions(filtered);
-  };
+  }, [inputValue, options]);
+
+  useEffect(() => {
+    filterOptions();
+  }, [inputValue, options, filterOptions]);
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setInputValue(event.target.value);

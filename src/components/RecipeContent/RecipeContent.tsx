@@ -1,3 +1,4 @@
+import { observer } from 'mobx-react-lite';
 import * as React from 'react';
 import { Link } from 'react-router-dom';
 import ArrowLeftSideIcon from 'components/Icon/ArrowIcons/ArrowLeftSideIcon';
@@ -8,7 +9,6 @@ import RecipeText from 'components/RecipeText/RecipeText';
 import Text from 'components/Text/Text';
 import { Data } from 'configs/types';
 import style from './style.module.scss';
-import { observer } from 'mobx-react-lite';
 
 export type RecipeContentProps = {
   data: Data[];

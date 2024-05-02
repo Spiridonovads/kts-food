@@ -1,5 +1,5 @@
-import { Data } from 'configs/types';
 import { makeObservable, observable, runInAction } from 'mobx';
+import { Data } from 'configs/types';
 import { getDataIngredient } from 'utils/api';
 
 class createRecipeAppStore {

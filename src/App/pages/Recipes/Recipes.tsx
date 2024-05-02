@@ -1,11 +1,11 @@
+import { observer, useLocalObservable } from 'mobx-react-lite';
 import * as React from 'react';
 import { useState, useEffect, FormEvent } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import Paginator from 'components/Paginator/Paginator';
 import RecipesContent from 'components/RecipesContent/RecipesContent';
 import RecipesSkeleton from 'components/RecipesSkeleton/RecipesSkeleton';
-import { observer } from 'mobx-react-lite';
-import { useLocalObservable } from 'mobx-react-lite';
+
 import createRecipesAppStore from 'configs/store/RecipesStore/RecipesStore';
 import { options } from 'utils/constants';
 
@@ -18,12 +18,17 @@ const Recipes: React.FC = observer(() => {
   const itemsOnPage = 9;
   const totalItems = appStore.data.length;
   const [inputState, setInputState] = useState<string>('');
-  const searchParams = new URLSearchParams(location.search);
+
+  const searchParams = React.useMemo(() => {
+    const params = new URLSearchParams();
+    params.set('', `${currentPage}`);
+    return params;
+  }, [currentPage]);
 
   useEffect(() => {
     searchParams.set('', `${currentPage}`);
     navigate({ search: searchParams.toString() });
-  }, [currentPage]);
+  }, [currentPage, navigate, searchParams]);
 
   const handlePageChange = (pageNumber: number) => {
     setCurrentPage(pageNumber);

@@ -1,3 +1,4 @@
+import { observer } from 'mobx-react-lite';
 import * as React from 'react';
 import Button from 'components/Button/Button';
 import Card from 'components/Card/Card';
@@ -11,7 +12,6 @@ import { Data } from 'configs/types';
 import { options } from 'utils/constants';
 
 import style from './style.module.scss';
-import { observer } from 'mobx-react-lite';
 
 export type RecipesContentProps = {
   data: Data[];
