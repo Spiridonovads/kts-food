@@ -1,9 +1,9 @@
-import * as React from 'react';
 import { useLocalObservable } from 'mobx-react-lite';
+import * as React from 'react';
 import { useState, useEffect, useRef } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import createRecipesAppStore from 'configs/store/RecipesStore/RecipesStore';
 import Input from 'components/Input/Input';
+import createRecipesAppStore from 'configs/store/RecipesStore/RecipesStore';
 import style from './style.module.scss';
 
 export type MultiDropdownProps = {

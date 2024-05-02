@@ -1,8 +1,8 @@
-import { makeObservable, observable, runInAction } from 'mobx';
+import { makeObservable, observable, runInAction , reaction, IReactionDisposer } from 'mobx';
 import { Data } from 'configs/types';
 import { getData, getDataQuery, getDataTypes } from 'utils/api';
 import rootStore from '../index';
-import { reaction, IReactionDisposer } from 'mobx';
+
 
 class createRecipesAppStore {
   data: Data[] = [];
