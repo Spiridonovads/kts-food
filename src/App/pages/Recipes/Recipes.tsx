@@ -14,16 +14,30 @@ const Recipes: React.FC = observer(() => {
   const location = useLocation();
   const navigate = useNavigate();
 
-  const [currentPage, setCurrentPage] = useState(location.search ? Number(location.search.split('=')[1]) : 1);
+  const [currentPage, setCurrentPage] = useState(
+    location.search ? Number(location.search.split('=')[1].split('&')[0]) : 1,
+  );
   const itemsOnPage = 9;
   const totalItems = appStore.data.length;
   const [inputState, setInputState] = useState<string>('');
 
   const searchParams = React.useMemo(() => {
     const params = new URLSearchParams();
-    params.set('', `${currentPage}`);
+    params.set('page', `${currentPage}`);
     return params;
   }, [currentPage]);
+
+  useEffect(() => {
+    const params = new URLSearchParams();
+    params.set('page', `${currentPage}`);
+    const searchParams = new URLSearchParams(location.search);
+    searchParams.forEach((value, key) => {
+      if (key !== 'page') {
+        params.append(key, value);
+      }
+    });
+    navigate(`?${params.toString()}`);
+  }, [currentPage, location.search, navigate]);
 
   const handlePageChange = (pageNumber: number) => {
     setCurrentPage(pageNumber);
@@ -47,12 +61,10 @@ const Recipes: React.FC = observer(() => {
 
   useEffect(() => {
     if (appStore.type) {
-      appStore.fetchSelectedOptions(options.filter((el) => location.search.includes(el)));
       setInputState('');
-      setCurrentPage(1);
+      appStore.fetchSelectedOptions(options.filter((el) => location.search.includes(el)));
     } else if (appStore.query) {
       appStore.fetchQuery(location.search.split('=')[2]);
-      setCurrentPage(1);
     } else {
       appStore.fetchData();
     }
