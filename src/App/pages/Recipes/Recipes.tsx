@@ -30,12 +30,25 @@ const Recipes: React.FC = observer(() => {
     navigate({ search: searchParams.toString() });
   }, [currentPage, navigate, searchParams]);
 
+  //console.log(location);
   const handlePageChange = (pageNumber: number) => {
+    if (location.search.includes('type=')) {
+      // searchParams.set('type', location.search.split('+')[2]);
+      //navigate({ search: searchParams.toString() });
+      appStore.fetchSelectedOptions(options.filter((el) => location.search.includes(el)));
+    } else if (location.search.includes('query=')) {
+      /* searchParams.set('query', inputState);
+      navigate({ search: searchParams.toString() });*/
+      appStore.fetchQuery(location.search.split('=')[2]);
+    } else {
+      appStore.fetchData();
+    }
     setCurrentPage(pageNumber);
   };
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setInputState(event.target.value);
+    searchParams.delete('type');
     searchParams.set('query', event.target.value);
     navigate({ search: searchParams.toString() });
   };
@@ -52,10 +65,15 @@ const Recipes: React.FC = observer(() => {
   useEffect(() => {
     if (location.search.includes('type=')) {
       appStore.fetchSelectedOptions(options.filter((el) => location.search.includes(el)));
+      setCurrentPage(1);
     } else if (location.search.includes('query=')) {
       appStore.fetchQuery(location.search.split('=')[2]);
+      setCurrentPage(1);
     } else {
       appStore.fetchData();
+    }
+    if (appStore.type) {
+      setInputState('');
     }
   }, [appStore, location]);
 
@@ -77,7 +95,12 @@ const Recipes: React.FC = observer(() => {
         )}
       </main>
       <footer>
-        <Paginator totalItems={totalItems} itemsOnPage={itemsOnPage} onChange={handlePageChange} />
+        <Paginator
+          totalItems={totalItems}
+          itemsOnPage={itemsOnPage}
+          onChange={handlePageChange}
+          currentPage={currentPage}
+        />
       </footer>
     </>
   );

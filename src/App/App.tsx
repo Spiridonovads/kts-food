@@ -3,10 +3,10 @@ import { Routes, Route } from 'react-router-dom';
 import Header from 'components/Header/Header';
 import Recipe from './pages/Recipe/Recipe';
 import Recipes from './pages/Recipes/Recipes';
-//import { useQueryParamsStoreInit } from 'configs/store/hocs/useQueryParamsStore';
+import { useQueryParamsStoreInit } from 'configs/store/hocs/useQueryParamsStore';
 
 const App: React.FC = () => {
-  //useQueryParamsStoreInit();
+  useQueryParamsStoreInit();
   return (
     <>
       <Header />

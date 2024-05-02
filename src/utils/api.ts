@@ -1,5 +1,4 @@
-import { BASE_URL , API_KEY } from 'utils/constants';
-
+import { BASE_URL, API_KEY } from 'utils/constants';
 
 export const getData = () => {
   return fetch(`${BASE_URL}`, {

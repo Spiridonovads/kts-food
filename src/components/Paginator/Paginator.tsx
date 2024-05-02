@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { useState } from 'react';
 import ArrowLeftSideIcon from 'components/Icon/ArrowIcons/ArrowLeftSideIcon';
 import ArrowRightSideIcon from 'components/Icon/ArrowIcons/ArrowRightSideIcon';
 import style from './style.module.scss';
@@ -7,15 +6,14 @@ import style from './style.module.scss';
 export type PaginatorProps = {
   totalItems: number;
   itemsOnPage: number;
+  currentPage: number;
   onChange: (number: number) => void;
 };
 
-const Paginator: React.FC<PaginatorProps> = ({ totalItems, itemsOnPage, onChange }) => {
-  const [currentPage, setCurrentPage] = useState(1);
+const Paginator: React.FC<PaginatorProps> = ({ totalItems, itemsOnPage, onChange, currentPage }) => {
   const totalPages = Math.ceil(totalItems / itemsOnPage);
 
   const handlePageChange = (pageNumber: number) => {
-    setCurrentPage(pageNumber);
     onChange(pageNumber);
   };
 

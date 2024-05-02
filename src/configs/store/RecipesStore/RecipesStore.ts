@@ -1,11 +1,13 @@
 import { makeObservable, observable, runInAction } from 'mobx';
 import { Data } from 'configs/types';
 import { getData, getDataQuery, getDataTypes } from 'utils/api';
-/*import rootStore from '../index';
-import { reaction, IReactionDisposer } from 'mobx';*/
+import rootStore from '../index';
+import { reaction, IReactionDisposer } from 'mobx';
 
 class createRecipesAppStore {
   data: Data[] = [];
+  type: boolean = false;
+  query: boolean = false;
 
   constructor() {
     makeObservable(this, {
@@ -43,16 +45,23 @@ class createRecipesAppStore {
     });
   }
 
-  /*  destroy(): void {
-    this._qpReaction;
+  destroy(): void {
+    this._typeReaction;
+    this._queryReaction;
   }
 
-  private readonly _qpReaction: IReactionDisposer = reaction(
-    () => rootStore.query.getParam('types'),
-    (search) => {
-      console.log('search value change', search);
+  private readonly _typeReaction: IReactionDisposer = reaction(
+    () => rootStore.query.getParam('type'),
+    () => {
+      this.type = !this.type;
     },
-  );*/
+  );
+  private readonly _queryReaction: IReactionDisposer = reaction(
+    () => rootStore.query.getParam('query'),
+    () => {
+      this.query = !this.query;
+    },
+  );
 }
 
 export default createRecipesAppStore;
