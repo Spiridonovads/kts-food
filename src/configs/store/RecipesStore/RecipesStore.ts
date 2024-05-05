@@ -1,12 +1,9 @@
-import { makeObservable, observable, runInAction, reaction, IReactionDisposer } from 'mobx';
+import { makeObservable, observable, runInAction } from 'mobx';
 import { Data } from 'configs/types';
-import { getData, getDataQuery, getDataTypes } from 'utils/api';
-import rootStore from '../index';
+import { getData } from 'utils/api';
 
 class createRecipesAppStore {
   data: Data[] = [];
-  type: boolean = false;
-  query: boolean = false;
 
   constructor() {
     makeObservable(this, {
@@ -14,8 +11,8 @@ class createRecipesAppStore {
     });
   }
 
-  async fetchData() {
-    const response = await getData();
+  async fetchData(query: string, types: string[]) {
+    const response = await getData(query, types);
     runInAction(() => {
       if (response) {
         this.data = response.results;
@@ -24,32 +21,12 @@ class createRecipesAppStore {
     });
   }
 
-  async fetchSelectedOptions(options: string[]) {
-    const response = await getDataTypes(options);
-    runInAction(() => {
-      if (response) {
-        this.data = response.results;
-        return;
-      }
-    });
-  }
-
-  async fetchQuery(query: string) {
-    const response = await getDataQuery(query);
-    runInAction(() => {
-      if (response) {
-        this.data = response.results;
-        return;
-      }
-    });
-  }
-
-  destroy(): void {
+  /* destroy(): void {
     this._typeReaction;
     this._queryReaction;
   }
 
-  private readonly _typeReaction: IReactionDisposer = reaction(
+ private readonly _typeReaction: IReactionDisposer = reaction(
     () => rootStore.query.getParam('type'),
     () => {
       this.type = !this.type;
@@ -60,7 +37,7 @@ class createRecipesAppStore {
     () => {
       this.query = !this.query;
     },
-  );
+  );*/
 }
 
 export default createRecipesAppStore;

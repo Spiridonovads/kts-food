@@ -1,6 +1,6 @@
 export const options = [
-  'main+course',
-  'side+dish',
+  'main course',
+  'side dish',
   'dessert',
   'appetizer',
   'salad',

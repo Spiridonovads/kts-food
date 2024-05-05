@@ -1,9 +1,7 @@
-import { useLocalObservable } from 'mobx-react-lite';
 import * as React from 'react';
 import { useState, useEffect, useRef } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import Input from 'components/Input/Input';
-import createRecipesAppStore from 'configs/store/RecipesStore/RecipesStore';
 import style from './style.module.scss';
 
 export type MultiDropdownProps = {
@@ -12,9 +10,7 @@ export type MultiDropdownProps = {
 };
 
 const MultiDropdown: React.FC<MultiDropdownProps> = ({ options, disabled }) => {
-  const location = useLocation();
   const navigate = useNavigate();
-  const appStore = useLocalObservable(() => new createRecipesAppStore());
 
   const [filteredOptions, setFilteredOptions] = useState<string[]>(options);
   const [inputValue, setInputValue] = useState<string>('');
@@ -22,6 +18,9 @@ const MultiDropdown: React.FC<MultiDropdownProps> = ({ options, disabled }) => {
   const dropdownRef = useRef<HTMLDivElement>(null);
   const [activeOptions, setActiveOptions] = useState<string[]>([]);
   const [value, setValue] = useState<string[]>([]);
+
+  const params = new URLSearchParams();
+  const searchParams = new URLSearchParams();
 
   useEffect(() => {
     document.addEventListener('mousedown', handleClickOutside);
@@ -39,13 +38,6 @@ const MultiDropdown: React.FC<MultiDropdownProps> = ({ options, disabled }) => {
     filterOptions();
   }, [inputValue, options, filterOptions]);
 
-  useEffect(() => {
-    if (appStore.query && !appStore.type) {
-      setValue([]);
-      setActiveOptions([]);
-    }
-  }, [appStore, location, navigate]);
-
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setInputValue(event.target.value);
   };
@@ -62,16 +54,20 @@ const MultiDropdown: React.FC<MultiDropdownProps> = ({ options, disabled }) => {
 
   const handleOptionClick = (option: string) => {
     const isSelected = value.some((v) => v === option);
-    const searchParams = new URLSearchParams(location.search);
 
     const newValue = isSelected ? value.filter((v) => v !== option) : [...value, option];
     const newActiveOptions = isSelected ? activeOptions.filter((v) => v !== option) : [...activeOptions, option];
 
     setValue(newValue);
     setActiveOptions(newActiveOptions);
-    searchParams.delete('query');
-    searchParams.set('type', newValue.join('+'));
-    navigate({ search: searchParams.toString() });
+
+    params.set('type', `${newActiveOptions}`);
+    searchParams.forEach((value, key) => {
+      if (key !== 'type') {
+        params.append(key, value);
+      }
+    });
+    navigate(`?${params.toString()}`);
 
     setInputValue('');
   };

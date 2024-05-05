@@ -19,12 +19,10 @@ export type RecipesContentProps = {
   handleInputChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
   inputState: string;
   handleInputClick: () => void;
-  currentPage: number;
-  itemsOnPage: number;
 };
 
 const RecipesContent: React.FC<RecipesContentProps> = observer(
-  ({ data, handleFormSubmit, handleInputChange, inputState, handleInputClick, currentPage, itemsOnPage }) => {
+  ({ data, handleFormSubmit, handleInputChange, inputState, handleInputClick }) => {
     return (
       <>
         <section className={style.mainPic}>
@@ -61,10 +59,8 @@ const RecipesContent: React.FC<RecipesContentProps> = observer(
           </div>
 
           <div className={style.cards}>
-            {data.map((el: Data, i: number) => {
-              if (i >= (currentPage - 1) * itemsOnPage && i < currentPage * itemsOnPage) {
-                return <Card el={el} key={el.id}></Card>;
-              }
+            {data.map((el: Data) => {
+              return <Card el={el} key={el.id}></Card>;
             })}
           </div>
         </section>
