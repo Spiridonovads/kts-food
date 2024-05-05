@@ -1,6 +1,6 @@
 export const options = [
-  'main course',
-  'side dish',
+  'mainCourse',
+  'sideDish',
   'dessert',
   'appetizer',
   'salad',
@@ -10,9 +10,9 @@ export const options = [
   'beverage',
   'sauce',
   'marinade',
-  'fingerfood',
+  'fingerFood',
   'snack',
   'drink',
 ];
-export const API_KEY = 'e8f85faa516544ada3c9f474a68569c5';
+export const API_KEY = '4d6e6257ddfd497295aeb27af0c895a8';
 export const BASE_URL = `https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&addRecipeNutrition=true`;

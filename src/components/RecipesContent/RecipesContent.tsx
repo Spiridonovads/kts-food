@@ -59,8 +59,8 @@ const RecipesContent: React.FC<RecipesContentProps> = observer(
           </div>
 
           <div className={style.cards}>
-            {data.map((el: Data) => {
-              return <Card el={el} key={el.id}></Card>;
+            {data.map((el: Data, i: number) => {
+              return <Card el={el} key={i}></Card>;
             })}
           </div>
         </section>

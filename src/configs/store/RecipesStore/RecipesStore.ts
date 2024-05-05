@@ -11,12 +11,11 @@ class createRecipesAppStore {
     });
   }
 
-  async fetchData(query: string, types: string[]) {
-    const response = await getData(query, types);
+  async fetchData(query: string, types: string[], offset: number) {
+    const response = await getData(query, types, offset);
     runInAction(() => {
       if (response) {
         this.data = response.results;
-        return;
       }
     });
   }

@@ -16,8 +16,12 @@ const MultiDropdown: React.FC<MultiDropdownProps> = ({ options, disabled }) => {
   const [inputValue, setInputValue] = useState<string>('');
   const [showDropdown, setShowDropdown] = useState<boolean>(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
-  const [activeOptions, setActiveOptions] = useState<string[]>([]);
-  const [value, setValue] = useState<string[]>([]);
+  const [activeOptions, setActiveOptions] = useState<string[]>(
+    options.filter((el) => location.search.toLowerCase().includes(el.toLowerCase())),
+  );
+  const [value, setValue] = useState<string[]>(
+    options.filter((el) => location.search.toLowerCase().includes(el.toLowerCase())),
+  );
 
   const params = new URLSearchParams();
   const searchParams = new URLSearchParams();
