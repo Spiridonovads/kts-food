@@ -7,29 +7,32 @@ export type LoaderProps = {
 };
 
 const Loader: React.FC<LoaderProps> = ({ size, ...props }) => {
-  const getSizes = () => {
-    if (size === 'l') {
-      return {
-        width: '60',
-        height: '60',
-        viewBox: '0 0 60 60',
-      };
-    }
-    if (size === 'm') {
-      return {
-        width: '48',
-        height: '48',
-        viewBox: '0 0 48 48',
-      };
-    }
-    if (size === 's') {
-      return {
-        width: '24',
-        height: '24',
-        viewBox: '0 0 24 24',
-      };
-    }
-  };
+  const getSizes = React.useMemo(
+    () => () => {
+      if (size === 'l') {
+        return {
+          width: '60',
+          height: '60',
+          viewBox: '0 0 60 60',
+        };
+      }
+      if (size === 'm') {
+        return {
+          width: '48',
+          height: '48',
+          viewBox: '0 0 48 48',
+        };
+      }
+      if (size === 's') {
+        return {
+          width: '24',
+          height: '24',
+          viewBox: '0 0 24 24',
+        };
+      }
+    },
+    [size],
+  );
   return (
     <svg className={style.preloader} {...getSizes()} fill="none" xmlns="http://www.w3.org/2000/svg">
       <path
