@@ -1,3 +1,4 @@
+import { runInAction } from 'mobx';
 import { Observer, useLocalObservable } from 'mobx-react-lite';
 import * as React from 'react';
 import { useState, FormEvent } from 'react';
@@ -6,7 +7,6 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import Loader from 'components/Loader/Loader';
 import RecipesContent from 'components/RecipesContent/RecipesContent';
 import RecipesSkeleton from 'components/RecipesSkeleton/RecipesSkeleton';
-import { runInAction } from 'mobx';
 
 import createRecipesAppStore from 'configs/store/RecipesStore/RecipesStore';
 import { Data } from 'configs/types';
