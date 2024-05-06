@@ -51,12 +51,15 @@ const Recipes: React.FC = () => {
     setInputState(event.target.value);
     const params = new URLSearchParams();
     function setQuery() {
-      params.set('query', event.target.value);
+      if (event.target.value.trim() !== '') {
+        params.set('query', event.target.value);
+      }
       searchParams.forEach((value, key) => {
         if (key !== 'query') {
           params.append(key, value);
         }
       });
+
       navigate(`?${params.toString()}`);
     }
     setTimeout(setQuery, 1000);
