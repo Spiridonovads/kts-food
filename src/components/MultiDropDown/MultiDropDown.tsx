@@ -64,7 +64,10 @@ const MultiDropdown: React.FC<MultiDropdownProps> = ({ options, disabled }) => {
     setValue(newValue);
     setActiveOptions(newActiveOptions);
 
-    params.set('type', `${newActiveOptions}`);
+    if (newActiveOptions.length !== 0) {
+      params.set('type', `${newActiveOptions}`);
+    }
+
     searchParams.forEach((value, key) => {
       if (key !== 'type') {
         params.append(key, value);
