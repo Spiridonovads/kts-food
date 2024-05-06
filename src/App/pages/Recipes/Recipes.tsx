@@ -26,26 +26,9 @@ const Recipes: React.FC = observer(() => {
 
   const query = React.useMemo(() => searchParams.get('query'), [searchParams]);
   const type = React.useMemo(
-    () => options.filter((el) => location.search.toLowerCase().includes(el.toLowerCase())),
-    [location.search],
+    () => options.filter((el) => searchParams.get('type')?.toLowerCase().includes(el.toLowerCase())),
+    [searchParams],
   );
-
-  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setInputState(event.target.value);
-    params.set('query', event.target.value);
-    searchParams.forEach((value, key) => {
-      if (key !== 'query') {
-        params.append(key, value);
-      }
-    });
-    navigate(`?${params.toString()}`);
-  };
-
-  const handleInputClick = () => {};
-
-  const handleFormSubmit = (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-  };
 
   const fetchMoreData = async () => {
     try {
@@ -71,6 +54,26 @@ const Recipes: React.FC = observer(() => {
     }
   };
 
+  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setInputState(event.target.value);
+    function setQuery() {
+      params.set('query', event.target.value);
+      searchParams.forEach((value, key) => {
+        if (key !== 'query') {
+          params.append(key, value);
+        }
+      });
+      navigate(`?${params.toString()}`);
+    }
+    setTimeout(setQuery, 1000);
+  };
+
+  const handleInputClick = () => {};
+
+  const handleFormSubmit = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+  };
+
   React.useEffect(() => {
     const fetchDataAndSetItems = async () => {
       setItems([]);
@@ -78,7 +81,7 @@ const Recipes: React.FC = observer(() => {
     };
 
     fetchDataAndSetItems();
-  }, [type, query]);
+  }, [query, type]);
 
   return appStore.data && appStore.data.length > 0 ? (
     <main>

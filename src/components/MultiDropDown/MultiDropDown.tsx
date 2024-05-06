@@ -22,9 +22,8 @@ const MultiDropdown: React.FC<MultiDropdownProps> = ({ options, disabled }) => {
   const [value, setValue] = useState<string[]>(
     options.filter((el) => location.search.toLowerCase().includes(el.toLowerCase())),
   );
-
   const params = new URLSearchParams();
-  const searchParams = new URLSearchParams();
+  const searchParams = React.useMemo(() => new URLSearchParams(location.search), [location.search]);
 
   useEffect(() => {
     document.addEventListener('mousedown', handleClickOutside);
