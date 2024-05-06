@@ -80,7 +80,7 @@ const Recipes: React.FC = () => {
   return (
     <Observer>
       {() =>
-        appStore.data && appStore.data.length > 0 ? (
+        appStore.data ? (
           <main>
             <InfiniteScroll
               dataLength={items.length}

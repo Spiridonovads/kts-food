@@ -61,12 +61,19 @@ const RecipesContent: React.FC<RecipesContentProps> = ({
         <div className={style.multiDropdown}>
           <MultiDropdown options={options} />
         </div>
-
-        <div className={style.cards}>
-          {data.map((el: Data, i: number) => {
-            return <Card el={el} key={i}></Card>;
-          })}
-        </div>
+        {data.length > 0 ? (
+          <div className={style.cards}>
+            {data.map((el: Data, i: number) => {
+              return <Card el={el} key={i}></Card>;
+            })}
+          </div>
+        ) : (
+          <div className={style.noRes}>
+            <Text color="primary" weight="normal" view="p-20">
+              Совпадений не найдено
+            </Text>
+          </div>
+        )}
       </section>
     </>
   );
