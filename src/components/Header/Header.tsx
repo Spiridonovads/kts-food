@@ -4,6 +4,7 @@ import HeartIcon from 'components/Icon/HeartIcon/HeartIcon';
 import ManIcon from 'components/Icon/ManIcon/MainIcon';
 import Text from 'components/Text/Text';
 import style from './style.module.scss';
+import LogoIcon from 'components/Icon/LogoIcon/LogoIcon';
 
 const Header: React.FC = () => {
   const navigate = useNavigate();
@@ -16,7 +17,9 @@ const Header: React.FC = () => {
     <header>
       <nav className={style.wrapper}>
         <div className={style.logo}>
-          <div className={style.logoImg} onClick={onLogoClick} />
+          <div className={style.logoImg} onClick={onLogoClick}>
+            <LogoIcon color="accent" />
+          </div>
 
           <Link to={{ pathname: '/recipes' }}>
             <Text view="p-20" weight="bold" color="primary">
