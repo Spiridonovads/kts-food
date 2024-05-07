@@ -31,6 +31,7 @@ const Recipes: React.FC = () => {
 
   const fetchMoreData = async () => {
     const newOffset = offset + 10;
+    setHasMore(true);
     if (query) {
       await appStore.fetchData(query, type, offset);
     } else {
