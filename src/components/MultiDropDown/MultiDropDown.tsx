@@ -1,25 +1,29 @@
 import * as React from 'react';
 import { useState, useEffect, useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Input from 'components/Input/Input';
 import style from './style.module.scss';
 
-export type Option = {
-  key: string;
-  value: string;
-};
-
 export type MultiDropdownProps = {
-  options: Option[];
+  options: string[];
   disabled?: boolean;
 };
 
 const MultiDropdown: React.FC<MultiDropdownProps> = ({ options, disabled }) => {
-  const [filteredOptions, setFilteredOptions] = useState<Option[]>(options);
+  const navigate = useNavigate();
+
+  const [filteredOptions, setFilteredOptions] = useState<string[]>(options);
   const [inputValue, setInputValue] = useState<string>('');
   const [showDropdown, setShowDropdown] = useState<boolean>(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
-  const [activeOptions, setActiveOptions] = useState<Option[]>([]);
-  const [value, setValue] = useState<Option[]>([]);
+  const [activeOptions, setActiveOptions] = useState<string[]>(
+    options.filter((el) => location.search.toLowerCase().includes(el.toLowerCase())),
+  );
+  const [value, setValue] = useState<string[]>(
+    options.filter((el) => location.search.toLowerCase().includes(el.toLowerCase())),
+  );
+  const params = new URLSearchParams();
+  const searchParams = React.useMemo(() => new URLSearchParams(location.search), [location.search]);
 
   useEffect(() => {
     document.addEventListener('mousedown', handleClickOutside);
@@ -28,14 +32,14 @@ const MultiDropdown: React.FC<MultiDropdownProps> = ({ options, disabled }) => {
     };
   }, []);
 
-  useEffect(() => {
-    filterOptions();
+  const filterOptions = React.useCallback(() => {
+    const filtered = options.filter((option: string) => option.toLowerCase().includes(inputValue.toLowerCase()));
+    setFilteredOptions(filtered);
   }, [inputValue, options]);
 
-  const filterOptions = () => {
-    const filtered = options.filter((option) => option.value.toLowerCase().includes(inputValue.toLowerCase()));
-    setFilteredOptions(filtered);
-  };
+  useEffect(() => {
+    filterOptions();
+  }, [inputValue, options, filterOptions]);
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setInputValue(event.target.value);
@@ -51,27 +55,33 @@ const MultiDropdown: React.FC<MultiDropdownProps> = ({ options, disabled }) => {
     }
   };
 
-  const handleOptionClick = (option: Option) => {
-    const isSelected = value.some((v) => v.key === option.key);
-    if (!isSelected) {
-      const newValue = [...value, option];
-      const newActiveOptions = [...activeOptions, option];
-      setValue(newValue);
-      setActiveOptions(newActiveOptions);
-      setInputValue('');
-    } else {
-      const newValue = value.filter((v) => v.key !== option.key);
-      const newActiveOptions = activeOptions.filter((v) => v.key !== option.key);
-      setValue(newValue);
-      setActiveOptions(newActiveOptions);
-      setInputValue('');
+  const handleOptionClick = (option: string) => {
+    const isSelected = value.some((v) => v === option);
+
+    const newValue = isSelected ? value.filter((v) => v !== option) : [...value, option];
+    const newActiveOptions = isSelected ? activeOptions.filter((v) => v !== option) : [...activeOptions, option];
+
+    setValue(newValue);
+    setActiveOptions(newActiveOptions);
+
+    if (newActiveOptions.length !== 0) {
+      params.set('type', `${newActiveOptions}`);
     }
+
+    searchParams.forEach((value, key) => {
+      if (key !== 'type') {
+        params.append(key, value);
+      }
+    });
+    navigate(`?${params.toString()}`);
+
+    setInputValue('');
   };
 
-  const getTitle = (value: Option[]) => {
+  const getTitle = (value: string[]) => {
     let string = '';
     value.forEach((el) => {
-      string += el.value + ', ';
+      string += el + ', ';
     });
     return string;
   };
@@ -89,15 +99,15 @@ const MultiDropdown: React.FC<MultiDropdownProps> = ({ options, disabled }) => {
       />
       {showDropdown && !disabled && (
         <div className={style.dropdown}>
-          {filteredOptions.map((option) => {
-            const isActive = activeOptions.some((v) => v.key === option.key);
+          {filteredOptions.map((option, i) => {
+            const isActive = activeOptions.some((v) => v === option);
             return (
               <div
-                key={option.key}
+                key={i}
                 onClick={() => handleOptionClick(option)}
                 className={`${style.option} ${isActive ? style.optionActive : ''}`}
               >
-                {option.value}
+                {option}
               </div>
             );
           })}

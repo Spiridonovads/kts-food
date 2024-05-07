@@ -1,3 +1,4 @@
+import classNames from 'classnames';
 import * as React from 'react';
 import style from './style.module.scss';
 
@@ -10,26 +11,17 @@ const CheckBox: React.FC<CheckBoxProps> = ({ onChange, ...props }) => {
     onChange(event.target.checked);
   };
 
+  const className = classNames(
+    props.checked && !props.disabled && `${style.checkboxChecked}`,
+    props.checked && props.disabled && `${style.checkboxDisabledChecked}`,
+    !props.checked && props.disabled && `${style.checkboxDisabled}`,
+    !props.checked && !props.disabled && `${style.checkbox}`,
+  );
+
   return (
-    <>
-      {props.checked && !props.disabled ? (
-        <label className={style.checkboxChecked}>
-          <input type="checkbox" onChange={handleChange} {...props} />
-        </label>
-      ) : props.checked && props.disabled ? (
-        <label className={style.checkboxDisabledChecked}>
-          <input type="checkbox" onChange={handleChange} {...props} />
-        </label>
-      ) : !props.checked && props.disabled ? (
-        <label className={style.checkboxDisabled}>
-          <input type="checkbox" onChange={handleChange} {...props} />
-        </label>
-      ) : (
-        <label className={style.checkbox}>
-          <input type="checkbox" onChange={handleChange} {...props} />
-        </label>
-      )}
-    </>
+    <label className={className}>
+      <input type="checkbox" onChange={handleChange} {...props} />
+    </label>
   );
 };
 

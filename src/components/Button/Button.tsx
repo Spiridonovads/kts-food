@@ -1,3 +1,4 @@
+import classNames from 'classnames';
 import * as React from 'react';
 import Loader from 'components/Loader/Loader';
 import style from './style.module.scss';
@@ -6,25 +7,23 @@ export type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {
   loading?: boolean;
   children: React.ReactNode;
   disabled: boolean;
+  onClick: (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
 };
 
-const Button: React.FC<ButtonProps> = ({ loading, children, disabled }) => {
-  return loading && disabled ? (
-    <button className={`${style.button} ${style.loadingButton} ${style.disabledButton}`} disabled={true}>
-      <Loader size="s" color="#FFFFFF" />
+const Button: React.FC<ButtonProps> = ({ loading, children, disabled, onClick }) => {
+  const className = classNames(
+    `${style.button}`,
+    `${style.defaultButton}`,
+    loading && `${style.loadingButton}`,
+    disabled && `${style.disabledButton}`,
+    !disabled && `${style.animationButton}`,
+  );
+
+  return (
+    <button onClick={onClick} className={className} disabled={!!disabled}>
+      {loading && <Loader size="s" color="#FFFFFF" />}
       {children}
     </button>
-  ) : disabled ? (
-    <button className={`${style.button} ${style.defaultButton} ${style.disabledButton} `} disabled={true}>
-      {children}
-    </button>
-  ) : loading ? (
-    <button className={`${style.button} ${style.loadingButton}`} disabled={true}>
-      <Loader size="s" color="#FFFFFF" />
-      {children}
-    </button>
-  ) : (
-    <button className={`${style.button} ${style.defaultButton} ${style.animationButton}`}>{children}</button>
   );
 };
 

@@ -1,9 +1,8 @@
 @import "../../styles/index.scss";
 
 .wrapper {
-  max-width: 1237px;
+  @include width;
   height: 64px;
-  margin: auto;
   display: grid;
   grid-template-columns: repeat(11, 1fr);
   grid-column-gap: 20px;
@@ -16,6 +15,10 @@
   gap: 20px;
   grid-column-start: 1;
   white-space: nowrap;
+}
+
+.logoImg {
+  cursor: pointer;
 }
 
 .list {

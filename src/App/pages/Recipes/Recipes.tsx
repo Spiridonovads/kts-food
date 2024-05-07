@@ -1,105 +1,113 @@
+import { runInAction } from 'mobx';
+import { Observer, useLocalObservable } from 'mobx-react-lite';
 import * as React from 'react';
-import { useEffect, useState } from 'react';
-import Button from 'components/Button/Button';
-import Card from 'components/Card/Card';
-import LoupeIcon from 'components/Icon/LoupeIcon/LoupeIcon';
-import Input from 'components/Input/Input';
+import { useState, FormEvent } from 'react';
+import InfiniteScroll from 'react-infinite-scroll-component';
+import { useLocation, useNavigate } from 'react-router-dom';
 import Loader from 'components/Loader/Loader';
-import MultiDropdown from 'components/MultiDropDown/MultiDropDown';
-import Paginator from 'components/Paginator/Paginator';
-import RecipesMainPicture from 'components/RecipesMainPicture/RecipesMainPicture';
-import Text from 'components/Text/Text';
-import { Data, Value } from 'configs/types';
-import { getData } from 'utils/api';
+import RecipesContent from 'components/RecipesContent/RecipesContent';
+import RecipesSkeleton from 'components/RecipesSkeleton/RecipesSkeleton';
 
-import style from './style.module.css';
+import createRecipesAppStore from 'configs/store/RecipesStore/RecipesStore';
+import { Data } from 'configs/types';
+import { options } from 'utils/constants';
 
 const Recipes: React.FC = () => {
-  const [data, setData] = useState([]);
-  const [currentPage, setCurrentPage] = useState(1);
-  const itemsOnPage = 9;
-  const totalItems = data.length;
+  const appStore = useLocalObservable(() => new createRecipesAppStore());
+  const location = useLocation();
+  const navigate = useNavigate();
+  const searchParams = React.useMemo(() => new URLSearchParams(location.search), [location.search]);
 
-  const handlePageChange = (pageNumber: number) => {
-    setCurrentPage(pageNumber);
+  const [inputState, setInputState] = useState(searchParams.get('query') ?? '');
+  const [offset, setOffset] = useState(0);
+  const [hasMore, setHasMore] = useState(true);
+  const [items, setItems] = useState<Data[]>([]);
+
+  const query = React.useMemo(() => searchParams.get('query'), [searchParams]);
+  const type = React.useMemo(
+    () => options.filter((el) => searchParams.get('type')?.toLowerCase().includes(el.toLowerCase())),
+    [searchParams],
+  );
+
+  const fetchMoreData = async () => {
+    const newOffset = offset + 10;
+    if (query) {
+      await appStore.fetchData(query, type, offset);
+    } else {
+      await appStore.fetchData('', type, offset);
+    }
+
+    runInAction(() => {
+      if (appStore.data.length > 0) {
+        setItems((prevItems) => [...prevItems, ...appStore.data]);
+        setOffset(newOffset);
+      } else {
+        setHasMore(false);
+      }
+    });
   };
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const result = await getData();
-        setData(result.results);
-      } catch (error) {
-        console.error('Ошибка при получении данных:', error);
+  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setInputState(event.target.value);
+    const params = new URLSearchParams();
+    function setQuery() {
+      if (event.target.value.trim() !== '') {
+        params.set('query', event.target.value);
       }
-    };
-    fetchData();
-  }, []);
+      searchParams.forEach((value, key) => {
+        if (key !== 'query') {
+          params.append(key, value);
+        }
+      });
 
-  const options = data.reduce((acc: Value[], el: Data) => {
-    const obj: Value = {
-      key: `${el.id}`,
-      value: `${el.title}`,
+      navigate(`?${params.toString()}`);
+    }
+    setTimeout(setQuery, 1000);
+  };
+
+  const handleInputClick = () => {};
+
+  const handleFormSubmit = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+  };
+
+  React.useEffect(() => {
+    const fetchDataAndSetItems = async () => {
+      setItems([]);
+      await fetchMoreData();
     };
-    acc.push(obj);
-    return acc;
-  }, []);
+
+    fetchDataAndSetItems();
+  }, [query, type]);
 
   return (
-    <>
-      <main className={style.main}>
-        <section className={style.mainPic}>
-          <RecipesMainPicture />
-        </section>
-        <section className={style.mainContent}>
-          <div className={style.mainText}>
-            <Text color="primary" weight="normal" view="p-20">
-              Find the perfect food and{' '}
-              <Text className="underline" tag="span">
-                drink ideas
-              </Text>{' '}
-              for every occasion, from{' '}
-              <Text className="underline" tag="span">
-                weeknight dinners
-              </Text>{' '}
-              to{' '}
-              <Text className="underline" tag="span">
-                holiday feasts
-              </Text>
-              .
-            </Text>
-          </div>
-          {data && data.length > 0 ? (
-            <>
-              <div className={style.input}>
-                <Input placeholder="Enter dishes" size={1} />
-                <Button disabled={false}>{<LoupeIcon />}</Button>
-              </div>
-              <div className={style.multiDropdown}>
-                <MultiDropdown options={options} />
-              </div>
-
-              <div className={style.cards}>
-                {data.map((el: Data, i) => {
-                  if (i >= (currentPage - 1) * itemsOnPage && i < currentPage * itemsOnPage) {
-                    return <Card el={el} key={el.id}></Card>;
-                  }
-                })}
-              </div>
-            </>
-          ) : (
-            <>
-              <Text>Рецепты загружаются...</Text>
-              <Loader size="l" />
-            </>
-          )}
-        </section>
-      </main>
-      <footer>
-        <Paginator totalItems={totalItems} itemsOnPage={itemsOnPage} onChange={handlePageChange} />
-      </footer>
-    </>
+    <Observer>
+      {() =>
+        appStore.data ? (
+          <main>
+            <InfiniteScroll
+              dataLength={items.length}
+              next={fetchMoreData}
+              hasMore={hasMore}
+              loader={<Loader size="l" />}
+              style={{
+                scrollbarWidth: 'none',
+              }}
+            >
+              <RecipesContent
+                data={items}
+                handleFormSubmit={() => handleFormSubmit}
+                handleInputChange={handleInputChange}
+                inputState={inputState}
+                handleInputClick={handleInputClick}
+              />
+            </InfiniteScroll>
+          </main>
+        ) : (
+          <RecipesSkeleton />
+        )
+      }
+    </Observer>
   );
 };
-
 export default Recipes;

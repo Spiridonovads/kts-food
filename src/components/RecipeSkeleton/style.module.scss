@@ -1,16 +1,15 @@
-@import "../../../styles/index.scss";
+@import "../../styles/index.scss";
+
 .wrapper {
-  max-width: 1237px;
-  padding: 0 15px;
-  margin: auto;
-  text-align: center;
+  @include width;
 }
+
 .title {
-  display: flex;
-  gap: 16px;
-  align-items: center;
+  width: 603px;
+  height: 48px;
   margin-bottom: 38px;
   margin-top: 45px;
+  @include skeletonAnimation;
 }
 
 .shortInfo {
@@ -19,8 +18,10 @@
   margin-bottom: 38px;
 }
 
-.shortInfo img {
-  border-radius: $border-radius;
+.img {
+  width: 448px;
+  height: 298px;
+  @include skeletonAnimation;
 }
 
 .shortInfoText {
@@ -30,9 +31,9 @@
 }
 
 .shortInfoTextBlock {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
+  width: 90px;
+  height: 48px;
+  @include skeletonAnimation;
 }
 
 .necessary {
@@ -46,23 +47,23 @@
 }
 
 .ingredientsList {
-  min-height: 184px;
-  max-height: 276px;
   display: flex;
   flex-direction: column;
-  flex-wrap: wrap;
   gap: 10px;
 }
 
 .ingredientsLi {
-  display: flex;
-  gap: 16px;
+  width: 273px;
+  height: 24px;
+  @include skeletonAnimation;
 }
 
 .ingredientsTitle {
   margin-bottom: 24px;
+  width: 123px;
+  height: 24px;
+  @include skeletonAnimation;
 }
-
 .decor {
   display: flex;
   flex-direction: column;
@@ -71,9 +72,9 @@
 }
 
 .circle {
+  @include skeletonAnimation;
   width: 7px;
   height: 7px;
-  background-color: $brand;
   border-radius: 100%;
   margin-top: 4px;
   margin-bottom: 4px;
@@ -82,7 +83,7 @@
 .stick {
   width: 1px;
   height: 100%;
-  background-color: $brand;
+  @include skeletonAnimation;
 }
 
 .equip {
@@ -98,8 +99,9 @@
 }
 
 .equipLi {
-  display: flex;
-  gap: 16px;
+  width: 273px;
+  height: 24px;
+  @include skeletonAnimation;
 }
 
 .directions {
@@ -114,12 +116,16 @@
 .directionsTitle {
   text-align: left;
   margin-bottom: 24px;
+  width: 123px;
+  height: 24px;
 }
 
 .directionsLi {
   display: flex;
   flex-direction: column;
   gap: 8px;
+  width: 740px;
+  height: 65px;
 }
 
 @media (max-width: 1150px) {

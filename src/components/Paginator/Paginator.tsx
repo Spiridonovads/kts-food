@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { useState } from 'react';
 import ArrowLeftSideIcon from 'components/Icon/ArrowIcons/ArrowLeftSideIcon';
 import ArrowRightSideIcon from 'components/Icon/ArrowIcons/ArrowRightSideIcon';
 import style from './style.module.scss';
@@ -7,24 +6,15 @@ import style from './style.module.scss';
 export type PaginatorProps = {
   totalItems: number;
   itemsOnPage: number;
-  onChange: (pageNumber: number) => void;
+  currentPage: number;
+  onChange: (number: number) => void;
 };
 
-const Paginator: React.FC<PaginatorProps> = ({ totalItems, itemsOnPage, onChange }) => {
-  const [currentPage, setCurrentPage] = useState(1);
+const Paginator: React.FC<PaginatorProps> = ({ totalItems, itemsOnPage, onChange, currentPage }) => {
   const totalPages = Math.ceil(totalItems / itemsOnPage);
 
   const handlePageChange = (pageNumber: number) => {
-    setCurrentPage(pageNumber);
     onChange(pageNumber);
-  };
-  const handlePageChangeForward = () => {
-    setCurrentPage(currentPage + 1);
-    onChange(currentPage + 1);
-  };
-  const handlePageChangeBack = () => {
-    setCurrentPage(currentPage - 1);
-    onChange(currentPage - 1);
   };
 
   const renderPageNumbers = () => {
@@ -44,11 +34,11 @@ const Paginator: React.FC<PaginatorProps> = ({ totalItems, itemsOnPage, onChange
   return (
     <nav className={style.nav}>
       <div className={style.paginator}>
-        <button onClick={handlePageChangeBack} disabled={currentPage === 1}>
+        <button onClick={() => handlePageChange(currentPage - 1)} disabled={currentPage === 1}>
           <ArrowLeftSideIcon color={currentPage > 1 ? 'primary' : 'secondary'} />
         </button>
         <ul className={style.paginator}>{renderPageNumbers()}</ul>
-        <button onClick={handlePageChangeForward} disabled={currentPage === totalPages}>
+        <button onClick={() => handlePageChange(currentPage + 1)} disabled={currentPage === totalPages}>
           <ArrowRightSideIcon color={currentPage < totalPages ? 'primary' : 'secondary'} />
         </button>
       </div>

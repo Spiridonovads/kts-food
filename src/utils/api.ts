@@ -1,8 +1,7 @@
-const API_KEY = 'b16471e6b2a647399fb568019e8a1089';
-const BASE_URL = `https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&addRecipeNutrition=true`;
+import { BASE_URL, API_KEY } from 'utils/constants';
 
-export const getData = () => {
-  return fetch(`${BASE_URL}`, {
+export const getData = (query: string, types: string[], offset: number) => {
+  return fetch(`${BASE_URL}&query=${query}&type=${types}&number=11&offset=${offset}`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
