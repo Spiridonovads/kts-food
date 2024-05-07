@@ -2,6 +2,7 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const TsCheckerPlugin = require('fork-ts-checker-webpack-plugin');
 
 const buildPath = path.resolve(__dirname, 'dist');
 const srcPath = path.resolve(__dirname, 'src');
@@ -112,5 +113,7 @@ module.exports = {
       new MiniCssExtractPlugin({
         filename: '[name]-[hash].css',
       }),
+    ,
+    new TsCheckerPlugin(),
   ].filter(Boolean),
 };
