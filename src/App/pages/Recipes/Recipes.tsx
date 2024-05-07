@@ -4,13 +4,13 @@ import * as React from 'react';
 import { useState, FormEvent } from 'react';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import { useLocation, useNavigate } from 'react-router-dom';
-import Loader from 'components/Loader/Loader';
-import RecipesContent from 'components/RecipesContent/RecipesContent';
-import RecipesSkeleton from 'components/RecipesSkeleton/RecipesSkeleton';
+import Loader from '../../../components/Loader/Loader';
+import RecipesContent from '../../../components/RecipesContent/RecipesContent';
+import RecipesSkeleton from '../../../components/RecipesSkeleton/RecipesSkeleton';
 
-import createRecipesAppStore from 'configs/store/RecipesStore/RecipesStore';
-import { Data } from 'configs/types';
-import { options } from 'utils/constants';
+import createRecipesAppStore from '../../../configs/store/RecipesStore/RecipesStore';
+import { Data } from '../../../configs/types';
+import { options } from '../../../utils/constants';
 
 const Recipes: React.FC = () => {
   const appStore = useLocalObservable(() => new createRecipesAppStore());

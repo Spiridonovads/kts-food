@@ -1,11 +1,11 @@
-import { observer , useLocalObservable } from 'mobx-react-lite';
+import { observer, useLocalObservable } from 'mobx-react-lite';
 import * as React from 'react';
 import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
-import RecipeContent from 'components/RecipeContent/RecipeContent';
-import RecipeSkeleton from 'components/RecipeSkeleton/RecipeSkeleton';
+import RecipeContent from '../../../components/RecipeContent/RecipeContent';
+import RecipeSkeleton from '../../../components/RecipeSkeleton/RecipeSkeleton';
 
-import createRecipeAppStore from 'configs/store/RecipeStore/RecipeStore';
+import createRecipeAppStore from '../../../configs/store/RecipeStore/RecipeStore';
 
 const Recipe: React.FC = observer(() => {
   const location = useLocation();

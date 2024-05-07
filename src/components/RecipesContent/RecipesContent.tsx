@@ -1,14 +1,14 @@
 import * as React from 'react';
-import Button from 'components/Button/Button';
-import Card from 'components/Card/Card';
-import LoupeIcon from 'components/Icon/LoupeIcon/LoupeIcon';
-import Input from 'components/Input/Input';
+import Button from '../../components/Button/Button';
+import Card from '../../components/Card/Card';
+import LoupeIcon from '../../components/Icon/LoupeIcon/LoupeIcon';
+import Input from '../../components/Input/Input';
 
-import MultiDropdown from 'components/MultiDropDown/MultiDropDown';
-import RecipesMainPicture from 'components/RecipesMainPicture/RecipesMainPicture';
-import Text from 'components/Text/Text';
-import { Data } from 'configs/types';
-import { options } from 'utils/constants';
+import MultiDropdown from '../../components/MultiDropDown/MultiDropDown';
+import RecipesMainPicture from '../../components/RecipesMainPicture/RecipesMainPicture';
+import Text from '../../components/Text/Text';
+import { Data } from '../../configs/types';
+import { options } from '../../utils/constants';
 
 import style from './style.module.scss';
 

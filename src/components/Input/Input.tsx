@@ -1,5 +1,5 @@
 import * as React from 'react';
-import ArrowDownIcon from 'components/Icon/ArrowIcons/ArrowDownIcon';
+import ArrowDownIcon from '../Icon/ArrowIcons/ArrowDownIcon';
 import style from './style.module.scss';
 
 export type InputProps = Omit<React.InputHTMLAttributes<HTMLInputElement>, 'onChange' | 'value'> & {
