@@ -65,7 +65,9 @@ const Recipes: React.FC = () => {
     setTimeout(setQuery, 1000);
   };
 
-  const handleInputClick = () => {};
+  const handleInputClick = () => {
+    navigate(`/recipe/${716406}`);
+  };
 
   const handleFormSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
