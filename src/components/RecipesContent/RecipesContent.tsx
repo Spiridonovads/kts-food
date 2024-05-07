@@ -11,6 +11,8 @@ import { Data } from '../../configs/types';
 import { options } from '../../utils/constants';
 
 import style from './style.module.scss';
+import ArrowDownIcon from 'components/Icon/ArrowIcons/ArrowDownIcon';
+import CloseIcon from 'components/Icon/CloseIcon/CloseIcon';
 
 export type RecipesContentProps = {
   data: Data[];
@@ -27,6 +29,13 @@ const RecipesContent: React.FC<RecipesContentProps> = ({
   inputState,
   handleInputClick,
 }) => {
+  const [popUpState, setPopUpState] = React.useState(false);
+  const onClick = () => {
+    setPopUpState(false);
+  };
+  React.useEffect(() => {
+    setPopUpState(true);
+  }, []);
   return (
     <>
       <section className={style.mainPic}>
@@ -52,6 +61,15 @@ const RecipesContent: React.FC<RecipesContentProps> = ({
         </div>
 
         <form onSubmit={handleFormSubmit} className={style.input}>
+          {popUpState && (
+            <div className={style.popUp}>
+              <div className={style.popUpCloser} onClick={onClick}>
+                <CloseIcon />
+              </div>
+              <Text view="p-14">Получить случайный рецепт</Text>
+              <ArrowDownIcon />
+            </div>
+          )}
           <Input placeholder="Enter dishes" size={1} onChange={handleInputChange} value={inputState} />
           <Button onClick={handleInputClick} disabled={false}>
             {<LoupeIcon />}
