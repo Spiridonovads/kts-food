@@ -4,6 +4,7 @@ import Header from '../components/Header/Header';
 //import { useQueryParamsStoreInit } from 'configs/store/hocs/useQueryParamsStore';
 import Recipe from './pages/Recipe/Recipe';
 import Recipes from './pages/Recipes/Recipes';
+import NotFound from 'components/NotFound/NotFound';
 
 const App: React.FC = () => {
   //useQueryParamsStoreInit();
@@ -14,11 +15,7 @@ const App: React.FC = () => {
         <Route path="/" element={<Recipes />} />
         <Route path="/recipes" element={<Recipes />} />
         <Route path="/recipe/:id" element={<Recipe />} />
-        {/*<Route
-            path="*"
-            element={
-            }
-          />*/}
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </>
   );
