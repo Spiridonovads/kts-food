@@ -3,7 +3,6 @@ import { useLocation, Link, useNavigate } from 'react-router-dom';
 import HeartIcon from 'components/Icon/HeartIcon/HeartIcon';
 import ManIcon from 'components/Icon/ManIcon/MainIcon';
 import Text from 'components/Text/Text';
-import logo from '../../../public/logo.svg';
 import style from './style.module.scss';
 
 const Header: React.FC = () => {
@@ -17,7 +16,7 @@ const Header: React.FC = () => {
     <header>
       <nav className={style.wrapper}>
         <div className={style.logo}>
-          <img src={logo} alt="logo" onClick={onLogoClick} className={style.logoImg}></img>
+          <div className={style.logoImg} onClick={onLogoClick} />
 
           <Link to={{ pathname: '/recipes' }}>
             <Text view="p-20" weight="bold" color="primary">

@@ -18,7 +18,16 @@
 }
 
 .logoImg {
+  background-color: black;
+  width: 35px;
+  height: 35px;
   cursor: pointer;
+  background-image: url('data:image/svg+xml,\
+  <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">\
+<path d="M15.7689 31.4343C24.4389 31.4343 31.4674 24.4058 31.4674 15.7358C31.4674 7.0657 24.4389 0.0372314 15.7689 0.0372314C7.09884 0.0372314 0.0703735 7.0657 0.0703735 15.7358C0.0703735 24.4058 7.09884 31.4343 15.7689 31.4343Z" fill="url(#paint0_linear_508_1452)"/>\
+</svg>');
+  background-repeat: no-repeat;
+  background-position: top 10px left 5px;
 }
 
 .list {
