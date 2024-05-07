@@ -72,4 +72,16 @@ module.exports = {
       },
     ],
   },
+  devServer: {
+    host: '127.0.0.1', // хост нашего сервера
+    port: 9000, // порт, по которому к нему можно обращаться
+    static: {
+      directory: path.resolve(__dirname, 'index.html'), // This is where your static files are served from
+    },
+  },
+  /*plugins: [
+    new HtmlWebpackPlugin({
+      template: path.resolve(__dirname, 'index.html'), // путь до нашего шаблона
+    }),
+  ],*/
 };
