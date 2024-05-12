@@ -1,8 +1,8 @@
-const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const TsCheckerPlugin = require('fork-ts-checker-webpack-plugin');
+import path from 'path';
+import HtmlWebpackPlugin from 'html-webpack-plugin';
+import ReactRefreshWebpackPlugin from '@pmmmwh/react-refresh-webpack-plugin';
+import MiniCssExtractPlugin from 'mini-css-extract-plugin';
+import TsCheckerPlugin from 'fork-ts-checker-webpack-plugin';
 
 const buildPath = path.resolve(__dirname, 'dist');
 const srcPath = path.resolve(__dirname, 'src');
@@ -42,7 +42,7 @@ module.exports = {
     filename: 'bundle.js',
   },
   resolve: {
-    extensions: ['.tsx', '.ts', '.js'],
+    extensions: ['.tsx', '.ts', '.js', 'jsx'],
     alias: {
       '@': srcPath,
       components: path.resolve(srcPath, 'components'),
@@ -115,5 +115,5 @@ module.exports = {
       }),
     ,
     new TsCheckerPlugin(),
-  ].filter(Boolean),
+  ].filter(Boolean)
 };

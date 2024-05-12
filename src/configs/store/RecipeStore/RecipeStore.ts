@@ -1,4 +1,4 @@
-import { makeObservable, observable, runInAction } from 'mobx';
+import { action, makeObservable, observable, runInAction } from 'mobx';
 import { Data } from 'configs/types';
 import { getDataIngredient } from 'utils/api';
 
@@ -10,6 +10,7 @@ class createRecipeAppStore {
     makeObservable(this, {
       recipe: observable,
       equip: observable,
+      fetchRecipeData: action,
     });
   }
 

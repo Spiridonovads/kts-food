@@ -56,7 +56,7 @@ const MultiDropdown: React.FC<MultiDropdownProps> = ({ options, disabled }) => {
   };
 
   const handleOptionClick = (option: string) => {
-    const isSelected = value.some((v) => v === option);
+    const isSelected = value.includes(option);
 
     const newValue = isSelected ? value.filter((v) => v !== option) : [...value, option];
     const newActiveOptions = isSelected ? activeOptions.filter((v) => v !== option) : [...activeOptions, option];
@@ -100,7 +100,7 @@ const MultiDropdown: React.FC<MultiDropdownProps> = ({ options, disabled }) => {
       {showDropdown && !disabled && (
         <div className={style.dropdown}>
           {filteredOptions.map((option, i) => {
-            const isActive = activeOptions.some((v) => v === option);
+            const isActive = activeOptions.includes(option);
             return (
               <div
                 key={i}

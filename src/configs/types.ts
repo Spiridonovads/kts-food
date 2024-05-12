@@ -1,3 +1,15 @@
+export type DataNutrition = {
+  ingredients: [{ name: string }];
+  nutrients: [{ amount: number }];
+};
+
+export type DataExtendedIngredients = {
+  name: string;
+};
+
+export type DataAnalyzedInstructions = {
+  steps: [];
+};
 export type Data = {
   id: number;
   image: string;
@@ -6,17 +18,10 @@ export type Data = {
   preparationMinutes: number;
   cookingMinutes: number;
   aggregateLikes: number;
-  nutrition: {
-    ingredients: [{ name: string }];
-    nutrients: [{ amount: number }];
-  };
+  nutrition: DataNutrition;
   servings: number;
   summary: string;
-  extendedIngredients: [{ name: string }];
-  analyzedInstructions: [
-    {
-      steps: [];
-    },
-  ];
+  extendedIngredients: [DataExtendedIngredients];
+  analyzedInstructions: [DataAnalyzedInstructions];
   dishTypes: string;
 };

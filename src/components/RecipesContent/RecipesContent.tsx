@@ -1,4 +1,6 @@
 import * as React from 'react';
+import ArrowDownIcon from 'components/Icon/ArrowIcons/ArrowDownIcon';
+import CloseIcon from 'components/Icon/CloseIcon/CloseIcon';
 import Button from '../../components/Button/Button';
 import Card from '../../components/Card/Card';
 import LoupeIcon from '../../components/Icon/LoupeIcon/LoupeIcon';
@@ -11,8 +13,6 @@ import { Data } from '../../configs/types';
 import { options } from '../../utils/constants';
 
 import style from './style.module.scss';
-import ArrowDownIcon from 'components/Icon/ArrowIcons/ArrowDownIcon';
-import CloseIcon from 'components/Icon/CloseIcon/CloseIcon';
 
 export type RecipesContentProps = {
   data: Data[];
@@ -41,6 +41,7 @@ const RecipesContent: React.FC<RecipesContentProps> = ({
       <section className={style.mainPic}>
         <RecipesMainPicture />
       </section>
+
       <section className={style.mainContent}>
         <div className={style.mainText}>
           <Text color="primary" weight="normal" view="p-20">
