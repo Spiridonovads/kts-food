@@ -93,7 +93,7 @@ const Recipes: React.FC = () => {
               hasMore={hasMore}
               loader={<Loader size="l" />}
               style={{
-                scrollbarWidth: 'none',
+                overflow: 'hidden',
               }}
             >
               <RecipesContent
