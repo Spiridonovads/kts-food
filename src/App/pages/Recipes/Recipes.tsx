@@ -19,7 +19,6 @@ const Recipes: React.FC = () => {
   const searchParams = React.useMemo(() => new URLSearchParams(location.search), [location.search]);
 
   const [inputState, setInputState] = useState(searchParams.get('query') ?? '');
-  const [offset, setOffset] = useState(0);
   const [hasMore, setHasMore] = useState(true);
   const [items, setItems] = useState<Data[]>([]);
 
@@ -30,18 +29,17 @@ const Recipes: React.FC = () => {
   );
 
   const fetchMoreData = async () => {
-    const newOffset = offset + 10;
     setHasMore(true);
     if (query) {
-      await appStore.fetchData(query, type, offset);
+      await appStore.fetchData(query, type, appStore.pagination);
     } else {
-      await appStore.fetchData('', type, offset);
+      await appStore.fetchData('', type, appStore.pagination);
     }
 
     runInAction(() => {
       if (appStore.data.length > 0) {
         setItems((prevItems) => [...prevItems, ...appStore.data]);
-        setOffset(newOffset);
+        appStore.updatePagination();
       } else {
         setHasMore(false);
       }
@@ -75,9 +73,10 @@ const Recipes: React.FC = () => {
   };
 
   React.useEffect(() => {
-    const fetchDataAndSetItems = async () => {
-      setItems([]);
-      await fetchMoreData();
+    appStore.resetPagination();
+    setItems([]);
+    const fetchDataAndSetItems = () => {
+      fetchMoreData();
     };
 
     fetchDataAndSetItems();

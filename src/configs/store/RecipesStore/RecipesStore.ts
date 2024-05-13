@@ -4,11 +4,15 @@ import { getData } from 'utils/api';
 
 class createRecipesAppStore {
   data: Data[] = [];
+  pagination: number = 0;
 
   constructor() {
     makeObservable(this, {
       data: observable,
+      pagination: observable,
       fetchData: action,
+      resetPagination: action,
+      updatePagination: action,
     });
   }
 
@@ -19,6 +23,14 @@ class createRecipesAppStore {
         this.data = response.results;
       }
     });
+  }
+
+  resetPagination() {
+    this.pagination = 0;
+  }
+
+  updatePagination() {
+    this.pagination += 10;
   }
 
   /* destroy(): void {
