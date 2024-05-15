@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useLocation, Link, useNavigate } from 'react-router-dom';
+import { /*useLocation,*/ Link, useNavigate } from 'react-router-dom';
 import HeartIcon from 'components/Icon/HeartIcon/HeartIcon';
 import LogoIcon from 'components/Icon/LogoIcon/LogoIcon';
 import ManIcon from 'components/Icon/ManIcon/MainIcon';
@@ -12,7 +12,7 @@ const Header: React.FC = () => {
   const onLogoClick = () => {
     navigate('/recipes');
   };
-  const location = useLocation();
+  // const location = useLocation();
   return (
     <header>
       <nav className={style.wrapper}>
@@ -27,7 +27,7 @@ const Header: React.FC = () => {
             </Text>
           </Link>
         </div>
-        <ul className={style.list}>
+        {/*  <ul className={style.list}>
           <li>
             <Link to={{ pathname: `/recipes` }}>
               <Text
@@ -67,7 +67,7 @@ const Header: React.FC = () => {
               </Text>
             </a>
           </li>
-        </ul>
+  </ul>*/}
         <div className={style.personal}>
           <a href="#">
             <HeartIcon color="accent" />

@@ -4,16 +4,16 @@
   @include width;
   height: 64px;
   display: grid;
-  grid-template-columns: repeat(11, 1fr);
-  grid-column-gap: 20px;
+  grid-template-columns: repeat(2, 1fr);
 }
 
 .logo {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
   align-items: center;
   gap: 20px;
-  grid-column-start: 1;
+  justify-self: start;
+  align-self: center;
   white-space: nowrap;
 }
 
@@ -23,20 +23,21 @@
   cursor: pointer;
 }
 
-.list {
+/*.list {
   display: flex;
   gap: 16px;
   align-items: center;
   grid-column-start: 3;
   white-space: nowrap;
   padding-left: 13px;
-}
+}*/
 
 .personal {
   display: flex;
   align-items: center;
   gap: 16px;
-  grid-column-end: 12;
+  justify-self: end;
+  align-self: center;
 }
 
 .active {
@@ -47,7 +48,6 @@
 @media (max-width: 1350px) {
   .wrapper {
     width: 1037px;
-    grid-template-columns: repeat(10, 1fr);
   }
 }
 
