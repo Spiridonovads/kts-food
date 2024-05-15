@@ -12,7 +12,7 @@ export type CardProps = {
   el: Data;
 };
 
-const Card: React.FC<CardProps> = observer(({ el }) => {
+const Card: React.FC<CardProps> = ({ el }) => {
   const onClick = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     e.preventDefault();
   };
@@ -58,6 +58,6 @@ const Card: React.FC<CardProps> = observer(({ el }) => {
       </div>
     </Link>
   );
-});
+};
 
-export default Card;
+export default observer(Card);

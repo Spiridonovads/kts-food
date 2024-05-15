@@ -1,4 +1,3 @@
-import { observer } from 'mobx-react-lite';
 import * as React from 'react';
 import { Link } from 'react-router-dom';
 import ArrowLeftSideIcon from 'components/Icon/ArrowIcons/ArrowLeftSideIcon';
@@ -15,7 +14,7 @@ export type RecipeContentProps = {
   equipment: string[];
 };
 
-const RecipeContent: React.FC<RecipeContentProps> = observer(({ data, equipment }) => {
+const RecipeContent: React.FC<RecipeContentProps> = ({ data, equipment }) => {
   return (
     <section className={style.wrapper}>
       <div className={style.title}>
@@ -107,6 +106,6 @@ const RecipeContent: React.FC<RecipeContentProps> = observer(({ data, equipment 
       </div>
     </section>
   );
-});
+};
 
 export default RecipeContent;
