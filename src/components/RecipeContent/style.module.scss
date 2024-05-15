@@ -3,18 +3,19 @@
 .wrapper {
   @include width;
 }
+
 .title {
   display: flex;
-  gap: 16px;
+  gap: calc(16px * (100vw / 1270px));
   align-items: center;
-  margin-bottom: 38px;
-  margin-top: 45px;
+  margin-bottom: calc(40px + 1vw);
+  margin-top: calc(45px + 1vw);
 }
 
 .shortInfo {
   display: flex;
-  gap: 166px;
-  margin-bottom: 38px;
+  gap: calc(166px * (100vw / 1270px));
+  margin-bottom: calc(40px + 1vw);
 }
 
 .shortInfo img {
@@ -24,13 +25,13 @@
 .shortInfoText {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 100px;
+  gap: calc(16px * (100vw / 1270px));
 }
 
 .shortInfoTextBlock {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: calc(8px * (100vw / 1270px));
 }
 
 .necessary {
@@ -41,22 +42,23 @@
 
 .ingredients {
   width: 50%;
+  padding-right: calc(50px + 1vw);
 }
 
 .ingredientsList {
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
-  gap: 10px;
+  gap: calc(10px * (100vw / 1270px));
 }
 
 .ingredientsLi {
   display: flex;
-  gap: 16px;
+  gap: calc(16px * (100vw / 1270px));
 }
 
 .ingredientsTitle {
-  margin-bottom: 24px;
+  margin-bottom: calc(24px + 1vw);
 }
 
 .decor {
@@ -83,108 +85,48 @@
 
 .equip {
   width: 50%;
-  padding-left: 50px;
+  padding-left: calc(50px + 1vw);
 }
 
 .equipList {
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
-  gap: 10px;
+  gap: calc(10px * (100vw / 1270px));
 }
 
 .equipLi {
   display: flex;
-  gap: 16px;
+  gap: calc(16px * (100vw / 1270px));
 }
 
 .directions {
   display: flex;
   flex-direction: column;
   text-align: start;
-  gap: 16px;
-  margin-bottom: 54px;
-  margin-top: 48px;
+  gap: calc(16px * (100vw / 1270px));
+  margin-bottom: calc(50px + 1vw);
+  margin-top: calc(50px + 1vw);
 }
 
 .directionsTitle {
   text-align: left;
-  margin-bottom: 24px;
+  margin-bottom: calc(24px + 1vw);
 }
 
 .directionsLi {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: calc(8px * (100vw / 1270px));
 }
 
-@media (max-width: 1150px) {
-  .wrapper {
-    width: 937px;
-  }
+@media (max-width: 900px) {
   .shortInfoText {
     grid-template-columns: repeat(2, 1fr);
-    gap: 100px;
-  }
-}
-
-@media (max-width: 880px) {
-  .wrapper {
-    width: 737px;
-  }
-  .shortInfoText {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 50px;
-  }
-  .shortInfo {
-    gap: 80px;
-  }
-
-  .title {
-    white-space: nowrap;
-  }
-}
-
-@media (max-width: 780px) {
-  .wrapper {
-    width: 637px;
-  }
-  .shortInfo {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 50px;
-  }
-  .shortInfoText {
-    display: flex;
-  }
-  .title {
-    overflow: hidden;
-  }
-}
-
-@media (max-width: 680px) {
-  .wrapper {
-    width: 537px;
-  }
-
-  .shortInfoText {
-    flex-wrap: wrap;
-    justify-content: center;
-  }
-}
-
-@media (max-width: 580px) {
-  .wrapper {
-    width: 437px;
   }
 }
 
 @media (max-width: 480px) {
-  .wrapper {
-    width: 337px;
-  }
-
   .necessary {
     flex-direction: column;
     align-items: start;
@@ -192,6 +134,7 @@
 
   .ingredients {
     width: 100%;
+    margin-bottom: calc(24px + 1vw);
   }
 
   .decor {
@@ -208,8 +151,8 @@
   .equip {
     width: 100%;
     padding-left: 0px;
-    margin-top: 48px;
     height: auto;
+    margin-top: calc(24px + 1vw);
   }
 
   .ingredientsList {
@@ -218,7 +161,5 @@
 
   .directionsTitle {
     text-align: left;
-    margin-bottom: 12px;
-    margin-top: 24px;
   }
 }
