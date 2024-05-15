@@ -1,19 +1,19 @@
-/*import { runInAction, toJS } from 'mobx';
-import { /*Observer, useLocalObservable } from 'mobx-react-lite';*/
+import { runInAction, toJS } from 'mobx';
+import { Observer, useLocalObservable } from 'mobx-react-lite';
 import * as React from 'react';
-/*import { useState, FormEvent } from 'react';
-//import InfiniteScroll from 'react-infinite-scroll-component';
+import { useState, FormEvent } from 'react';
+import InfiniteScroll from 'react-infinite-scroll-component';
 import { useLocation, useNavigate } from 'react-router-dom';
-//import Loader from '../../../components/Loader/Loader';
-//import RecipesContent from '../../../components/RecipesContent/RecipesContent';*/
-import RecipesSkeleton from '../../../components/RecipesSkeleton/RecipesSkeleton';
+import Loader from 'components/Loader/Loader';
+import RecipesContent from 'components/RecipesContent/RecipesContent';
+import RecipesSkeleton from 'components/RecipesSkeleton/RecipesSkeleton';
 
-/*import createRecipesAppStore from '../../../configs/store/RecipesStore/RecipesStore';
-import { Data } from '../../../configs/types';
-import { options } from '../../../utils/constants';*/
+import createRecipesAppStore from '../../../configs/store/RecipesStore/RecipesStore';
+import { Data } from 'configs/types';
+import { options } from 'utils/constants';
 
 const Recipes: React.FC = () => {
-  /* const appStore = useLocalObservable(() => new createRecipesAppStore());
+  const appStore = useLocalObservable(() => new createRecipesAppStore());
   const location = useLocation();
   const navigate = useNavigate();
   const searchParams = React.useMemo(() => new URLSearchParams(location.search), [location.search]);
@@ -29,7 +29,7 @@ const Recipes: React.FC = () => {
   );
 
   const fetchMoreData = async () => {
-   // setHasMore(true);
+    setHasMore(true);
     if (query) {
       await appStore.fetchData(query, type, appStore.pagination);
     } else {
@@ -38,10 +38,10 @@ const Recipes: React.FC = () => {
 
     runInAction(() => {
       if (appStore.data.length > 0) {
-   //     setItems((prevItems) => [...prevItems, ...appStore.data]);
+        setItems((prevItems) => [...prevItems, ...appStore.data]);
         appStore.updatePagination();
       } else {
-    //    setHasMore(false);
+        setHasMore(false);
       }
     });
   };
@@ -98,9 +98,9 @@ const Recipes: React.FC = () => {
 
     fetchDataAndSetItems();
   }, []);
-*/
+
   return (
-    /*   <Observer>
+    <Observer>
       {() =>
         appStore.data ? (
           <main>
@@ -122,11 +122,11 @@ const Recipes: React.FC = () => {
               />
             </InfiniteScroll>
           </main>
-        ) :*/
-    <RecipesSkeleton />
-
-    /*}
-    </Observer>*/
+        ) : (
+          <RecipesSkeleton />
+        )
+      }
+    </Observer>
   );
 };
 export default Recipes;

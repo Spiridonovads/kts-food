@@ -1,10 +1,10 @@
 import { observer } from 'mobx-react-lite';
 import * as React from 'react';
 import { Link } from 'react-router-dom';
-import { Data } from '../../configs/types';
-import Button from '../Button/Button';
-import ClockIcon from '../Icon/ClockIcon/ClockIcon';
-import Text from '../Text/Text';
+import { Data } from 'configs/types';
+import Button from 'components/Button/Button';
+import ClockIcon from 'components/Icon/ClockIcon/ClockIcon';
+import Text from 'components/Text/Text';
 
 import style from './style.module.scss';
 
