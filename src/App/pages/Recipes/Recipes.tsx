@@ -1,4 +1,4 @@
-import { runInAction } from 'mobx';
+import { runInAction, toJS } from 'mobx';
 import { Observer, useLocalObservable } from 'mobx-react-lite';
 import * as React from 'react';
 import { useState, FormEvent } from 'react';
@@ -65,7 +65,10 @@ const Recipes: React.FC = () => {
   };
 
   const handleInputClick = () => {
-    navigate(`/recipe/${716406}`);
+    const randomRecipe = Math.floor(Math.random() * appStore.random.length);
+    const plainArray = toJS(appStore.random);
+    console.log(plainArray[randomRecipe]);
+    navigate(`/recipe/${plainArray[randomRecipe].id}`);
   };
 
   const handleFormSubmit = (e: FormEvent<HTMLFormElement>) => {
@@ -81,6 +84,10 @@ const Recipes: React.FC = () => {
 
     fetchDataAndSetItems();
   }, [query, type]);
+
+  React.useEffect(() => {
+    appStore.fetchRandom();
+  }, []);
 
   return (
     <Observer>

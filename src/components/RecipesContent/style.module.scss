@@ -47,6 +47,10 @@
   @include skeletonAnimation;
 }
 
+.ArrowUpIcon {
+  display: none;
+}
+
 .multiDropdown {
   @include width;
   display: flex;
@@ -196,6 +200,17 @@
   .cards {
     width: 437px;
   }
+
+  .popUpCloser {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    cursor: pointer;
+  }
+
+  .popUp {
+    right: -40px;
+  }
 }
 
 @media (max-width: 480px) {
@@ -225,5 +240,23 @@
 
   .mainText {
     display: none;
+  }
+
+  .popUp {
+    width: 100px;
+    right: -20px;
+    top: 60px;
+    z-index: 100;
+    gap: 3px;
+    padding: 1px 10px 0px 10px;
+  }
+
+  .ArrowDownIcon {
+    display: none;
+  }
+
+  .ArrowUpIcon {
+    display: block;
+    transform: rotate(180deg);
   }
 }

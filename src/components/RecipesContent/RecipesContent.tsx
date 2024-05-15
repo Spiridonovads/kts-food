@@ -64,11 +64,16 @@ const RecipesContent: React.FC<RecipesContentProps> = ({
         <form onSubmit={handleFormSubmit} className={style.input}>
           {popUpState && (
             <div className={style.popUp}>
+              <div className={style.ArrowUpIcon}>
+                <ArrowDownIcon />
+              </div>
               <div className={style.popUpCloser} onClick={onClick}>
                 <CloseIcon />
               </div>
               <Text view="p-14">Получить случайный рецепт</Text>
-              <ArrowDownIcon />
+              <div className={style.ArrowDownIcon}>
+                <ArrowDownIcon />
+              </div>
             </div>
           )}
           <Input placeholder="Enter dishes" size={1} onChange={handleInputChange} value={inputState} />

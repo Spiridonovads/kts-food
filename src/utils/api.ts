@@ -1,7 +1,7 @@
 import { BASE_URL, API_KEY } from 'utils/constants';
 
-export const getData = (query: string, types: string[], offset: number) => {
-  return fetch(`${BASE_URL}&query=${query}&type=${types}&number=11&offset=${offset}`, {
+export const getData = (query: string, types: string[], number = 11, offset: number) => {
+  return fetch(`${BASE_URL}&query=${query}&type=${types}&number=${number}&offset=${offset}`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
