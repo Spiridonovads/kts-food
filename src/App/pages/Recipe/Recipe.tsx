@@ -21,7 +21,7 @@ const Recipe: React.FC = observer(() => {
     };
 
     fetchData();
-  }, [appStore, location.pathname]);
+  }, [appStore, id]);
 
   return (
     <main>

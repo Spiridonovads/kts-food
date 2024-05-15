@@ -1,8 +1,8 @@
 import * as React from 'react';
-import ArrowDownIcon from 'components/Icon/ArrowIcons/ArrowDownIcon';
-import CloseIcon from 'components/Icon/CloseIcon/CloseIcon';
 import Button from 'components/Button/Button';
 import Card from 'components/Card/Card';
+import ArrowDownIcon from 'components/Icon/ArrowIcons/ArrowDownIcon';
+import CloseIcon from 'components/Icon/CloseIcon/CloseIcon';
 import LoupeIcon from 'components/Icon/LoupeIcon/LoupeIcon';
 import Input from 'components/Input/Input';
 

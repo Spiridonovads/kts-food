@@ -8,9 +8,9 @@ import Loader from 'components/Loader/Loader';
 import RecipesContent from 'components/RecipesContent/RecipesContent';
 import RecipesSkeleton from 'components/RecipesSkeleton/RecipesSkeleton';
 
-import createRecipesAppStore from '../../../configs/store/RecipesStore/RecipesStore';
 import { Data } from 'configs/types';
 import { options } from 'utils/constants';
+import createRecipesAppStore from '../../../configs/store/RecipesStore/RecipesStore';
 
 const Recipes: React.FC = () => {
   const appStore = useLocalObservable(() => new createRecipesAppStore());

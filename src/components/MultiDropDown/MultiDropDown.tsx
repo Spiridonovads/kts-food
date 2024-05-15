@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { useState, useEffect, useRef } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import Input from 'components/Input/Input';
 import style from './style.module.scss';
 
@@ -11,6 +11,7 @@ export type MultiDropdownProps = {
 
 const MultiDropdown: React.FC<MultiDropdownProps> = ({ options, disabled }) => {
   const navigate = useNavigate();
+  const location = useLocation();
 
   const [filteredOptions, setFilteredOptions] = useState<string[]>(options);
   const [inputValue, setInputValue] = useState<string>('');
@@ -22,7 +23,7 @@ const MultiDropdown: React.FC<MultiDropdownProps> = ({ options, disabled }) => {
   const [value, setValue] = useState<string[]>(
     options.filter((el) => location.search.toLowerCase().includes(el.toLowerCase())),
   );
-  const params = new URLSearchParams();
+
   const searchParams = React.useMemo(() => new URLSearchParams(location.search), [location.search]);
 
   useEffect(() => {
@@ -56,6 +57,7 @@ const MultiDropdown: React.FC<MultiDropdownProps> = ({ options, disabled }) => {
   };
 
   const handleOptionClick = (option: string) => {
+    const params = new URLSearchParams();
     const isSelected = value.includes(option);
 
     const newValue = isSelected ? value.filter((v) => v !== option) : [...value, option];
