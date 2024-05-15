@@ -14,7 +14,7 @@ const App: React.FC = () => {
       <Routes>
         <Route path="/" element={<Recipes />} />
         <Route path="/recipes" element={<Recipes />} />
-        <Route path="/recipe/:id" element={<Recipe />} />
+        <Route path="/recipe" element={<Recipe />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </>

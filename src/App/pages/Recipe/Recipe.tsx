@@ -8,17 +8,16 @@ import RecipeSkeleton from '../../../components/RecipeSkeleton/RecipeSkeleton';
 import createRecipeAppStore from '../../../configs/store/RecipeStore/RecipeStore';
 
 const Recipe: React.FC = observer(() => {
-  const location = useLocation();
   const appStore = useLocalObservable(() => new createRecipeAppStore());
+  const location = useLocation();
+  const searchParams = React.useMemo(() => new URLSearchParams(location.search), [location.search]);
+  const id = React.useMemo(() => searchParams.get('id'), [searchParams]);
 
   useEffect(() => {
     const fetchData = async () => {
-      await appStore.fetchRecipeData(
-        `${location.pathname
-          .split('')
-          .filter((el) => !isNaN(Number(el)))
-          .join('')}`,
-      );
+      if (id) {
+        await appStore.fetchRecipeData(id);
+      }
     };
 
     fetchData();

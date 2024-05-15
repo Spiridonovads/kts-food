@@ -65,10 +65,12 @@ const Recipes: React.FC = () => {
   };
 
   const handleInputClick = () => {
+    const params = new URLSearchParams();
     const randomRecipe = Math.floor(Math.random() * appStore.random.length);
     const plainArray = toJS(appStore.random);
-    console.log(plainArray[randomRecipe]);
-    navigate(`/recipe/${plainArray[randomRecipe].id}`);
+
+    params.set('id', plainArray[randomRecipe].id.toString());
+    navigate(`/recipe?${params.toString()}`);
   };
 
   const handleFormSubmit = (e: FormEvent<HTMLFormElement>) => {
@@ -78,15 +80,23 @@ const Recipes: React.FC = () => {
   React.useEffect(() => {
     appStore.resetPagination();
     setItems([]);
-    const fetchDataAndSetItems = () => {
-      fetchMoreData();
+    const fetchDataAndSetItems = async () => {
+      await fetchMoreData();
     };
 
     fetchDataAndSetItems();
   }, [query, type]);
 
   React.useEffect(() => {
-    appStore.fetchRandom();
+    const fetchDataAndSetItems = async () => {
+      if (query) {
+        await appStore.fetchRandom(query, type);
+      } else {
+        await appStore.fetchRandom('', type);
+      }
+    };
+
+    fetchDataAndSetItems();
   }, []);
 
   return (

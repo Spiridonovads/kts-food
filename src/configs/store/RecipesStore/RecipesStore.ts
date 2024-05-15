@@ -28,8 +28,8 @@ class createRecipesAppStore {
     });
   }
 
-  async fetchRandom() {
-    const response = await getData('', [], 50, 10);
+  async fetchRandom(query: string, types: string[]) {
+    const response = await getData(query, types, 50, 10);
 
     runInAction(() => {
       if (response) {
