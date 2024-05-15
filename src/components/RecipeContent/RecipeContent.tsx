@@ -69,8 +69,8 @@ const RecipeContent: React.FC<RecipeContentProps> = observer(({ data, equipment 
           </div>
         </div>
         <div className={style.decor}>
-          <div className={style.circle}></div>
-          <div className={style.stick}></div>
+          <div className={style.circle} />
+          <div className={style.stick} />
         </div>
         <div className={style.equip}>
           <div className={style.ingredientsTitle}>

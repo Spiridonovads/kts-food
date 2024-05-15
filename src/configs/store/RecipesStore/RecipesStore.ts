@@ -43,7 +43,7 @@ class createRecipesAppStore {
   }
 
   updatePagination() {
-    this.pagination += 10;
+    this.pagination += 11;
   }
 
   /* destroy(): void {

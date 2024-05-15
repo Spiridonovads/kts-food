@@ -32,7 +32,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
           onChange={onChange}
           value={value}
           placeholder={placeholder}
-        ></input>
+        />
         {afterSlot && (
           <div className={style.icon}>
             <ArrowDownIcon color="secondary" />
