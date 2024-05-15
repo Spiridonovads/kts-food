@@ -3,17 +3,15 @@
 .wrapper {
   @include width;
   height: 64px;
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  display: flex;
+  justify-content: space-between;
 }
 
 .logo {
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  gap: 20px;
-  justify-self: start;
-  align-self: center;
+  gap: calc(20px * (100vw / 1270px));
   white-space: nowrap;
 }
 
@@ -23,78 +21,8 @@
   cursor: pointer;
 }
 
-/*.list {
-  display: flex;
-  gap: 16px;
-  align-items: center;
-  grid-column-start: 3;
-  white-space: nowrap;
-  padding-left: 13px;
-}*/
-
 .personal {
   display: flex;
   align-items: center;
-  gap: 16px;
-  justify-self: end;
-  align-self: center;
-}
-
-.active {
-  font-size: 40;
-  color: $brand;
-}
-
-@media (max-width: 1350px) {
-  .wrapper {
-    width: 1037px;
-  }
-}
-
-@media (max-width: 1150px) {
-  .wrapper {
-    width: 937px;
-  }
-}
-
-@media (max-width: 980px) {
-  .wrapper {
-    width: 837px;
-  }
-}
-
-@media (max-width: 880px) {
-  .wrapper {
-    width: 737px;
-  }
-
-  .list {
-    display: none;
-  }
-}
-
-@media (max-width: 780px) {
-  .wrapper {
-    width: 637px;
-  }
-}
-
-@media (max-width: 680px) {
-  .wrapper {
-    width: 537px;
-  }
-}
-
-@media (max-width: 580px) {
-  .wrapper {
-    width: 437px;
-  }
-}
-
-@media (max-width: 480px) {
-  .wrapper {
-    width: 337px;
-    display: flex;
-    justify-content: space-between;
-  }
+  gap: calc(20px * (100vw / 1270px));
 }

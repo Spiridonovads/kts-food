@@ -76,7 +76,7 @@ const RecipesContent: React.FC<RecipesContentProps> = ({
               </div>
             </div>
           )}
-          <Input placeholder="Enter dishes" size={1} onChange={handleInputChange} value={inputState} />
+          <Input placeholder="Enter dishes" onChange={handleInputChange} value={inputState} />
           <Button onClick={handleInputClick} disabled={false}>
             {<LoupeIcon />}
           </Button>

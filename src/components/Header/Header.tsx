@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { /*useLocation,*/ Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import HeartIcon from 'components/Icon/HeartIcon/HeartIcon';
 import LogoIcon from 'components/Icon/LogoIcon/LogoIcon';
 import ManIcon from 'components/Icon/ManIcon/MainIcon';
@@ -12,7 +12,7 @@ const Header: React.FC = () => {
   const onLogoClick = () => {
     navigate('/recipes');
   };
-  // const location = useLocation();
+
   return (
     <header>
       <nav className={style.wrapper}>
@@ -27,47 +27,6 @@ const Header: React.FC = () => {
             </Text>
           </Link>
         </div>
-        {/*  <ul className={style.list}>
-          <li>
-            <Link to={{ pathname: `/recipes` }}>
-              <Text
-                view="p-16"
-                weight={location.pathname === '/recipes' || location.pathname === '/' ? 'medium' : 'normal'}
-                color={location.pathname === '/recipes' || location.pathname === '/' ? 'accent' : 'primary'}
-              >
-                Recipes
-              </Text>
-            </Link>
-          </li>
-          <li>
-            <a href="#">
-              <Text view="p-16" weight="normal" color="primary">
-                Ingredients
-              </Text>
-            </a>
-          </li>
-          <li>
-            <a href="#">
-              <Text view="p-16" weight="normal" color="primary">
-                Products
-              </Text>
-            </a>
-          </li>
-          <li>
-            <a href="#">
-              <Text view="p-16" weight="normal" color="primary">
-                Menu Items
-              </Text>
-            </a>
-          </li>
-          <li>
-            <a href="#">
-              <Text view="p-16" weight="normal" color="primary">
-                Meal Planning
-              </Text>
-            </a>
-          </li>
-  </ul>*/}
         <div className={style.personal}>
           <a href="#">
             <HeartIcon color="accent" />

@@ -12,8 +12,12 @@ $space-xl: 24px;
 $border-radius: 10px;
 
 @mixin width {
-  width: 1240px;
-  margin: auto;
+  max-width: 1270px;
+  min-width: 300px;
+  width: 100%;
+  padding: 0 15px;
+  box-sizing: border-box;
+  margin: 0 auto;
   text-align: center;
 }
 

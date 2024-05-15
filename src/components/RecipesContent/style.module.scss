@@ -12,15 +12,14 @@
 }
 
 .mainText {
-  margin-bottom: 48px;
+  margin-bottom: calc(50px + 1vw);
 }
 
 .input {
   position: relative;
-  @include width;
   display: flex;
   justify-content: space-between;
-  margin-bottom: 20px;
+  margin-bottom: calc(20px + 1vw);
 }
 
 .popUpCloser {
@@ -33,7 +32,7 @@
 .popUp {
   position: absolute;
   top: -125px;
-  right: -40px;
+  right: -25px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -52,203 +51,28 @@
 }
 
 .multiDropdown {
-  @include width;
   display: flex;
   justify-content: flex-end;
-  margin-bottom: 48px;
+  margin-bottom: calc(50px + 1vw);
 }
 
 .cards {
-  @include width;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 78px;
+  gap: calc(70px * (100vw / 1270px));
 }
 
 .noRes {
-  margin-bottom: 50px;
-}
-
-@media (max-width: 1350px) {
-  .input {
-    width: 1037px;
-  }
-
-  .multiDropdown {
-    width: 1037px;
-  }
-
-  .mainContent {
-    width: 1037px;
-  }
-  .cards {
-    width: 1037px;
-    gap: 48px;
-  }
-}
-
-@media (max-width: 1150px) {
-  .input {
-    width: 937px;
-  }
-
-  .multiDropdown {
-    width: 937px;
-  }
-
-  .mainContent {
-    width: 937px;
-  }
-  .cards {
-    width: 937px;
-    gap: 36px;
-  }
-}
-
-@media (max-width: 980px) {
-  .input {
-    width: 837px;
-  }
-
-  .multiDropdown {
-    width: 837px;
-  }
-
-  .mainContent {
-    width: 837px;
-  }
-  .cards {
-    width: 837px;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 140px;
-  }
-}
-
-@media (max-width: 880px) {
-  .input {
-    width: 737px;
-  }
-
-  .multiDropdown {
-    width: 737px;
-  }
-
-  .mainContent {
-    width: 737px;
-  }
-
-  .cards {
-    width: 737px;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 120px;
-  }
-}
-
-@media (max-width: 780px) {
-  .input {
-    width: 637px;
-  }
-
-  .multiDropdown {
-    width: 637px;
-  }
-
-  .mainContent {
-    width: 637px;
-  }
-
-  .cards {
-    width: 637px;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 65px;
-  }
-}
-
-@media (max-width: 680px) {
-  .input {
-    width: 537px;
-  }
-
-  .multiDropdown {
-    width: 537px;
-  }
-
-  .mainContent {
-    width: 537px;
-  }
-
-  .cards {
-    width: 537px;
-    grid-template-columns: repeat(1, 1fr);
-    gap: 65px;
-  }
-}
-
-@media (max-width: 580px) {
-  .input {
-    width: 437px;
-  }
-
-  .multiDropdown {
-    width: 437px;
-  }
-
-  .mainContent {
-    width: 437px;
-  }
-
-  .cards {
-    width: 437px;
-  }
-
-  .popUpCloser {
-    position: absolute;
-    top: 5px;
-    right: 5px;
-    cursor: pointer;
-  }
-
-  .popUp {
-    right: -40px;
-  }
+  margin-bottom: calc(50px + 1vw);
 }
 
 @media (max-width: 480px) {
-  .input {
-    width: 337px;
-    margin-top: 20px;
-  }
-
-  .multiDropdown {
-    width: 337px;
-    justify-content: center;
-    margin-bottom: 20px;
-  }
-
-  .mainContent {
-    width: 337px;
-  }
-
-  .cards {
-    width: 337px;
-    gap: 20px;
-  }
-
   .mainPic {
     display: none;
   }
 
   .mainText {
     display: none;
-  }
-
-  .popUp {
-    width: 100px;
-    right: -20px;
-    top: 60px;
-    z-index: 100;
-    gap: 3px;
-    padding: 1px 10px 0px 10px;
   }
 
   .ArrowDownIcon {
