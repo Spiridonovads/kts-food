@@ -44,12 +44,13 @@ const RecipeSkeleton: React.FC = () => {
       </div>
       <div className={style.directions}>
         <div className={style.directionsTitle}></div>
+        <div className={style.directionsLi}></div>
+        <div className={style.directionsLi}></div>
+        <div className={style.directionsLi}></div>
+        <div className={style.directionsLi}></div>
       </div>
     </section>
   );
 };
 
 export default RecipeSkeleton;
-
-/*
- <img src={data.image} alt="photo" width={448} height={298} /> */
