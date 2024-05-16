@@ -21,9 +21,16 @@ const RecipeContent: React.FC<RecipeContentProps> = ({ data, equipment }) => {
         <Link to={{ pathname: '/recipes' }}>
           <ArrowLeftSideIcon color="accent" />
         </Link>
-        <Text view="p-44" weight="bold">
-          {data[0].title}
-        </Text>
+        <div className={style.titleTextFull}>
+          <Text view="p-44" weight="bold">
+            {data[0].title}
+          </Text>
+        </div>
+        <div className={style.titleTextSmall}>
+          <Text view="p-20" weight="bold">
+            {data[0].title}
+          </Text>
+        </div>
       </div>
       <div className={style.shortInfo}>
         <img src={data[0].image} alt="photo" width={448} height={298} />

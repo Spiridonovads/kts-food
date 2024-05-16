@@ -2,7 +2,7 @@
 
 .mainPic {
   width: auto;
-  margin: auto;
+  margin-bottom: calc(36px + 1vw);
 }
 
 .mainContent {
@@ -11,15 +11,13 @@
   flex-direction: column;
 }
 
-.mainText {
-  margin-bottom: calc(50px + 1vw);
-}
-
 .input {
   position: relative;
   display: flex;
   justify-content: space-between;
+  gap: calc(20px * (100vw / 1270px));
   margin-bottom: calc(20px + 1vw);
+  margin-top: calc(50px + 1vw);
 }
 
 .popUpCloser {
@@ -31,15 +29,15 @@
 
 .popUp {
   position: absolute;
-  top: -125px;
-  right: -25px;
+  top: calc(-125px + 1vw);
+  right: calc(-50px + 1vw);
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 10px;
-  width: 150px;
+  max-width: 150px;
   height: 100px;
-  padding: 25px 10px 0px 10px;
+  padding: 25px 10px 0 10px;
   background-color: $brand;
   color: white;
   border-radius: $border-radius;
@@ -59,14 +57,25 @@
 .cards {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: calc(70px * (100vw / 1270px));
+  column-gap: calc(70px * (100vw / 1270px));
+  row-gap: calc(50px * (100vw / 1270px));
 }
 
 .noRes {
   margin-bottom: calc(50px + 1vw);
 }
 
+@media (max-width: 1050px) {
+  .cards {
+    grid-template-columns: repeat(2, 1fr);
+    justify-items: start;
+  }
+}
+
 @media (max-width: 480px) {
+  .cards {
+    grid-template-columns: repeat(1, 1fr);
+  }
   .mainPic {
     display: none;
   }
@@ -82,5 +91,16 @@
   .ArrowUpIcon {
     display: block;
     transform: rotate(180deg);
+  }
+  .popUp {
+    top: calc(75px + 1vw);
+    right: calc(-50px + 1vw);
+    padding: 0 10px 0 10px;
+  }
+}
+
+@media (max-width: 320px) {
+  .multiDropdown {
+    justify-content: center;
   }
 }

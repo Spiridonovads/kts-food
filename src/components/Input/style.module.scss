@@ -10,17 +10,21 @@
 
 .wrapperMultiDropDown {
   justify-content: space-between;
-  width: 300px;
+  max-width: 300px;
   height: 52px;
 }
 
 .multiDropdown {
-  width: 250px;
+  max-width: 250px;
   height: 52px;
   text-overflow: ellipsis;
   padding: $space-s $space-xs;
 }
 
+.wrapperInput {
+  max-width: 1154px;
+  width: 100%;
+}
 .input {
   border-radius: $border-radius;
   width: 100%;

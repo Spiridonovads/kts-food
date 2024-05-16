@@ -14,9 +14,7 @@ $border-radius: 10px;
 @mixin width {
   max-width: 1270px;
   min-width: 300px;
-  width: 100%;
   padding: 0 15px;
-  box-sizing: border-box;
   margin: 0 auto;
   text-align: center;
 }

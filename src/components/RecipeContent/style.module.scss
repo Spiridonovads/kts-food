@@ -12,6 +12,10 @@
   margin-top: calc(45px + 1vw);
 }
 
+.titleTextSmall {
+  display: none;
+}
+
 .shortInfo {
   display: flex;
   gap: calc(166px * (100vw / 1270px));
@@ -121,12 +125,28 @@
 }
 
 @media (max-width: 900px) {
+  .shortInfo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: calc(83px * (100vw / 1270px));
+    margin-bottom: calc(40px + 1vw);
+  }
+
   .shortInfoText {
     grid-template-columns: repeat(2, 1fr);
   }
 }
 
 @media (max-width: 480px) {
+  .titleTextSmall {
+    display: block;
+  }
+
+  .titleTextFull {
+    display: none;
+  }
+
   .necessary {
     flex-direction: column;
     align-items: start;

@@ -2,6 +2,7 @@
 
 .wrapper {
   max-width: 360px;
+  min-width: 290px;
   background-color: white;
   border-radius: $border-radius;
   cursor: pointer;
@@ -20,19 +21,19 @@
 }
 
 .content {
-  padding: $space-xl $space-xs $space-xl $space-xs;
+  padding: calc($space-xl + 1vw) calc($space-xs + 1vw) calc($space-xl + 1vw) calc($space-xs + 1vw);
 }
 
 .timer {
   display: flex;
   align-items: start;
-  gap: 6px;
+  gap: calc(6px * (100vw / 1270px));
 }
 
 .text {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: calc(10px * (100vw / 1270px));
   min-height: 100px;
   text-align: start;
 }
@@ -41,5 +42,11 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-top: 20px;
+  margin-top: calc(20px + 1vw);
+}
+
+@media (max-width: 480px) {
+  .wrapper {
+    max-width: 440px;
+  }
 }
