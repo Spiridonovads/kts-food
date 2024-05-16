@@ -1,7 +1,7 @@
 import { action, makeObservable, observable, runInAction } from 'mobx';
+import rootStore from 'configs/store/instance';
 import { Data } from 'configs/types';
 import { getData } from 'utils/api';
-import rootStore from 'configs/store/instance';
 import { options } from 'utils/constants';
 
 class createRecipesAppStore {
@@ -19,7 +19,6 @@ class createRecipesAppStore {
       pagination: observable,
       random: observable,
       fetchData: action,
-      fetchRandom: action,
       resetItems: action,
       resetPagination: action,
       updatePagination: action,
@@ -50,20 +49,6 @@ class createRecipesAppStore {
         this.updatePagination();
       } else {
         this.err = true;
-      }
-    });
-  }
-
-  async fetchRandom() {
-    const type = rootStore.query.getParam('type')
-      ? options.filter((el) => rootStore.query.getParam('type')?.toString().toLowerCase().includes(el.toLowerCase()))
-      : [];
-    const query = rootStore.query.getParam('query') ? rootStore.query.getParam('query')?.toString() : '';
-    const response = await getData(query, type, 50, 10);
-
-    runInAction(() => {
-      if (response) {
-        this.random = response.results;
       }
     });
   }

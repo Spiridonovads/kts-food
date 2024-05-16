@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import HeartIcon from 'components/Icon/HeartIcon/HeartIcon';
 import LogoIcon from 'components/Icon/LogoIcon/LogoIcon';
 import ManIcon from 'components/Icon/ManIcon/MainIcon';
@@ -8,9 +8,17 @@ import style from './style.module.scss';
 
 const Header: React.FC = () => {
   const navigate = useNavigate();
+  const location = useLocation();
 
   const onLogoClick = () => {
-    navigate('/recipes');
+    const params = new URLSearchParams();
+    const searchParams = new URLSearchParams(location.search);
+
+    searchParams.forEach((value, key) => {
+      params.append(key, value);
+    });
+
+    navigate(`/?${params.toString()}`);
   };
 
   return (
@@ -21,11 +29,11 @@ const Header: React.FC = () => {
             <LogoIcon color="accent" />
           </div>
 
-          <Link to={{ pathname: '/recipes' }}>
+          <div onClick={onLogoClick}>
             <Text view="p-20" weight="bold" color="primary">
               Food Client
             </Text>
-          </Link>
+          </div>
         </div>
         <div className={style.personal}>
           <a href="#">
