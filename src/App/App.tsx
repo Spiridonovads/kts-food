@@ -2,12 +2,12 @@ import * as React from 'react';
 import { Routes, Route } from 'react-router-dom';
 import Header from 'components/Header/Header';
 import NotFound from 'components/NotFound/NotFound';
-//import { useQueryParamsStoreInit } from 'configs/store/hocs/useQueryParamsStore';
+import { useQueryParamsStoreInit } from 'configs/store/hooks/useQueryParamsStore';
 import Recipe from './pages/Recipe/Recipe';
 import Recipes from './pages/Recipes/Recipes';
 
 const App: React.FC = () => {
-  //useQueryParamsStoreInit();
+  useQueryParamsStoreInit();
   return (
     <>
       <Header />

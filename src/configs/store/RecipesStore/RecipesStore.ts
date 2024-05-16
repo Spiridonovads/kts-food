@@ -1,6 +1,8 @@
 import { action, makeObservable, observable, runInAction } from 'mobx';
 import { Data } from 'configs/types';
 import { getData } from 'utils/api';
+import rootStore from 'configs/store/instance';
+import { options } from 'utils/constants';
 
 class createRecipesAppStore {
   data: Data[] = [];
@@ -19,8 +21,13 @@ class createRecipesAppStore {
     });
   }
 
-  async fetchData(query: string, types: string[], offset: number) {
-    const response = await getData(query, types, undefined, offset);
+  async fetchData() {
+    const type = rootStore.query.getParam('type')
+      ? options.filter((el) => rootStore.query.getParam('type')?.toString().toLowerCase().includes(el.toLowerCase()))
+      : [];
+    const query = rootStore.query.getParam('query') ? rootStore.query.getParam('query')?.toString() : '';
+
+    const response = await getData(query, type, undefined, this.pagination);
     runInAction(() => {
       if (response) {
         this.data = response.results;
@@ -28,8 +35,12 @@ class createRecipesAppStore {
     });
   }
 
-  async fetchRandom(query: string, types: string[]) {
-    const response = await getData(query, types, 50, 10);
+  async fetchRandom() {
+    const type = rootStore.query.getParam('type')
+      ? options.filter((el) => rootStore.query.getParam('type')?.toString().toLowerCase().includes(el.toLowerCase()))
+      : [];
+    const query = rootStore.query.getParam('query') ? rootStore.query.getParam('query')?.toString() : '';
+    const response = await getData(query, type, 50, 10);
 
     runInAction(() => {
       if (response) {
@@ -45,24 +56,6 @@ class createRecipesAppStore {
   updatePagination() {
     this.pagination += 11;
   }
-
-  /* destroy(): void {
-    this._typeReaction;
-    this._queryReaction;
-  }
-
- private readonly _typeReaction: IReactionDisposer = reaction(
-    () => rootStore.query.getParam('type'),
-    () => {
-      this.type = !this.type;
-    },
-  );
-  private readonly _queryReaction: IReactionDisposer = reaction(
-    () => rootStore.query.getParam('query'),
-    () => {
-      this.query = !this.query;
-    },
-  );*/
 }
 
 export default createRecipesAppStore;

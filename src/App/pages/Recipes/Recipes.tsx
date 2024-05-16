@@ -31,11 +31,8 @@ const Recipes: React.FC = () => {
 
   const fetchMoreData = async () => {
     setHasMore(true);
-    if (query) {
-      await appStore.fetchData(query, type, appStore.pagination);
-    } else {
-      await appStore.fetchData('', type, appStore.pagination);
-    }
+
+    await appStore.fetchData();
 
     runInAction(() => {
       if (appStore.data.length > 0) {
@@ -96,11 +93,7 @@ const Recipes: React.FC = () => {
 
   React.useEffect(() => {
     const fetchDataAndSetItems = async () => {
-      if (query) {
-        await appStore.fetchRandom(query, type);
-      } else {
-        await appStore.fetchRandom('', type);
-      }
+      await appStore.fetchRandom();
     };
 
     fetchDataAndSetItems();
