@@ -1,4 +1,3 @@
-import { runInAction } from 'mobx';
 import { Observer, useLocalObservable } from 'mobx-react-lite';
 import * as React from 'react';
 import { useState, FormEvent } from 'react';
@@ -9,7 +8,6 @@ import RecipesContent from 'components/RecipesContent/RecipesContent';
 import RecipesSkeleton from 'components/RecipesSkeleton/RecipesSkeleton';
 import { debounce } from 'lodash';
 
-import { Data } from 'configs/types';
 import { options } from 'utils/constants';
 import createRecipesAppStore from '../../../configs/store/RecipesStore/RecipesStore';
 
@@ -21,7 +19,6 @@ const Recipes: React.FC = () => {
 
   const [inputState, setInputState] = useState(searchParams.get('query') ?? '');
   const [hasMore, setHasMore] = useState(true);
-  const [items, setItems] = useState<Data[]>([]);
 
   const query = React.useMemo(() => searchParams.get('query'), [searchParams]);
   const type = React.useMemo(
@@ -31,17 +28,10 @@ const Recipes: React.FC = () => {
 
   const fetchMoreData = async () => {
     setHasMore(true);
-
-    await appStore.fetchData();
-
-    runInAction(() => {
-      if (appStore.data.length > 0) {
-        setItems((prevItems) => [...prevItems, ...appStore.data]);
-        appStore.updatePagination();
-      } else {
-        setHasMore(false);
-      }
-    });
+    await appStore.fetchMoreData();
+    if (appStore.err) {
+      setHasMore(false);
+    }
   };
 
   const debounceInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -83,7 +73,7 @@ const Recipes: React.FC = () => {
 
   React.useEffect(() => {
     appStore.resetPagination();
-    setItems([]);
+    appStore.resetItems();
     const fetchDataAndSetItems = async () => {
       await fetchMoreData();
     };
@@ -93,7 +83,7 @@ const Recipes: React.FC = () => {
 
   React.useEffect(() => {
     const fetchDataAndSetItems = async () => {
-      await appStore.fetchRandom();
+      await appStore.fetchData(50);
     };
 
     fetchDataAndSetItems();
@@ -102,10 +92,10 @@ const Recipes: React.FC = () => {
   return (
     <Observer>
       {() =>
-        appStore.data ? (
+        appStore.items ? (
           <main>
             <InfiniteScroll
-              dataLength={items.length}
+              dataLength={appStore.items.length}
               next={fetchMoreData}
               hasMore={hasMore}
               loader={<Loader size="l" />}
@@ -114,7 +104,7 @@ const Recipes: React.FC = () => {
               }}
             >
               <RecipesContent
-                data={items}
+                data={appStore.items}
                 handleFormSubmit={() => handleFormSubmit}
                 handleInputChange={handleInputChange}
                 inputState={inputState}
