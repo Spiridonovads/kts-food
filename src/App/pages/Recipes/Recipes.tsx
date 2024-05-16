@@ -7,6 +7,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import Loader from 'components/Loader/Loader';
 import RecipesContent from 'components/RecipesContent/RecipesContent';
 import RecipesSkeleton from 'components/RecipesSkeleton/RecipesSkeleton';
+import { debounce } from 'lodash';
 
 import { Data } from 'configs/types';
 import { options } from 'utils/constants';
@@ -46,22 +47,28 @@ const Recipes: React.FC = () => {
     });
   };
 
+  const debounceInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const params = new URLSearchParams();
+
+    params.set('query', event.target.value);
+
+    searchParams.forEach((value, key) => {
+      if (key !== 'query') {
+        params.append(key, value);
+      }
+    });
+
+    navigate(`?${params.toString()}`);
+  };
+
+  const debouncedChangeHandler = debounce(debounceInputChange, 500);
+
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setInputState(event.target.value);
-    const params = new URLSearchParams();
-    function setQuery() {
-      if (event.target.value.trim() !== '') {
-        params.set('query', event.target.value);
-      }
-      searchParams.forEach((value, key) => {
-        if (key !== 'query') {
-          params.append(key, value);
-        }
-      });
 
-      navigate(`?${params.toString()}`);
+    if (event.target.value.trim() !== '') {
+      debouncedChangeHandler(event);
     }
-    setTimeout(setQuery, 1000);
   };
 
   const handleInputClick = () => {
