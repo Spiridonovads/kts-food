@@ -91,31 +91,33 @@ const Recipes: React.FC = () => {
 
   return (
     <Observer>
-      {() =>
-        appStore.items ? (
-          <main>
-            <InfiniteScroll
-              dataLength={appStore.items.length}
-              next={fetchMoreData}
-              hasMore={hasMore}
-              loader={<Loader size="l" />}
-              style={{
-                overflow: 'hidden',
-              }}
-            >
-              <RecipesContent
-                data={appStore.items}
-                handleFormSubmit={() => handleFormSubmit}
-                handleInputChange={handleInputChange}
-                inputState={inputState}
-                handleInputClick={handleInputClick}
-              />
-            </InfiniteScroll>
-          </main>
-        ) : (
-          <RecipesSkeleton />
-        )
-      }
+      {() => (
+        <>
+          {!appStore.err ? (
+            <main>
+              <InfiniteScroll
+                dataLength={appStore.items?.length}
+                next={fetchMoreData}
+                hasMore={hasMore}
+                loader={<Loader size="l" />}
+                style={{
+                  overflow: 'hidden',
+                }}
+              >
+                <RecipesContent
+                  data={appStore.items}
+                  handleFormSubmit={() => handleFormSubmit}
+                  handleInputChange={handleInputChange}
+                  inputState={inputState}
+                  handleInputClick={handleInputClick}
+                />
+              </InfiniteScroll>
+            </main>
+          ) : (
+            <RecipesSkeleton />
+          )}
+        </>
+      )}
     </Observer>
   );
 };

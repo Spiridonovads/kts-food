@@ -7,7 +7,7 @@ import { options } from 'utils/constants';
 class createRecipesAppStore {
   data: Data[] = [];
   items: Data[] = [];
-  err: boolean = false;
+  err: boolean = true;
   pagination: number = 0;
   random: Data[] = [];
 
@@ -32,11 +32,14 @@ class createRecipesAppStore {
     const query = rootStore.query.getParam('query') ? rootStore.query.getParam('query')?.toString() : '';
 
     const response = await getData(query, type, number, this.pagination);
+
     runInAction(() => {
       if (response && !number) {
         this.data = response.results;
+        this.err = response.message ? true : false;
       } else if (response && number) {
         this.random = response.results;
+        this.err = response.message ? true : false;
       }
     });
   }
@@ -44,7 +47,7 @@ class createRecipesAppStore {
   async fetchMoreData() {
     await this.fetchData(undefined);
     runInAction(() => {
-      if (this.data.length > 0) {
+      if (this.data?.length > 0) {
         this.items = [...this.items, ...this.data];
         this.updatePagination();
       } else {
