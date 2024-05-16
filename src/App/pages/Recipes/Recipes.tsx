@@ -1,4 +1,4 @@
-import { runInAction, toJS } from 'mobx';
+import { runInAction } from 'mobx';
 import { Observer, useLocalObservable } from 'mobx-react-lite';
 import * as React from 'react';
 import { useState, FormEvent } from 'react';
@@ -67,7 +67,7 @@ const Recipes: React.FC = () => {
   const handleInputClick = () => {
     const params = new URLSearchParams();
     const randomRecipe = Math.floor(Math.random() * appStore.random.length);
-    const plainArray = toJS(appStore.random);
+    const plainArray = appStore.random;
 
     params.set('id', plainArray[randomRecipe].id.toString());
     navigate(`/recipe?${params.toString()}`);
