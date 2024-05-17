@@ -17,9 +17,9 @@ class createRecipeAppStore {
 
   async fetchRecipeData(id: string) {
     const response = await getDataIngredient(Number(id));
+    console.log(response);
     runInAction(() => {
       if (response) {
-        this.err = response.message ? true : false;
         this.recipe.push(response);
         const equipmentSet = new Set<string>();
         response.analyzedInstructions.forEach((instruction: { steps: [{ equipment: [{ name: string }] }] }) => {
@@ -30,6 +30,7 @@ class createRecipeAppStore {
           });
         });
         this.equip = Array.from(equipmentSet);
+        this.err = response.vegetarian ? false : true;
         return;
       }
     });

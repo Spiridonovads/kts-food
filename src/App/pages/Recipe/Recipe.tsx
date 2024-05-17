@@ -27,7 +27,11 @@ const Recipe: React.FC = () => {
     <Observer>
       {() => (
         <main>
-          {!appStore.err ? <RecipeContent data={appStore.recipe} equipment={appStore.equip} /> : <RecipeSkeleton />}
+          {appStore.recipe && appStore.recipe.length > 0 && appStore.equip ? (
+            <RecipeContent data={appStore.recipe} equipment={appStore.equip} />
+          ) : (
+            <RecipeSkeleton />
+          )}
         </main>
       )}
     </Observer>

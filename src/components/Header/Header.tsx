@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import HeartIcon from 'components/Icon/HeartIcon/HeartIcon';
 import LogoIcon from 'components/Icon/LogoIcon/LogoIcon';
 import ManIcon from 'components/Icon/ManIcon/MainIcon';
@@ -8,17 +8,9 @@ import style from './style.module.scss';
 
 const Header: React.FC = () => {
   const navigate = useNavigate();
-  const location = useLocation();
 
   const onLogoClick = () => {
-    const params = new URLSearchParams();
-    const searchParams = new URLSearchParams(location.search);
-
-    searchParams.forEach((value, key) => {
-      params.append(key, value);
-    });
-
-    navigate(`/?${params.toString()}`);
+    navigate(`/recipes`);
   };
 
   return (

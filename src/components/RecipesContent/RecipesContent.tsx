@@ -1,7 +1,6 @@
 import * as React from 'react';
 import Button from 'components/Button/Button';
 import Card from 'components/Card/Card';
-import ArrowRightSideIcon from 'components/Icon/ArrowIcons/ArrowRightSideIcon';
 import CloseIcon from 'components/Icon/CloseIcon/CloseIcon';
 import LoupeIcon from 'components/Icon/LoupeIcon/LoupeIcon';
 import Input from 'components/Input/Input';
@@ -69,7 +68,6 @@ const RecipesContent: React.FC<RecipesContentProps> = ({
               </div>
 
               <Text view="p-14">Случайный Рецепт</Text>
-              <ArrowRightSideIcon />
             </div>
           )}
           <Input placeholder="Enter dishes" onChange={handleInputChange} value={inputState} />

@@ -28,8 +28,9 @@ const Recipes: React.FC = () => {
 
   const fetchMoreData = async () => {
     setHasMore(true);
-    await appStore.fetchMoreData();
-    if (appStore.err) {
+    appStore.updatePagination();
+    await appStore.fetchData();
+    if (appStore.data.length === 0) {
       setHasMore(false);
     }
   };
@@ -75,7 +76,7 @@ const Recipes: React.FC = () => {
     appStore.resetPagination();
     appStore.resetItems();
     const fetchDataAndSetItems = async () => {
-      await fetchMoreData();
+      await appStore.fetchData();
     };
 
     fetchDataAndSetItems();
@@ -85,7 +86,7 @@ const Recipes: React.FC = () => {
     <Observer>
       {() => (
         <>
-          {!appStore.err ? (
+          {appStore.items && appStore.items.length > 0 ? (
             <main>
               <InfiniteScroll
                 dataLength={appStore.items?.length}

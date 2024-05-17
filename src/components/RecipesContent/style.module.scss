@@ -32,11 +32,10 @@
   right: calc(75px + 1vw);
   transform: translateY(-25%);
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
-  gap: 10px;
-  max-width: 170px;
-  padding: 20px 5px 20px 5px;
+  max-width: 100px;
+  padding: 30px 5px;
   background-color: $brand;
   color: white;
   border-radius: $border-radius;

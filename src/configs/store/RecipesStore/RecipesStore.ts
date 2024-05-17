@@ -8,8 +8,7 @@ class createRecipesAppStore {
   data: Data[] = [];
   items: Data[] = [];
   err: boolean = true;
-  pagination: number = -11;
-  random: Data[] = [];
+  pagination: number = 0;
 
   constructor() {
     makeObservable(this, {
@@ -17,7 +16,6 @@ class createRecipesAppStore {
       items: observable,
       err: observable,
       pagination: observable,
-      random: observable,
       fetchData: action,
       resetItems: action,
       resetPagination: action,
@@ -36,20 +34,8 @@ class createRecipesAppStore {
     runInAction(() => {
       if (response) {
         this.data = response.results;
+        this.items = [...this.items, ...response.results];
         this.err = response.message ? true : false;
-      }
-    });
-  }
-
-  async fetchMoreData() {
-    await this.fetchData();
-    runInAction(() => {
-      if (this.data?.length > 0) {
-        this.items = [...this.items, ...this.data];
-        this.updatePagination();
-        console.log(this.pagination);
-      } else {
-        this.err = true;
       }
     });
   }
@@ -63,7 +49,7 @@ class createRecipesAppStore {
   }
 
   updatePagination() {
-    this.pagination += 11;
+    this.pagination += 50;
   }
 }
 
