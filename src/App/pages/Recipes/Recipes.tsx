@@ -60,8 +60,8 @@ const Recipes: React.FC = () => {
 
   const handleInputClick = () => {
     const params = new URLSearchParams();
-    const randomRecipe = Math.floor(Math.random() * appStore.random.length);
-    const plainArray = appStore.random;
+    const randomRecipe = Math.floor(Math.random() * appStore.data.length);
+    const plainArray = appStore.data;
 
     params.set('id', plainArray[randomRecipe].id.toString());
     navigate(`/recipe?${params.toString()}`);
@@ -80,14 +80,6 @@ const Recipes: React.FC = () => {
 
     fetchDataAndSetItems();
   }, [query, type]);
-
-  React.useEffect(() => {
-    const fetchDataAndSetItems = async () => {
-      await appStore.fetchData(50);
-    };
-
-    fetchDataAndSetItems();
-  }, []);
 
   return (
     <Observer>

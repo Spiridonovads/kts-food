@@ -3,6 +3,7 @@
 .wrapper {
   max-width: 360px;
   min-width: 290px;
+  width: 100%;
   background-color: white;
   border-radius: $border-radius;
   cursor: pointer;
@@ -45,8 +46,8 @@
   margin-top: calc(20px + 1vw);
 }
 
-@media (max-width: 480px) {
+@media (max-width: 795px) {
   .wrapper {
-    max-width: 440px;
+    max-width: 765px;
   }
 }

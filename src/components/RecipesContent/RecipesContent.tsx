@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Button from 'components/Button/Button';
 import Card from 'components/Card/Card';
-import ArrowDownIcon from 'components/Icon/ArrowIcons/ArrowDownIcon';
+import ArrowRightSideIcon from 'components/Icon/ArrowIcons/ArrowRightSideIcon';
 import CloseIcon from 'components/Icon/CloseIcon/CloseIcon';
 import LoupeIcon from 'components/Icon/LoupeIcon/LoupeIcon';
 import Input from 'components/Input/Input';
@@ -64,16 +64,12 @@ const RecipesContent: React.FC<RecipesContentProps> = ({
         <form onSubmit={handleFormSubmit} className={style.input}>
           {popUpState && (
             <div className={style.popUp}>
-              <div className={style.ArrowUpIcon}>
-                <ArrowDownIcon />
-              </div>
               <div className={style.popUpCloser} onClick={onClick}>
                 <CloseIcon />
               </div>
-              <Text view="p-14">Получить случайный рецепт</Text>
-              <div className={style.ArrowDownIcon}>
-                <ArrowDownIcon />
-              </div>
+
+              <Text view="p-14">Случайный Рецепт</Text>
+              <ArrowRightSideIcon />
             </div>
           )}
           <Input placeholder="Enter dishes" onChange={handleInputChange} value={inputState} />

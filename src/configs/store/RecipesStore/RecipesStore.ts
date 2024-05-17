@@ -25,31 +25,29 @@ class createRecipesAppStore {
     });
   }
 
-  async fetchData(number: number | undefined) {
+  async fetchData() {
     const type = rootStore.query.getParam('type')
       ? options.filter((el) => rootStore.query.getParam('type')?.toString().toLowerCase().includes(el.toLowerCase()))
       : [];
     const query = rootStore.query.getParam('query') ? rootStore.query.getParam('query')?.toString() : '';
 
-    const response = await getData(query, type, number, this.pagination);
+    const response = await getData(query, type, 50, this.pagination);
 
     runInAction(() => {
-      if (response && !number) {
+      if (response) {
         this.data = response.results;
-        this.err = response.message ? true : false;
-      } else if (response && number) {
-        this.random = response.results;
         this.err = response.message ? true : false;
       }
     });
   }
 
   async fetchMoreData() {
-    await this.fetchData(undefined);
+    await this.fetchData();
     runInAction(() => {
       if (this.data?.length > 0) {
         this.items = [...this.items, ...this.data];
         this.updatePagination();
+        console.log(this.pagination);
       } else {
         this.err = true;
       }

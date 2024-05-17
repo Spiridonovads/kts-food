@@ -29,23 +29,18 @@
 
 .popUp {
   position: absolute;
-  top: calc(-125px + 1vw);
-  right: calc(-50px + 1vw);
+  right: calc(75px + 1vw);
+  transform: translateY(-25%);
   display: flex;
-  flex-direction: column;
+  justify-content: space-between;
   align-items: center;
   gap: 10px;
-  max-width: 150px;
-  height: 100px;
-  padding: 25px 10px 0 10px;
+  max-width: 170px;
+  padding: 40px 5px 40px 5px;
   background-color: $brand;
   color: white;
   border-radius: $border-radius;
   @include skeletonAnimation;
-}
-
-.ArrowUpIcon {
-  display: none;
 }
 
 .multiDropdown {
@@ -72,7 +67,7 @@
   }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 795px) {
   .cards {
     grid-template-columns: repeat(1, 1fr);
   }
@@ -82,20 +77,6 @@
 
   .mainText {
     display: none;
-  }
-
-  .ArrowDownIcon {
-    display: none;
-  }
-
-  .ArrowUpIcon {
-    display: block;
-    transform: rotate(180deg);
-  }
-  .popUp {
-    top: calc(75px + 1vw);
-    right: calc(-50px + 1vw);
-    padding: 0 10px 0 10px;
   }
 }
 
