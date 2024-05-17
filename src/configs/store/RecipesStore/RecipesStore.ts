@@ -8,7 +8,7 @@ class createRecipesAppStore {
   data: Data[] = [];
   items: Data[] = [];
   err: boolean = true;
-  pagination: number = 0;
+  pagination: number = -11;
   random: Data[] = [];
 
   constructor() {

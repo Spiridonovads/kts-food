@@ -5,6 +5,7 @@ import { getDataIngredient } from 'utils/api';
 class createRecipeAppStore {
   recipe: Data[] = [];
   equip: string[] = [];
+  err: boolean = true;
 
   constructor() {
     makeObservable(this, {
@@ -18,6 +19,7 @@ class createRecipeAppStore {
     const response = await getDataIngredient(Number(id));
     runInAction(() => {
       if (response) {
+        this.err = response.message ? true : false;
         this.recipe.push(response);
         const equipmentSet = new Set<string>();
         response.analyzedInstructions.forEach((instruction: { steps: [{ equipment: [{ name: string }] }] }) => {

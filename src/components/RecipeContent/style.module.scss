@@ -134,7 +134,10 @@
   }
 
   .shortInfoText {
-    grid-template-columns: repeat(2, 1fr);
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    align-items: center;
   }
 }
 
