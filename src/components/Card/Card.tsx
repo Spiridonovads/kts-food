@@ -28,8 +28,9 @@ const Card: React.FC<CardProps> = ({ el }) => {
 
   return (
     <div className={`${style.wrapper}`} onClick={onWrapperClick}>
-      <img className={style.image} src={el.image} alt="img" />
-
+      <div className={style.imgWrapper}>
+        <img className={style.image} src={el.image} alt="img" />
+      </div>
       <div className={style.content}>
         <div className={style.text}>
           <div className={style.timer}>
