@@ -1,0 +1,18 @@
+@import "../../../styles//index.scss";
+
+.wrapper {
+  @include width;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 80vh;
+}
+
+.input {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  background-color: rgba(181, 70, 15, 0.33);
+  padding: 100px;
+  box-shadow: 0px 4px 10px 0px rgba(181, 70, 15, 1);
+}

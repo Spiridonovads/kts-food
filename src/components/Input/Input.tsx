@@ -6,12 +6,13 @@ export type InputProps = Omit<React.InputHTMLAttributes<HTMLInputElement>, 'onCh
   placeholder: string;
   afterSlot?: React.ReactNode;
   value?: string;
-  onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
   border?: boolean;
+  wrongFormat?: boolean;
 };
 
 const Input = React.forwardRef<HTMLInputElement, InputProps>(
-  ({ disabled, placeholder, afterSlot, value, border, onChange, ...props }, ref) => {
+  ({ disabled, placeholder, afterSlot, value, border, onChange, wrongFormat, ...props }, ref) => {
     return (
       <div
         ref={ref}
@@ -19,7 +20,9 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
         ${style.intersection} 
         ${afterSlot && style.wrapperMultiDropDown} 
         ${!afterSlot && style.wrapperInput} 
-        ${border && style.wrapperFocus}`}
+        ${border && style.wrapperFocus}
+        ${wrongFormat && style.wrongFormat}
+        `}
       >
         <input
           {...props}
@@ -27,7 +30,8 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
           className={`
           ${!afterSlot && style.input} 
           ${afterSlot && style.multiDropdown} 
-          ${!border && style.inputFocus}`}
+          ${!border && style.inputFocus}
+          ${wrongFormat && style.wrongFormatPlaceHolder}`}
           disabled={!!disabled}
           onChange={onChange}
           value={value}

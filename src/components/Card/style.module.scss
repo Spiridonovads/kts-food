@@ -16,7 +16,7 @@
 .imgWrapper {
   max-width: 360px;
   min-width: 290px;
-  height: 266.54px;
+  height: max-content;
   border-radius: $border-radius $border-radius 0 0;
   background-color: $brand;
 }
@@ -56,6 +56,10 @@
 
 @media (max-width: 795px) {
   .wrapper {
+    max-width: 765px;
+  }
+
+  .imgWrapper {
     max-width: 765px;
   }
 }

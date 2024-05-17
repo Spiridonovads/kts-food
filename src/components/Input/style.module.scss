@@ -54,3 +54,11 @@
 .wrapperFocus {
   border: 1px solid $brand;
 }
+
+.wrongFormatPlaceHolder:focus {
+  border: solid #92000a 1px;
+}
+
+.wrongFormatPlaceHolder::placeholder {
+  color: #92000a;
+}

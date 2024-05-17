@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import HeartIcon from 'components/Icon/HeartIcon/HeartIcon';
 import LogoIcon from 'components/Icon/LogoIcon/LogoIcon';
 import ManIcon from 'components/Icon/ManIcon/MainIcon';
@@ -21,7 +21,7 @@ const Header: React.FC = () => {
             <LogoIcon color="accent" />
           </div>
 
-          <div onClick={onLogoClick}>
+          <div className={style.logoText} onClick={onLogoClick}>
             <Text view="p-20" weight="bold" color="primary">
               Food Client
             </Text>
@@ -31,9 +31,9 @@ const Header: React.FC = () => {
           <a href="#">
             <HeartIcon color="accent" />
           </a>
-          <a href="#">
+          <Link to={{ pathname: '/personal' }}>
             <ManIcon color="accent" />
-          </a>
+          </Link>
         </div>
       </nav>
     </header>
