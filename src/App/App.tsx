@@ -3,9 +3,9 @@ import { Routes, Route } from 'react-router-dom';
 import Header from 'components/Header/Header';
 import NotFound from 'components/NotFound/NotFound';
 import { useQueryParamsStoreInit } from 'configs/store/hooks/useQueryParamsStore';
+import Personal from './pages/Personal/Personal';
 import Recipe from './pages/Recipe/Recipe';
 import Recipes from './pages/Recipes/Recipes';
-import Personal from './pages/Personal/Personal';
 
 const App: React.FC = () => {
   useQueryParamsStoreInit();

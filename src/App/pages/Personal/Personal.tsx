@@ -1,11 +1,11 @@
-import * as React from 'react';
-import style from './style.module.scss';
-import Input from 'components/Input/Input';
-import Button from 'components/Button/Button';
-import Text from 'components/Text/Text';
 import { Observer, useLocalObservable } from 'mobx-react-lite';
-import createPersonalAppStore from 'configs/store/PersonalStore/PersonalStore';
+import * as React from 'react';
+import Button from 'components/Button/Button';
+import Input from 'components/Input/Input';
 import PersonalContent from 'components/PersonalContent/PersonalContent';
+import Text from 'components/Text/Text';
+import createPersonalAppStore from 'configs/store/PersonalStore/PersonalStore';
+import style from './style.module.scss';
 
 const Personal: React.FC = () => {
   const appStore = useLocalObservable(() => new createPersonalAppStore());

@@ -1,6 +1,6 @@
 import * as React from 'react';
-import style from './style.module.scss';
 import Input from 'components/Input/Input';
+import style from './style.module.scss';
 
 export type PersonalContentProps = {
   appStore: any;
