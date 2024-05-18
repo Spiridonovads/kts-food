@@ -3,9 +3,10 @@ import Input from 'components/Input/Input';
 import style from './style.module.scss';
 
 export type PersonalContentProps = {
-  appStore: any;
+  appStore: { data: string[] };
 };
 const PersonalContent: React.FC<PersonalContentProps> = ({ appStore }) => {
+  console.log(appStore);
   return (
     <div className={style.wrapper}>
       <div className={style.content}>

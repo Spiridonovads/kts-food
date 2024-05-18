@@ -7,8 +7,9 @@ import { options } from 'utils/constants';
 class createRecipesAppStore {
   data: Data[] = [];
   items: Data[] = [];
-  err: boolean = true;
   pagination: number = 0;
+  hasMore: boolean = true;
+  err: boolean = true;
 
   constructor() {
     makeObservable(this, {
@@ -16,10 +17,13 @@ class createRecipesAppStore {
       items: observable,
       err: observable,
       pagination: observable,
+      hasMore: observable,
       fetchData: action,
       resetItems: action,
       resetPagination: action,
       updatePagination: action,
+      updateHasMore: action,
+      resetHasMore: action,
     });
   }
 
@@ -28,14 +32,12 @@ class createRecipesAppStore {
       ? options.filter((el) => rootStore.query.getParam('type')?.toString().toLowerCase().includes(el.toLowerCase()))
       : [];
     const query = rootStore.query.getParam('query') ? rootStore.query.getParam('query')?.toString() : '';
-
     const response = await getData(query, type, 50, this.pagination);
 
     runInAction(() => {
       if (response) {
         this.data = response.results;
         this.items = [...this.items, ...response.results];
-        this.err = response.message ? true : false;
       }
     });
   }
@@ -50,6 +52,13 @@ class createRecipesAppStore {
 
   updatePagination() {
     this.pagination += 50;
+  }
+
+  resetHasMore() {
+    this.hasMore = false;
+  }
+  updateHasMore() {
+    this.hasMore = true;
   }
 }
 

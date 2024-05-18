@@ -17,10 +17,11 @@ class createRecipeAppStore {
 
   async fetchRecipeData(id: string) {
     const response = await getDataIngredient(Number(id));
-    console.log(response);
+
     runInAction(() => {
       if (response) {
         this.recipe.push(response);
+
         const equipmentSet = new Set<string>();
         response.analyzedInstructions.forEach((instruction: { steps: [{ equipment: [{ name: string }] }] }) => {
           instruction.steps.forEach((step) => {

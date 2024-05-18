@@ -14,13 +14,9 @@ const Recipe: React.FC = () => {
   const id = React.useMemo(() => searchParams.get('id'), [searchParams]);
 
   useEffect(() => {
-    const fetchData = async () => {
-      if (id) {
-        await appStore.fetchRecipeData(id);
-      }
-    };
-
-    fetchData();
+    if (id) {
+      appStore.fetchRecipeData(id);
+    }
   }, [appStore, id]);
 
   return (

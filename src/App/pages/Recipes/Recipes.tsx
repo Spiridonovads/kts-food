@@ -8,8 +8,8 @@ import Loader from 'components/Loader/Loader';
 import RecipesContent from 'components/RecipesContent/RecipesContent';
 import RecipesSkeleton from 'components/RecipesSkeleton/RecipesSkeleton';
 
-import { options } from 'utils/constants';
 import createRecipesAppStore from 'configs/store/RecipesStore/RecipesStore';
+import { options } from 'utils/constants';
 
 const Recipes: React.FC = () => {
   const appStore = useLocalObservable(() => new createRecipesAppStore());
@@ -18,7 +18,6 @@ const Recipes: React.FC = () => {
   const searchParams = React.useMemo(() => new URLSearchParams(location.search), [location.search]);
 
   const [inputState, setInputState] = useState(searchParams.get('query') ?? '');
-  const [hasMore, setHasMore] = useState(true);
 
   const query = React.useMemo(() => searchParams.get('query'), [searchParams]);
   const type = React.useMemo(
@@ -27,18 +26,22 @@ const Recipes: React.FC = () => {
   );
 
   const fetchMoreData = async () => {
-    setHasMore(true);
+    appStore.updateHasMore();
     appStore.updatePagination();
     await appStore.fetchData();
     if (appStore.data.length === 0) {
-      setHasMore(false);
+      appStore.resetHasMore();
     }
   };
 
   const debounceInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const params = new URLSearchParams();
 
-    params.set('query', event.target.value);
+    if (event.target.value.trim() === '') {
+      params.delete('query');
+    } else {
+      params.set('query', event.target.value);
+    }
 
     searchParams.forEach((value, key) => {
       if (key !== 'query') {
@@ -49,14 +52,14 @@ const Recipes: React.FC = () => {
     navigate(`?${params.toString()}`);
   };
 
-  const debouncedChangeHandler = debounce(debounceInputChange, 500);
+  const debouncedChangeHandler = debounce(debounceInputChange, 1000);
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setInputState(event.target.value);
-
-    if (event.target.value.trim() !== '') {
+    if (event.target.value.trim() !== inputState) {
       debouncedChangeHandler(event);
     }
+
+    setInputState(event.target.value);
   };
 
   const handleInputClick = () => {
@@ -75,11 +78,8 @@ const Recipes: React.FC = () => {
   React.useEffect(() => {
     appStore.resetPagination();
     appStore.resetItems();
-    const fetchDataAndSetItems = async () => {
-      await appStore.fetchData();
-    };
 
-    fetchDataAndSetItems();
+    appStore.fetchData();
   }, [query, type]);
 
   return (
@@ -91,7 +91,7 @@ const Recipes: React.FC = () => {
               <InfiniteScroll
                 dataLength={appStore.items?.length}
                 next={fetchMoreData}
-                hasMore={hasMore}
+                hasMore={appStore.hasMore}
                 loader={<Loader size="l" />}
                 style={{
                   overflow: 'hidden',
