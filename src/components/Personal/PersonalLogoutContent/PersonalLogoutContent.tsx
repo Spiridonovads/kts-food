@@ -31,7 +31,7 @@ const PersonalLogoutContent: React.FC = () => {
       setLoginFormatError(false);
       if (passwordState.trim() !== '') {
         appStore.updateData(loginState, passwordState);
-        console.log('hi');
+
         navigate('/personal');
       }
     }

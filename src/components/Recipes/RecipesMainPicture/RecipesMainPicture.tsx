@@ -1,5 +1,5 @@
 import * as React from 'react';
-import image from '../../../public/main.png';
+import image from '../../../../public/main.png';
 import style from './style.module.css';
 
 const RecipesMainPicture: React.FC = () => {

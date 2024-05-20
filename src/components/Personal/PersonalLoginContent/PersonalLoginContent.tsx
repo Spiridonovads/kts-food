@@ -2,21 +2,24 @@ import * as React from 'react';
 import Input from 'components/Input/Input';
 import style from './style.module.scss';
 import { useNavigate } from 'react-router-dom';
+import { useLocalObservable } from 'mobx-react-lite';
 import createPersonalAppStore from 'configs/store/PersonalStore/PersonalStore';
 
-export type PersonalLoginContentProps = {
-  appStore: createPersonalAppStore;
-};
-const PersonalLoginContent: React.FC<PersonalLoginContentProps> = ({ appStore }) => {
+const PersonalLoginContent: React.FC = () => {
   const navigate = useNavigate();
+  const appStore = useLocalObservable(() => new createPersonalAppStore());
+
   const onLogOutClick = () => {
-    localStorage.removeItem('user');
+    appStore.updateData(undefined, undefined);
     navigate('/personal');
   };
 
   const appStoreArray = React.useMemo(() => {
-    return appStore.data?.replace(/[\[\]"]/g, '').split(',');
-  }, [appStore]);
+    return localStorage
+      .getItem('user')
+      ?.replace(/[\[\]"]/g, '')
+      .split(',');
+  }, [localStorage]);
 
   return (
     <div className={style.wrapper}>
