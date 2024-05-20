@@ -1,13 +1,13 @@
 import { observer } from 'mobx-react-lite';
 import * as React from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import Button from 'components/Button/Button';
+import CheckIcon from 'components/Icon/CheckIcon/CheckIcon';
 import ClockIcon from 'components/Icon/ClockIcon/ClockIcon';
 import Text from 'components/Text/Text';
 import { Data } from 'configs/types';
 
 import style from './style.module.scss';
-import CheckIcon from 'components/Icon/CheckIcon/CheckIcon';
 
 export type CardProps = {
   el: Data;
@@ -16,12 +16,21 @@ export type CardProps = {
 const Card: React.FC<CardProps> = ({ el }) => {
   const navigate = useNavigate();
   const [buttonState, setButtonState] = React.useState(false);
+  const location = useLocation();
 
   const onClick = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     e.preventDefault();
     e.stopPropagation();
-    localStorage.setItem(`${el.title}`, JSON.stringify(el));
-    setButtonState(true);
+    if (localStorage.getItem(`${el.title}`)) {
+      localStorage.removeItem(`${el.title}`);
+      setButtonState(false);
+    } else {
+      localStorage.setItem(`${el.title}`, JSON.stringify(el));
+      setButtonState(true);
+    }
+    if (location.pathname === '/saves') {
+      navigate('/saves');
+    }
   };
 
   const onWrapperClick = () => {

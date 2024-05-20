@@ -14,5 +14,5 @@ export const options = [
   'snack',
   'drink',
 ];
-export const API_KEY = 'e8f85faa516544ada3c9f474a68569c5';
+export const API_KEY = 'b16471e6b2a647399fb568019e8a1089';
 export const BASE_URL = `https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&addRecipeNutrition=true`;

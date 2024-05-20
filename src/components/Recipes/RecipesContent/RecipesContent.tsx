@@ -3,8 +3,8 @@ import Button from 'components/Button/Button';
 import Card from 'components/Card/Card';
 import CloseIcon from 'components/Icon/CloseIcon/CloseIcon';
 import LoupeIcon from 'components/Icon/LoupeIcon/LoupeIcon';
-import Input from 'components/Input/Input';
 import NewArrowRightSideIcon from 'components/Icon/NewArrow/NewArrowRightSideIcon';
+import Input from 'components/Input/Input';
 
 import MultiDropdown from 'components/MultiDropDown/MultiDropDown';
 import RecipesMainPicture from 'components/Recipes/RecipesMainPicture/RecipesMainPicture';

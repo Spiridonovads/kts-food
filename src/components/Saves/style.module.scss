@@ -1,0 +1,30 @@
+@import "../../styles//index.scss";
+
+.wrapper {
+  @include width;
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  column-gap: calc(70px * (100vw / 1270px));
+  row-gap: calc(50px * (100vw / 1270px));
+  margin-top: 25px;
+}
+
+.err {
+  margin-top: 25px;
+}
+
+@media (max-width: 1050px) {
+  .cards {
+    grid-template-columns: repeat(2, 1fr);
+    justify-items: start;
+  }
+}
+
+@media (max-width: 795px) {
+  .cards {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}

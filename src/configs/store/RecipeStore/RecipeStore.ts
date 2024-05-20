@@ -5,36 +5,51 @@ import { getDataIngredient } from 'utils/api';
 class createRecipeAppStore {
   recipe: Data[] = [];
   equip: string[] = [];
-  err: boolean = true;
+  err: boolean = false;
+  loading: boolean = false;
 
   constructor() {
     makeObservable(this, {
       recipe: observable,
       equip: observable,
+      err: observable,
+      loading: observable,
       fetchRecipeData: action,
     });
   }
 
   async fetchRecipeData(id: string) {
-    const response = await getDataIngredient(Number(id));
+    this.loading = true;
+    try {
+      const response = await getDataIngredient(Number(id));
 
-    runInAction(() => {
-      if (response) {
-        this.recipe.push(response);
+      runInAction(() => {
+        if (response) {
+          this.recipe.push(response);
 
-        const equipmentSet = new Set<string>();
-        response.analyzedInstructions.forEach((instruction: { steps: [{ equipment: [{ name: string }] }] }) => {
-          instruction.steps.forEach((step) => {
-            step.equipment.forEach((equip) => {
-              equipmentSet.add(equip.name);
+          const equipmentSet = new Set<string>();
+          response.analyzedInstructions.forEach((instruction: { steps: [{ equipment: [{ name: string }] }] }) => {
+            instruction.steps.forEach((step) => {
+              step.equipment.forEach((equip) => {
+                equipmentSet.add(equip.name);
+              });
             });
           });
-        });
-        this.equip = Array.from(equipmentSet);
-        this.err = response.vegetarian ? false : true;
-        return;
-      }
-    });
+          this.equip = Array.from(equipmentSet);
+          this.err = response.vegetarian ? false : true;
+          return;
+        }
+      });
+    } catch (error) {
+      console.error('Error fetching data:', error);
+      runInAction(() => {
+        this.err = true;
+      });
+    } finally {
+      runInAction(() => {
+        this.loading = false;
+      });
+    }
   }
 }
 

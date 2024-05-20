@@ -28,9 +28,10 @@ const Header: React.FC = () => {
           </div>
         </div>
         <div className={style.personal}>
-          <a href="#">
+          <Link to={{ pathname: '/saves' }}>
             <HeartIcon color="accent" />
-          </a>
+          </Link>
+
           <Link to={{ pathname: '/personal' }}>
             <ManIcon color="accent" />
           </Link>

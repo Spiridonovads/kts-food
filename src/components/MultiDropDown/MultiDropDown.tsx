@@ -11,7 +11,7 @@ export type MultiDropdownProps = {
 
 const MultiDropdown: React.FC<MultiDropdownProps> = ({ options, disabled }) => {
   const location = useLocation();
-  let [, setSearchParams] = useSearchParams();
+  const [, setSearchParams] = useSearchParams();
 
   const [filteredOptions, setFilteredOptions] = useState<string[]>(options);
   const [inputValue, setInputValue] = useState<string>('');

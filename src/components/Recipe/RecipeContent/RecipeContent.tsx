@@ -12,10 +12,11 @@ import style from './style.module.scss';
 export type RecipeContentProps = {
   data: Data[];
   equipment: string[];
+  error: boolean;
 };
 
 const RecipeContent: React.FC<RecipeContentProps> = ({ data, equipment }) => {
-  return (
+  return data[0] ? (
     <section className={style.wrapper}>
       <div className={style.title}>
         <Link to={{ pathname: '/recipes' }}>
@@ -112,6 +113,10 @@ const RecipeContent: React.FC<RecipeContentProps> = ({ data, equipment }) => {
         })}
       </div>
     </section>
+  ) : (
+    <div className={style.error}>
+      <Text view="p-20">При загрузке данных произошла ошибка</Text>
+    </div>
   );
 };
 

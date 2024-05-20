@@ -16,7 +16,7 @@ const Recipes: React.FC = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const searchURLParams = React.useMemo(() => new URLSearchParams(location.search), [location.search]);
-  let [, setSearchParams] = useSearchParams();
+  const [, setSearchParams] = useSearchParams();
 
   const [inputState, setInputState] = useState(searchURLParams.get('query') ?? '');
 
@@ -63,7 +63,7 @@ const Recipes: React.FC = () => {
     const randomRecipe = Math.floor(Math.random() * appStore.data.length);
     const plainArray = appStore.data;
 
-    params.set('id', plainArray[randomRecipe].id.toString());
+    params.set('id', plainArray[randomRecipe]?.id.toString());
     navigate(`/recipe?${params.toString()}`);
   };
 

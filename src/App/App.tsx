@@ -6,6 +6,7 @@ import { useQueryParamsStoreInit } from 'configs/store/hooks/useQueryParamsStore
 import Personal from './pages/Personal/Personal';
 import Recipe from './pages/Recipe/Recipe';
 import Recipes from './pages/Recipes/Recipes';
+import Saves from './pages/Saves/Saves';
 
 const App: React.FC = () => {
   useQueryParamsStoreInit();
@@ -17,6 +18,7 @@ const App: React.FC = () => {
         <Route path="/recipes" element={<Recipes />} />
         <Route path="/recipe" element={<Recipe />} />
         <Route path="/personal" element={<Personal />} />
+        <Route path="/saves" element={<Saves />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </>
