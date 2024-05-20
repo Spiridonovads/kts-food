@@ -7,7 +7,7 @@ import Input from 'components/Input/Input';
 import NewArrowRightSideIcon from 'components/Icon/NewArrow/NewArrowRightSideIcon';
 
 import MultiDropdown from 'components/MultiDropDown/MultiDropDown';
-import RecipesMainPicture from 'components/RecipesMainPicture/RecipesMainPicture';
+import RecipesMainPicture from 'components/Recipes/RecipesMainPicture/RecipesMainPicture';
 import Text from 'components/Text/Text';
 import { Data } from 'configs/types';
 import { options } from 'utils/constants';

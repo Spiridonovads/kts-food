@@ -1,7 +1,8 @@
 import { action, makeObservable, observable } from 'mobx';
 
 class createPersonalAppStore {
-  data: string[] = [];
+  data = localStorage.getItem('user');
+
   constructor() {
     makeObservable(this, {
       data: observable,
@@ -9,9 +10,12 @@ class createPersonalAppStore {
     });
   }
 
-  updateData(login: string, password: string) {
-    this.data.push(login);
-    this.data.push(password);
+  async updateData(login: string, password: string) {
+    const user = {
+      login: login,
+      password: password,
+    };
+    localStorage.setItem('user', JSON.stringify(user));
   }
 }
 

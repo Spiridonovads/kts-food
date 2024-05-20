@@ -7,6 +7,7 @@ import Text from 'components/Text/Text';
 import { Data } from 'configs/types';
 
 import style from './style.module.scss';
+import CheckIcon from 'components/Icon/CheckIcon/CheckIcon';
 
 export type CardProps = {
   el: Data;
@@ -14,10 +15,13 @@ export type CardProps = {
 
 const Card: React.FC<CardProps> = ({ el }) => {
   const navigate = useNavigate();
+  const [buttonState, setButtonState] = React.useState(false);
 
   const onClick = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     e.preventDefault();
     e.stopPropagation();
+    localStorage.setItem(`${el.title}`, JSON.stringify(el));
+    setButtonState(true);
   };
 
   const onWrapperClick = () => {
@@ -60,7 +64,7 @@ const Card: React.FC<CardProps> = ({ el }) => {
           </Text>
 
           <Button onClick={onClick} disabled={false}>
-            Save
+            {localStorage.getItem(`${el.title}`) || buttonState ? <CheckIcon /> : 'Save'}
           </Button>
         </div>
       </div>
