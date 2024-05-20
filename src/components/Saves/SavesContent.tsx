@@ -1,9 +1,9 @@
-import Card from 'components/Card/Card';
-import { Data } from 'configs/types';
-import Text from 'components/Text/Text';
 import * as React from 'react';
-import style from './style.module.scss';
+import Card from 'components/Card/Card';
+import Text from 'components/Text/Text';
 import createPersonalAppStore from 'configs/store/PersonalStore/PersonalStore';
+import { Data } from 'configs/types';
+import style from './style.module.scss';
 
 export type SavesContentProps = {
   appStore: createPersonalAppStore;

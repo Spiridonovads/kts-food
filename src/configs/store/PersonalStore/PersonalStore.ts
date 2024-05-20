@@ -1,5 +1,5 @@
-import { Data } from 'configs/types';
 import { action, makeObservable, observable } from 'mobx';
+import { Data } from 'configs/types';
 
 class createPersonalAppStore {
   user: string | null = null;
