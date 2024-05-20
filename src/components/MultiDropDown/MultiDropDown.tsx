@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { useState, useEffect, useRef } from 'react';
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useLocation, useSearchParams } from 'react-router-dom';
 import Input from 'components/Input/Input';
 import style from './style.module.scss';
 
@@ -10,8 +10,8 @@ export type MultiDropdownProps = {
 };
 
 const MultiDropdown: React.FC<MultiDropdownProps> = ({ options, disabled }) => {
-  const navigate = useNavigate();
   const location = useLocation();
+  let [, setSearchParams] = useSearchParams();
 
   const [filteredOptions, setFilteredOptions] = useState<string[]>(options);
   const [inputValue, setInputValue] = useState<string>('');
@@ -24,7 +24,7 @@ const MultiDropdown: React.FC<MultiDropdownProps> = ({ options, disabled }) => {
     options.filter((el) => location.search.toLowerCase().includes(el.toLowerCase())),
   );
 
-  const searchParams = React.useMemo(() => new URLSearchParams(location.search), [location.search]);
+  const searchURLParams = React.useMemo(() => new URLSearchParams(location.search), [location.search]);
 
   useEffect(() => {
     document.addEventListener('mousedown', handleClickOutside);
@@ -70,12 +70,13 @@ const MultiDropdown: React.FC<MultiDropdownProps> = ({ options, disabled }) => {
       params.set('type', `${newActiveOptions}`);
     }
 
-    searchParams.forEach((value, key) => {
+    searchURLParams.forEach((value, key) => {
       if (key !== 'type') {
         params.append(key, value);
       }
     });
-    navigate(`?${params.toString()}`);
+
+    setSearchParams(params);
 
     setInputValue('');
   };

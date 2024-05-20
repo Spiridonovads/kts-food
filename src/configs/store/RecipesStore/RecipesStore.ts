@@ -9,37 +9,55 @@ class createRecipesAppStore {
   items: Data[] = [];
   pagination: number = 0;
   hasMore: boolean = true;
-  err: boolean = true;
+  err: boolean = false;
+  loading: boolean = false;
 
   constructor() {
     makeObservable(this, {
       data: observable,
       items: observable,
-      err: observable,
       pagination: observable,
       hasMore: observable,
+      err: observable,
+      loading: observable,
       fetchData: action,
       resetItems: action,
       resetPagination: action,
       updatePagination: action,
-      updateHasMore: action,
-      resetHasMore: action,
     });
   }
 
   async fetchData() {
-    const type = rootStore.query.getParam('type')
-      ? options.filter((el) => rootStore.query.getParam('type')?.toString().toLowerCase().includes(el.toLowerCase()))
-      : [];
-    const query = rootStore.query.getParam('query') ? rootStore.query.getParam('query')?.toString() : '';
-    const response = await getData(query, type, 50, this.pagination);
+    this.loading = true;
+    try {
+      const type = rootStore.query.getParam('type')
+        ? options.filter((el) => rootStore.query.getParam('type')?.toString().toLowerCase().includes(el.toLowerCase()))
+        : [];
+      const query = rootStore.query.getParam('query') ? rootStore.query.getParam('query')?.toString() : '';
+      const response = await getData(query, type, 100, this.pagination);
 
-    runInAction(() => {
-      if (response) {
-        this.data = response.results;
-        this.items = [...this.items, ...response.results];
-      }
-    });
+      runInAction(() => {
+        if (response) {
+          this.err = false;
+          this.hasMore = true;
+          if (response.results.length === 0) {
+            this.hasMore = false;
+          }
+          this.data = response.results;
+          this.items = [...this.items, ...response.results];
+        }
+      });
+    } catch (error) {
+      console.error('Error fetching data:', error);
+      runInAction(() => {
+        this.err = true;
+        this.hasMore = false;
+      });
+    } finally {
+      runInAction(() => {
+        this.loading = false;
+      });
+    }
   }
 
   resetItems() {
@@ -51,14 +69,7 @@ class createRecipesAppStore {
   }
 
   updatePagination() {
-    this.pagination += 50;
-  }
-
-  resetHasMore() {
-    this.hasMore = false;
-  }
-  updateHasMore() {
-    this.hasMore = true;
+    this.pagination += 100;
   }
 }
 

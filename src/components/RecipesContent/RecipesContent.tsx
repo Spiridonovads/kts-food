@@ -4,6 +4,7 @@ import Card from 'components/Card/Card';
 import CloseIcon from 'components/Icon/CloseIcon/CloseIcon';
 import LoupeIcon from 'components/Icon/LoupeIcon/LoupeIcon';
 import Input from 'components/Input/Input';
+import NewArrowRightSideIcon from 'components/Icon/NewArrow/NewArrowRightSideIcon';
 
 import MultiDropdown from 'components/MultiDropDown/MultiDropDown';
 import RecipesMainPicture from 'components/RecipesMainPicture/RecipesMainPicture';
@@ -19,6 +20,7 @@ export type RecipesContentProps = {
   handleInputChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
   inputState: string;
   handleInputClick: () => void;
+  error: boolean;
 };
 
 const RecipesContent: React.FC<RecipesContentProps> = ({
@@ -27,6 +29,7 @@ const RecipesContent: React.FC<RecipesContentProps> = ({
   handleInputChange,
   inputState,
   handleInputClick,
+  error,
 }) => {
   const [popUpState, setPopUpState] = React.useState(false);
   const onClick = () => {
@@ -35,6 +38,7 @@ const RecipesContent: React.FC<RecipesContentProps> = ({
   React.useEffect(() => {
     setPopUpState(true);
   }, []);
+
   return (
     <>
       <section className={style.mainPic}>
@@ -66,8 +70,8 @@ const RecipesContent: React.FC<RecipesContentProps> = ({
               <div className={style.popUpCloser} onClick={onClick}>
                 <CloseIcon />
               </div>
-
               <Text view="p-14">Случайный Рецепт</Text>
+              <NewArrowRightSideIcon />
             </div>
           )}
           <Input placeholder="Enter dishes" onChange={handleInputChange} value={inputState} />
@@ -79,16 +83,24 @@ const RecipesContent: React.FC<RecipesContentProps> = ({
         <div className={style.multiDropdown}>
           <MultiDropdown options={options} />
         </div>
-        {data.length > 0 ? (
+        {data.length > 0 && (
           <div className={style.cards}>
             {data.map((el: Data, i: number) => {
               return <Card el={el} key={i}></Card>;
             })}
           </div>
-        ) : (
+        )}
+        {data.length === 0 && !error && (
           <div className={style.noRes}>
             <Text color="primary" weight="normal" view="p-20">
               Совпадений не найдено
+            </Text>
+          </div>
+        )}
+        {error && (
+          <div className={style.noRes}>
+            <Text color="primary" weight="normal" view="p-20">
+              При загрузке данных произошла ошибка
             </Text>
           </div>
         )}

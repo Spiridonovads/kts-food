@@ -3,7 +3,7 @@ import { Observer, useLocalObservable } from 'mobx-react-lite';
 import * as React from 'react';
 import { useState, FormEvent } from 'react';
 import InfiniteScroll from 'react-infinite-scroll-component';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate, useSearchParams } from 'react-router-dom';
 import Loader from 'components/Loader/Loader';
 import RecipesContent from 'components/RecipesContent/RecipesContent';
 import RecipesSkeleton from 'components/RecipesSkeleton/RecipesSkeleton';
@@ -15,23 +15,20 @@ const Recipes: React.FC = () => {
   const appStore = useLocalObservable(() => new createRecipesAppStore());
   const location = useLocation();
   const navigate = useNavigate();
-  const searchParams = React.useMemo(() => new URLSearchParams(location.search), [location.search]);
+  const searchURLParams = React.useMemo(() => new URLSearchParams(location.search), [location.search]);
+  let [, setSearchParams] = useSearchParams();
 
-  const [inputState, setInputState] = useState(searchParams.get('query') ?? '');
+  const [inputState, setInputState] = useState(searchURLParams.get('query') ?? '');
 
-  const query = React.useMemo(() => searchParams.get('query'), [searchParams]);
+  const query = React.useMemo(() => searchURLParams.get('query'), [searchURLParams]);
   const type = React.useMemo(
-    () => options.filter((el) => searchParams.get('type')?.toLowerCase().includes(el.toLowerCase())),
-    [searchParams],
+    () => options.filter((el) => searchURLParams.get('type')?.toLowerCase().includes(el.toLowerCase())),
+    [searchURLParams],
   );
 
-  const fetchMoreData = async () => {
-    appStore.updateHasMore();
+  const fetchMoreData = () => {
     appStore.updatePagination();
-    await appStore.fetchData();
-    if (appStore.data.length === 0) {
-      appStore.resetHasMore();
-    }
+    appStore.fetchData();
   };
 
   const debounceInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -43,13 +40,12 @@ const Recipes: React.FC = () => {
       params.set('query', event.target.value);
     }
 
-    searchParams.forEach((value, key) => {
+    searchURLParams.forEach((value, key) => {
       if (key !== 'query') {
         params.append(key, value);
       }
     });
-
-    navigate(`?${params.toString()}`);
+    setSearchParams(params);
   };
 
   const debouncedChangeHandler = debounce(debounceInputChange, 1000);
@@ -86,7 +82,7 @@ const Recipes: React.FC = () => {
     <Observer>
       {() => (
         <>
-          {appStore.items && appStore.items.length > 0 ? (
+          {!appStore.loading ? (
             <main>
               <InfiniteScroll
                 dataLength={appStore.items?.length}
@@ -103,6 +99,7 @@ const Recipes: React.FC = () => {
                   handleInputChange={handleInputChange}
                   inputState={inputState}
                   handleInputClick={handleInputClick}
+                  error={appStore.err}
                 />
               </InfiniteScroll>
             </main>
