@@ -32,7 +32,7 @@ const RecipesContent: React.FC<RecipesContentProps> = ({
   error,
 }) => {
   const [popUpState, setPopUpState] = React.useState(false);
-  const onClick = () => {
+  const onPopUpClick = () => {
     setPopUpState(false);
   };
   React.useEffect(() => {
@@ -67,7 +67,7 @@ const RecipesContent: React.FC<RecipesContentProps> = ({
         <form onSubmit={handleFormSubmit} className={style.input}>
           {popUpState && (
             <div className={style.popUp}>
-              <div className={style.popUpCloser} onClick={onClick}>
+              <div className={style.popUpCloser} onClick={onPopUpClick}>
                 <CloseIcon />
               </div>
               <Text view="p-14">Случайный Рецепт</Text>

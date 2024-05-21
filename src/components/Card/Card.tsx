@@ -18,7 +18,7 @@ const Card: React.FC<CardProps> = ({ el }) => {
   const [buttonState, setButtonState] = React.useState(false);
   const location = useLocation();
 
-  const onClick = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+  const onButtonClick = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     e.preventDefault();
     e.stopPropagation();
     if (localStorage.getItem(`${el.title}`)) {
@@ -72,7 +72,7 @@ const Card: React.FC<CardProps> = ({ el }) => {
             {`${el.nutrition.nutrients[0].amount} kcal`}
           </Text>
 
-          <Button onClick={onClick} disabled={false}>
+          <Button onClick={onButtonClick} disabled={false}>
             {localStorage.getItem(`${el.title}`) || buttonState ? <CheckIcon /> : 'Save'}
           </Button>
         </div>

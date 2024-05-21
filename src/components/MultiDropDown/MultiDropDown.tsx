@@ -96,9 +96,10 @@ const MultiDropdown: React.FC<MultiDropdownProps> = ({ options, disabled }) => {
         onFocus={handleInputFocus}
         disabled={disabled}
         afterSlot={true}
-        value={showDropdown && value.length > 0 ? getTitle(value) : inputValue}
+        value={inputValue}
         placeholder={value.length > 0 ? getTitle(value) : 'Categories'}
         border={showDropdown}
+        onAfterSlotClick={handleInputFocus}
       />
       {showDropdown && !disabled && (
         <div className={style.dropdown}>
