@@ -1,30 +1,11 @@
-# React + TypeScript + Vite
+Привет!
+Перд Вами веб-приложение Food Client, в котором собраны рецепты с сайта https://spoonacular.com/.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Чтобы запустить веб-приложение в режиме разработки, нужно ввести команду yarn dev
+Чтобы запустить веб-приложение в режиме продакшена, нужно ввести команду yarn build
 
-Currently, two official plugins are available:
+Мною были установлены и использованы следующие дополнительные пакеты (не считая тех, что были использованы в самом курсе):
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
-
-- Configure the top-level `parserOptions` property like this:
-
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
-
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+1. "classnames": "^2.5.1",
+2. "lodash": "^4.17.21",
+3. "react-infinite-scroll-component": "^6.1.0",
