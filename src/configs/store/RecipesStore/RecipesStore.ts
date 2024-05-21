@@ -28,12 +28,14 @@ class createRecipesAppStore {
   }
 
   async fetchData() {
-    this.loading = true;
+    const type = rootStore.query.getParam('type')
+      ? options.filter((el) => rootStore.query.getParam('type')?.toString().toLowerCase().includes(el.toLowerCase()))
+      : [];
+    const query = rootStore.query.getParam('query') ? rootStore.query.getParam('query')?.toString() : '';
+    if (!query && type.length === 0) {
+      this.loading = true;
+    }
     try {
-      const type = rootStore.query.getParam('type')
-        ? options.filter((el) => rootStore.query.getParam('type')?.toString().toLowerCase().includes(el.toLowerCase()))
-        : [];
-      const query = rootStore.query.getParam('query') ? rootStore.query.getParam('query')?.toString() : '';
       const response = await getData(query, type, 100, this.pagination);
 
       runInAction(() => {
