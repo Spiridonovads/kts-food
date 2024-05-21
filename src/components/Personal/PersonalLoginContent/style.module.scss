@@ -13,8 +13,21 @@
   align-items: center;
   gap: calc(50px * (100vw / 1270px));
   background-color: rgba(181, 70, 15, 0.33);
-  padding: 100px;
+  padding: calc(100px * (100vw / 1270px));
   box-shadow: 0px 4px 10px 0px rgba(181, 70, 15, 1);
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+}
+
+.personal {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  gap: calc(20px * (100vw / 1270px));
+  border: 1px solid rgba(181, 70, 15, 0.5);
 }
 
 .personalData {
@@ -37,4 +50,16 @@
 }
 .activeLi {
   text-decoration: underline;
+}
+
+.logOut {
+  padding: 10px;
+}
+@media (max-width: 480px) {
+  .personal {
+    flex-direction: column;
+  }
+  .list {
+    align-items: center;
+  }
 }

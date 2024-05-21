@@ -28,18 +28,21 @@ const PersonalLoginContent: React.FC = () => {
   return (
     <div className={style.wrapper}>
       <div className={style.content}>
-        <ul className={style.list}>
-          <li className={`${style.activeLi} ${style.li}`}>Personal Data</li>
-          <li onClick={onLogOutClick} className={style.li}>
-            Log Out
-          </li>
-        </ul>
-        {personalData && personalData.length > 0 && (
-          <div className={style.personalData}>
-            <Input disabled={true} placeholder={personalData[0]} />
-            <Input disabled={true} placeholder={personalData[1]} />
+        <div className={style.list}>
+          <div className={style.personal}>
+            <div className={`${style.activeLi} ${style.li}`}>Personal Data</div>
+            {personalData && personalData.length > 0 && (
+              <div className={style.personalData}>
+                <Input disabled={true} placeholder={personalData[0]} />
+                <Input disabled={true} placeholder={personalData[1]} />
+              </div>
+            )}
           </div>
-        )}
+
+          <div onClick={onLogOutClick} className={`${style.li} ${style.logOut}`}>
+            Log Out
+          </div>
+        </div>
       </div>
     </div>
   );
