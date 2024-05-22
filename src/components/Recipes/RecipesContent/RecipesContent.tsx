@@ -13,6 +13,7 @@ import { Data } from 'configs/types';
 import { options } from 'utils/constants';
 
 import style from './style.module.scss';
+import RecipesSkeleton from 'components/Recipes/RecipesSkeleton/RecipesSkeleton';
 
 export type RecipesContentProps = {
   data: Data[];
@@ -21,6 +22,7 @@ export type RecipesContentProps = {
   inputState: string;
   handleInputClick: () => void;
   error: boolean;
+  loading: boolean;
 };
 
 const RecipesContent: React.FC<RecipesContentProps> = ({
@@ -30,6 +32,7 @@ const RecipesContent: React.FC<RecipesContentProps> = ({
   inputState,
   handleInputClick,
   error,
+  loading,
 }) => {
   const [popUpState, setPopUpState] = React.useState(false);
   const onPopUpClick = () => {
@@ -83,6 +86,7 @@ const RecipesContent: React.FC<RecipesContentProps> = ({
         <div className={style.multiDropdown}>
           <MultiDropdown options={options} />
         </div>
+        {loading && <RecipesSkeleton />}
         {data.length > 0 && (
           <div className={style.cards}>
             {data.map((el: Data, i: number) => {

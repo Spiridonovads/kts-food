@@ -6,7 +6,6 @@ import InfiniteScroll from 'react-infinite-scroll-component';
 import { useLocation, useNavigate, useSearchParams } from 'react-router-dom';
 import Loader from 'components/Loader/Loader';
 import RecipesContent from 'components/Recipes/RecipesContent/RecipesContent';
-import RecipesSkeleton from 'components/Recipes/RecipesSkeleton/RecipesSkeleton';
 
 import createRecipesAppStore from 'configs/store/RecipesStore/RecipesStore';
 import { options } from 'utils/constants';
@@ -81,32 +80,27 @@ const Recipes: React.FC = () => {
   return (
     <Observer>
       {() => (
-        <>
-          {!appStore.loading ? (
-            <main>
-              <InfiniteScroll
-                dataLength={appStore.items?.length}
-                next={fetchMoreData}
-                hasMore={appStore.hasMore}
-                loader={<Loader size="l" />}
-                style={{
-                  overflow: 'hidden',
-                }}
-              >
-                <RecipesContent
-                  data={appStore.items}
-                  handleFormSubmit={() => handleFormSubmit}
-                  handleInputChange={handleInputChange}
-                  inputState={inputState}
-                  handleInputClick={handleInputClick}
-                  error={appStore.err}
-                />
-              </InfiniteScroll>
-            </main>
-          ) : (
-            <RecipesSkeleton />
-          )}
-        </>
+        <main>
+          <InfiniteScroll
+            dataLength={appStore.items?.length}
+            next={fetchMoreData}
+            hasMore={appStore.hasMore}
+            loader={<Loader size="l" />}
+            style={{
+              overflow: 'hidden',
+            }}
+          >
+            <RecipesContent
+              data={appStore.items}
+              handleFormSubmit={() => handleFormSubmit}
+              handleInputChange={handleInputChange}
+              inputState={inputState}
+              handleInputClick={handleInputClick}
+              error={appStore.err}
+              loading={appStore.loading}
+            />
+          </InfiniteScroll>
+        </main>
       )}
     </Observer>
   );
