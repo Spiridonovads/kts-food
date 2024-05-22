@@ -8,6 +8,9 @@ const RecipesSkeleton: React.FC = () => {
         <div className={style.card} />
         <div className={style.card} />
         <div className={style.card} />
+        <div className={style.card} />
+        <div className={style.card} />
+        <div className={style.card} />
       </div>
     </section>
   );
