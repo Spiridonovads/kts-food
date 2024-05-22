@@ -1,13 +1,16 @@
+import { observer } from 'mobx-react-lite';
 import * as React from 'react';
-import { useNavigate, Link } from 'react-router-dom';
+import { useNavigate, Link, useLocation } from 'react-router-dom';
 import HeartIcon from 'components/Icon/HeartIcon/HeartIcon';
 import LogoIcon from 'components/Icon/LogoIcon/LogoIcon';
 import ManIcon from 'components/Icon/ManIcon/MainIcon';
 import Text from 'components/Text/Text';
 import style from './style.module.scss';
+import appStore from 'configs/store/PersonalStore/AppStore';
 
 const Header: React.FC = () => {
   const navigate = useNavigate();
+  const location = useLocation();
 
   const onLogoClick = () => {
     navigate(`/recipes`);
@@ -28,17 +31,40 @@ const Header: React.FC = () => {
           </div>
         </div>
         <div className={style.personal}>
-          <Link to={{ pathname: '/saves' }}>
-            <HeartIcon color="accent" />
-          </Link>
-
-          <Link to={{ pathname: '/personal' }}>
-            <ManIcon color="accent" />
-          </Link>
+          {location.pathname === '/saves' ? (
+            <div className={`${style.active} ${style.icon}`}>
+              <Link to={{ pathname: '/saves' }}>
+                <HeartIcon color="secondary" />
+              </Link>
+              {appStore.savesNumber > 0 && (
+                <div className={`${style.popUp} ${style.popUpActive}`}>{appStore.savesNumber}</div>
+              )}
+            </div>
+          ) : (
+            <div className={style.icon}>
+              <Link to={{ pathname: '/saves' }}>
+                <HeartIcon color="accent" />
+              </Link>
+              {appStore.savesNumber > 0 && <div className={style.popUp}>{appStore.savesNumber}</div>}
+            </div>
+          )}
+          {location.pathname === '/personal' ? (
+            <div className={`${style.active} ${style.icon}`}>
+              <Link to={{ pathname: '/personal' }}>
+                <ManIcon color="secondary" />
+              </Link>
+            </div>
+          ) : (
+            <div className={style.icon}>
+              <Link to={{ pathname: '/personal' }}>
+                <ManIcon color="accent" />
+              </Link>
+            </div>
+          )}
         </div>
       </nav>
     </header>
   );
 };
 
-export default Header;
+export default observer(Header);

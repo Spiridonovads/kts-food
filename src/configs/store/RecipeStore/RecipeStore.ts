@@ -6,7 +6,7 @@ class createRecipeAppStore {
   recipe: Data[] = [];
   equip: string[] = [];
   err: boolean = false;
-  loading: boolean = false;
+  loading: boolean = true;
 
   constructor() {
     makeObservable(this, {
@@ -19,7 +19,6 @@ class createRecipeAppStore {
   }
 
   async fetchRecipeData(id: string) {
-    this.loading = true;
     try {
       const response = await getDataIngredient(Number(id));
 
@@ -36,7 +35,7 @@ class createRecipeAppStore {
             });
           });
           this.equip = Array.from(equipmentSet);
-          this.err = response.vegetarian ? false : true;
+          this.loading = false;
           return;
         }
       });
@@ -44,9 +43,6 @@ class createRecipeAppStore {
       console.error('Error fetching data:', error);
       runInAction(() => {
         this.err = true;
-      });
-    } finally {
-      runInAction(() => {
         this.loading = false;
       });
     }

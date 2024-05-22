@@ -13,7 +13,7 @@ export type InputProps = Omit<React.InputHTMLAttributes<HTMLInputElement>, 'onCh
 };
 
 const Input = React.forwardRef<HTMLInputElement, InputProps>(
-  ({ disabled, placeholder, afterSlot, value, border, onChange, wrongFormat, ...props }, ref) => {
+  ({ disabled, placeholder, afterSlot, value, border, onChange, wrongFormat, onAfterSlotClick, ...props }, ref) => {
     return (
       <div
         ref={ref}
@@ -39,7 +39,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
           placeholder={placeholder}
         />
         {afterSlot && (
-          <div className={style.icon} onClick={props.onAfterSlotClick}>
+          <div className={style.icon} onClick={onAfterSlotClick}>
             <ArrowDownIcon color="secondary" />
           </div>
         )}

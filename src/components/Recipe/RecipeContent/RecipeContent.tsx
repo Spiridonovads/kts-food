@@ -15,7 +15,14 @@ export type RecipeContentProps = {
   error: boolean;
 };
 
-const RecipeContent: React.FC<RecipeContentProps> = ({ data, equipment }) => {
+const RecipeContent: React.FC<RecipeContentProps> = ({ data, equipment, error }) => {
+  if (error) {
+    return (
+      <div className={style.error}>
+        <Text view="p-20">При загрузке данных произошла ошибка</Text>
+      </div>
+    );
+  }
   return data[0] ? (
     <section className={style.wrapper}>
       <div className={style.title}>

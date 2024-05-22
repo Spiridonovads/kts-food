@@ -5,15 +5,19 @@ class createPersonalAppStore {
   user: string | null = null;
   personalData: string[] | undefined = [];
   savedItems: Data[] = [];
+  savesNumber: number = localStorage.getItem('user') ? localStorage.length - 1 : localStorage.length;
   constructor() {
     makeObservable(this, {
       user: observable,
       personalData: observable,
       savedItems: observable,
+      savesNumber: observable,
       updateData: action,
       getUser: action,
       getPersonalData: action,
       getSavedItemsData: action,
+      setSavesInc: action,
+      setSavesDec: action,
     });
   }
 
@@ -63,6 +67,14 @@ class createPersonalAppStore {
       }
       return acc;
     }, []);
+  }
+
+  setSavesInc() {
+    this.savesNumber += 1;
+  }
+
+  setSavesDec() {
+    this.savesNumber -= 1;
   }
 }
 

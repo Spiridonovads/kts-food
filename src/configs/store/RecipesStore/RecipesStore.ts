@@ -10,7 +10,7 @@ class createRecipesAppStore {
   pagination: number = 0;
   hasMore: boolean = true;
   err: boolean = false;
-  loading: boolean = false;
+  loading: boolean = true;
 
   constructor() {
     makeObservable(this, {
@@ -28,18 +28,16 @@ class createRecipesAppStore {
   }
 
   async fetchData() {
-    const type = rootStore.query.getParam('type')
-      ? options.filter((el) => rootStore.query.getParam('type')?.toString().toLowerCase().includes(el.toLowerCase()))
-      : [];
-    const query = rootStore.query.getParam('query') ? rootStore.query.getParam('query')?.toString() : '';
-    if (!query && type.length === 0) {
-      this.loading = true;
-    }
     try {
+      const type = rootStore.query.getParam('type')
+        ? options.filter((el) => rootStore.query.getParam('type')?.toString().toLowerCase().includes(el.toLowerCase()))
+        : [];
+      const query = rootStore.query.getParam('query') ? rootStore.query.getParam('query')?.toString() : '';
       const response = await getData(query, type, 100, this.pagination);
 
       runInAction(() => {
         if (response) {
+          this.loading = false;
           this.err = false;
           this.hasMore = true;
           if (response.results.length === 0) {
@@ -52,12 +50,9 @@ class createRecipesAppStore {
     } catch (error) {
       console.error('Error fetching data:', error);
       runInAction(() => {
+        this.loading = false;
         this.err = true;
         this.hasMore = false;
-      });
-    } finally {
-      runInAction(() => {
-        this.loading = false;
       });
     }
   }

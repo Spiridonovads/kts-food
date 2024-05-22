@@ -30,3 +30,36 @@
   align-items: center;
   gap: calc(20px * (100vw / 1270px));
 }
+
+.icon {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.active {
+  border-bottom: 2px solid $brand-active;
+}
+
+.popUp {
+  position: absolute;
+  top: 25px;
+  right: 0px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 15px;
+  height: 15px;
+  font-size: 12px;
+  background-color: white;
+  border: 1.5px solid $brand;
+  color: $brand;
+  border-radius: 100%;
+}
+
+.popUpActive {
+  border: 1.5px solid $brand-active;
+  color: $brand-active;
+}

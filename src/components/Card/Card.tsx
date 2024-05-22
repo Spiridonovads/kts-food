@@ -8,6 +8,7 @@ import Text from 'components/Text/Text';
 import { Data } from 'configs/types';
 
 import style from './style.module.scss';
+import appStore from 'configs/store/PersonalStore/AppStore';
 
 export type CardProps = {
   el: Data;
@@ -15,6 +16,7 @@ export type CardProps = {
 
 const Card: React.FC<CardProps> = ({ el }) => {
   const navigate = useNavigate();
+
   const [buttonState, setButtonState] = React.useState(false);
   const location = useLocation();
 
@@ -24,9 +26,11 @@ const Card: React.FC<CardProps> = ({ el }) => {
     if (localStorage.getItem(`${el.title}`)) {
       localStorage.removeItem(`${el.title}`);
       setButtonState(false);
+      appStore.setSavesDec();
     } else {
       localStorage.setItem(`${el.title}`, JSON.stringify(el));
       setButtonState(true);
+      appStore.setSavesInc();
     }
     if (location.pathname === '/saves') {
       navigate('/saves');
