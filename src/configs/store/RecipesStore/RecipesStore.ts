@@ -10,7 +10,7 @@ class createRecipesAppStore {
   pagination: number = 0;
   hasMore: boolean = true;
   err: boolean = false;
-  loading: boolean = true;
+  loading: boolean = false;
 
   constructor() {
     makeObservable(this, {
@@ -28,6 +28,7 @@ class createRecipesAppStore {
   }
 
   async fetchData() {
+    this.loading = true;
     try {
       const type = rootStore.query.getParam('type')
         ? options.filter((el) => rootStore.query.getParam('type')?.toString().toLowerCase().includes(el.toLowerCase()))

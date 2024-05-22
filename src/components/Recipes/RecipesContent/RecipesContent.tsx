@@ -94,7 +94,7 @@ const RecipesContent: React.FC<RecipesContentProps> = ({
             })}
           </div>
         )}
-        {data.length === 0 && !error && (
+        {data.length === 0 && (
           <div className={style.noRes}>
             <Text color="primary" weight="normal" view="p-20">
               Совпадений не найдено
