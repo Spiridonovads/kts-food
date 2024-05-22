@@ -16,7 +16,6 @@ const PersonalLoginContent: React.FC = () => {
   };
 
   React.useEffect(() => {
-    //appStore.getPersonalData();
     setPersonalData(
       localStorage
         .getItem('user')

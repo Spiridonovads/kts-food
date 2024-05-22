@@ -60,7 +60,7 @@ const PersonalLogoutContent: React.FC = () => {
         />
         {loginFormatError && (
           <Text view="p-14" color="red">
-            Некорректный формат ввода
+            Пример: ds@mail.ru
           </Text>
         )}
         <Input
