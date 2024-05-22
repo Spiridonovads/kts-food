@@ -8,12 +8,12 @@ import Input from 'components/Input/Input';
 
 import MultiDropdown from 'components/MultiDropDown/MultiDropDown';
 import RecipesMainPicture from 'components/Recipes/RecipesMainPicture/RecipesMainPicture';
+import RecipesSkeleton from 'components/Recipes/RecipesSkeleton/RecipesSkeleton';
 import Text from 'components/Text/Text';
 import { Data } from 'configs/types';
 import { options } from 'utils/constants';
 
 import style from './style.module.scss';
-import RecipesSkeleton from 'components/Recipes/RecipesSkeleton/RecipesSkeleton';
 
 export type RecipesContentProps = {
   data: Data[];
