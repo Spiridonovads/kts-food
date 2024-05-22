@@ -39,7 +39,7 @@ const RecipesContent: React.FC<RecipesContentProps> = ({
     setPopUpState(true);
   }, []);
 
-  return (
+  return !error ? (
     <>
       <section className={style.mainPic}>
         <RecipesMainPicture />
@@ -97,15 +97,14 @@ const RecipesContent: React.FC<RecipesContentProps> = ({
             </Text>
           </div>
         )}
-        {error && (
-          <div className={style.noRes}>
-            <Text color="primary" weight="normal" view="p-20">
-              При загрузке данных произошла ошибка
-            </Text>
-          </div>
-        )}
       </section>
     </>
+  ) : (
+    <div className={style.noRes}>
+      <Text color="primary" weight="normal" view="p-20">
+        При загрузке данных произошла ошибка
+      </Text>
+    </div>
   );
 };
 
