@@ -2,7 +2,7 @@
   "name": "kts-food",
   "private": true,
   "version": "0.0.0",
-  "homepage": "https://Spiridonovads.github.io/kts-food",
+  "homepage": "https://spiridonovads.github.io/kts-food/",
   "scripts": {
     "dev": "cross-env NODE_ENV=development webpack serve --mode=development",
     "build": "cross-env NODE_ENV=production webpack --mode=production",

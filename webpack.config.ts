@@ -4,7 +4,7 @@ import ReactRefreshWebpackPlugin from '@pmmmwh/react-refresh-webpack-plugin';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import TsCheckerPlugin from 'fork-ts-checker-webpack-plugin';
 
-const buildPath = path.resolve(__dirname, 'dist');
+const buildPath = path.resolve(__dirname, 'build');
 const srcPath = path.resolve(__dirname, 'src');
 
 const isProd = process.env.NODE_ENV === 'production';
@@ -115,5 +115,5 @@ module.exports = {
       }),
     ,
     new TsCheckerPlugin(),
-  ].filter(Boolean)
+  ].filter(Boolean),
 };
