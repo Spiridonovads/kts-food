@@ -5,10 +5,10 @@ import Button from 'components/Button/Button';
 import CheckIcon from 'components/Icon/CheckIcon/CheckIcon';
 import ClockIcon from 'components/Icon/ClockIcon/ClockIcon';
 import Text from 'components/Text/Text';
+import appStore from 'configs/store/PersonalStore/AppStore';
 import { Data } from 'configs/types';
 
 import style from './style.module.scss';
-import appStore from 'configs/store/PersonalStore/AppStore';
 
 export type CardProps = {
   el: Data;

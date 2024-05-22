@@ -5,8 +5,8 @@ import HeartIcon from 'components/Icon/HeartIcon/HeartIcon';
 import LogoIcon from 'components/Icon/LogoIcon/LogoIcon';
 import ManIcon from 'components/Icon/ManIcon/MainIcon';
 import Text from 'components/Text/Text';
-import style from './style.module.scss';
 import appStore from 'configs/store/PersonalStore/AppStore';
+import style from './style.module.scss';
 
 const Header: React.FC = () => {
   const navigate = useNavigate();
@@ -45,7 +45,11 @@ const Header: React.FC = () => {
               <Link to={{ pathname: '/saves' }}>
                 <HeartIcon color="accent" />
               </Link>
-              {appStore.savesNumber > 0 && <div className={style.popUp}>{appStore.savesNumber}</div>}
+              {appStore.savesNumber > 0 && (
+                <Link to={{ pathname: '/saves' }}>
+                  <div className={style.popUp}>{appStore.savesNumber}</div>
+                </Link>
+              )}
             </div>
           )}
           {location.pathname === '/personal' ? (
