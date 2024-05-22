@@ -1,13 +1,11 @@
-import { useLocalObservable } from 'mobx-react-lite';
 import * as React from 'react';
 import { useNavigate } from 'react-router-dom';
 import Input from 'components/Input/Input';
-import createPersonalAppStore from 'configs/store/PersonalStore/PersonalStore';
+import appStore from 'configs/store/PersonalStore/AppStore';
 import style from './style.module.scss';
 
 const PersonalLoginContent: React.FC = () => {
   const navigate = useNavigate();
-  const appStore = useLocalObservable(() => new createPersonalAppStore());
   const [personalData, setPersonalData] = React.useState<string[] | undefined>();
 
   const onLogOutClick = () => {

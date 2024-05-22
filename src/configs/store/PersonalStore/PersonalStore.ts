@@ -23,6 +23,7 @@ class createPersonalAppStore {
       localStorage.setItem('user', JSON.stringify(user));
     } else {
       localStorage.clear();
+      this.savesNumber = 0;
       this.user = null;
     }
   }
