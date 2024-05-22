@@ -20,7 +20,7 @@ const PersonalLoginContent: React.FC = () => {
         ?.replace(/[\]["]/g, '')
         .split(','),
     );
-  }, [appStore]);
+  }, []);
 
   return (
     <div className={style.wrapper}>
