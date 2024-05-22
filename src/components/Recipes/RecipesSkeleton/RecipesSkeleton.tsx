@@ -3,16 +3,14 @@ import style from './style.module.scss';
 
 const RecipesSkeleton: React.FC = () => {
   return (
-    <section className={style.mainContent}>
-      <div className={style.cards}>
-        <div className={style.card} />
-        <div className={style.card} />
-        <div className={style.card} />
-        <div className={style.card} />
-        <div className={style.card} />
-        <div className={style.card} />
-      </div>
-    </section>
+    <div className={style.cards}>
+      <div className={style.card} />
+      <div className={style.card} />
+      <div className={style.card} />
+      <div className={style.card} />
+      <div className={style.card} />
+      <div className={style.card} />
+    </div>
   );
 };
 
