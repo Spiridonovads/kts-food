@@ -105,7 +105,7 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: path.join(srcPath, 'index.html'),
+      template: 'index.html',
     }),
     !isProd && new ReactRefreshWebpackPlugin(),
 
