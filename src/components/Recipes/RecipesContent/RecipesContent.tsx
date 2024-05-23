@@ -17,20 +17,18 @@ import style from './style.module.scss';
 
 export type RecipesContentProps = {
   data: Data[];
-  handleFormSubmit: () => void;
   handleInputChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
   inputState: string;
-  handleInputClick: () => void;
+  handleRandomClick: () => void;
   error: boolean;
   loading: boolean;
 };
 
 const RecipesContent: React.FC<RecipesContentProps> = ({
   data,
-  handleFormSubmit,
   handleInputChange,
   inputState,
-  handleInputClick,
+  handleRandomClick,
   error,
   loading,
 }) => {
@@ -67,7 +65,7 @@ const RecipesContent: React.FC<RecipesContentProps> = ({
           </Text>
         </div>
 
-        <form onSubmit={handleFormSubmit} className={style.input}>
+        <form className={style.input}>
           {popUpState && (
             <div className={style.popUp}>
               <div className={style.popUpCloser} onClick={onPopUpClick}>
@@ -78,7 +76,7 @@ const RecipesContent: React.FC<RecipesContentProps> = ({
             </div>
           )}
           <Input placeholder="Enter dishes" onChange={handleInputChange} value={inputState} />
-          <Button onClick={handleInputClick} disabled={false}>
+          <Button onClick={handleRandomClick} disabled={false}>
             {<LoupeIcon />}
           </Button>
         </form>

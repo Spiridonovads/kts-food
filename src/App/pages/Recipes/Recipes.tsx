@@ -1,7 +1,7 @@
 import { debounce } from 'lodash';
 import { Observer, useLocalObservable } from 'mobx-react-lite';
 import * as React from 'react';
-import { useState, FormEvent } from 'react';
+import { useState } from 'react';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import { useLocation, useNavigate, useSearchParams } from 'react-router-dom';
 import Loader from 'components/Loader/Loader';
@@ -57,17 +57,13 @@ const Recipes: React.FC = () => {
     setInputState(event.target.value);
   };
 
-  const handleInputClick = () => {
+  const handleRandomClick = () => {
     const params = new URLSearchParams();
     const randomRecipe = Math.floor(Math.random() * appStore.data.length);
     const plainArray = appStore.data;
 
     params.set('id', plainArray[randomRecipe]?.id.toString());
     navigate(`/recipe?${params.toString()}`);
-  };
-
-  const handleFormSubmit = (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
   };
 
   React.useEffect(() => {
@@ -92,10 +88,9 @@ const Recipes: React.FC = () => {
           >
             <RecipesContent
               data={appStore.items}
-              handleFormSubmit={() => handleFormSubmit}
               handleInputChange={handleInputChange}
               inputState={inputState}
-              handleInputClick={handleInputClick}
+              handleRandomClick={handleRandomClick}
               error={appStore.err}
               loading={appStore.loading}
             />

@@ -106,6 +106,7 @@ module.exports = {
   plugins: [
     new HtmlWebpackPlugin({
       template: 'index.html',
+      favicon: './public/logo.svg',
     }),
     !isProd && new ReactRefreshWebpackPlugin(),
 
