@@ -1,14 +1,14 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom/client';
-import { BrowserRouter } from 'react-router-dom';
+import { HashRouter } from 'react-router-dom';
 import App from './App/App';
 import './styles/index.css';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
-    <BrowserRouter basename="/kts-food">
+    <HashRouter basename="/kts-food">
       {' '}
       <App />
-    </BrowserRouter>
+    </HashRouter>
   </React.StrictMode>,
 );
